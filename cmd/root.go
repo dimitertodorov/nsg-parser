@@ -2,14 +2,15 @@ package cmd
 
 import (
 	"fmt"
+	log "github.com/Sirupsen/logrus"
+	"github.com/mitchellh/go-homedir"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
-	"github.com/mitchellh/go-homedir"
-	log "github.com/Sirupsen/logrus"
 	"os"
 )
 
 var cfgFile string
+var devMode bool
 
 var RootCmd = &cobra.Command{
 	Use:   "nsg-parser",
@@ -22,7 +23,7 @@ var RootCmd = &cobra.Command{
 	},
 }
 
-func init(){
+func init() {
 	// Output to stdout instead of the default stderr
 	// Can be any io.Writer, see below for File example
 	log.SetOutput(os.Stdout)
@@ -31,12 +32,14 @@ func init(){
 	log.SetLevel(log.DebugLevel)
 
 	RootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/nsg-parser.json)")
+	RootCmd.PersistentFlags().BoolVar(&devMode, "", false, "DEV MODE: Use Storage Emulator? \n Must be reachable at http://127.0.0.1:10000")
+
 }
 
 func initViper() {
-	viper.AddConfigPath("/etc/nsg-parser/")   // path to look for the config file in
-	viper.AddConfigPath("$HOME/.nsg-parser")  // call multiple times to add many search paths
-	viper.AddConfigPath(".")               // optionally look for config in the working directory
+	viper.AddConfigPath("/etc/nsg-parser/")  // path to look for the config file in
+	viper.AddConfigPath("$HOME/.nsg-parser") // call multiple times to add many search paths
+	viper.AddConfigPath(".")                 // optionally look for config in the working directory
 	if cfgFile != "" {
 		// Use config file from the flag.
 		viper.SetConfigFile(cfgFile)
@@ -56,7 +59,7 @@ func initViper() {
 
 	if err := viper.ReadInConfig(); err == nil {
 		log.Debug(fmt.Sprintf("Using config file: %v", viper.ConfigFileUsed()))
-	}else{
+	} else {
 		log.Panic(fmt.Sprintf("Error Loading Config File - %v - Err: %v", viper.ConfigFileUsed(), err))
 	}
 }

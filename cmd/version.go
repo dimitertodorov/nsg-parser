@@ -1,9 +1,9 @@
 package cmd
 
 import (
-	"github.com/spf13/cobra"
-	"github.com/prometheus/common/version"
 	"fmt"
+	"github.com/prometheus/common/version"
+	"github.com/spf13/cobra"
 	"os"
 )
 

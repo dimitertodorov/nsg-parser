@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
-	"os"
 	"github.com/dimitertodorov/nsg-parser/cmd"
+	"os"
 )
 
 func main() {
