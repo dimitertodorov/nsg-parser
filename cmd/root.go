@@ -11,6 +11,7 @@ import (
 
 var cfgFile string
 var devMode bool
+var debug bool
 
 var RootCmd = &cobra.Command{
 	Use:   "nsg-parser",
@@ -20,19 +21,29 @@ var RootCmd = &cobra.Command{
 	},
 	PersistentPreRun: func(cmd *cobra.Command, args []string) {
 		initViper()
+		initLogging(cmd)
 	},
 }
 
 func init() {
+
+
+	RootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/nsg-parser.json)")
+	RootCmd.PersistentFlags().BoolVar(&devMode, "dev_mode", false, "DEV MODE: Use Storage Emulator? \n Must be reachable at http://127.0.0.1:10000")
+	RootCmd.PersistentFlags().BoolVar(&debug, "debug", false, "DEBUG? Turn on Debug logging with this.")
+
+}
+
+func initLogging(cmd *cobra.Command) {
 	// Output to stdout instead of the default stderr
 	// Can be any io.Writer, see below for File example
 	log.SetOutput(os.Stdout)
 
-	// Only log the warning severity or above.
-	log.SetLevel(log.DebugLevel)
-
-	RootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/nsg-parser.json)")
-	RootCmd.PersistentFlags().BoolVar(&devMode, "", false, "DEV MODE: Use Storage Emulator? \n Must be reachable at http://127.0.0.1:10000")
+	if debug{
+		log.SetLevel(log.DebugLevel)
+	}else{
+		log.SetLevel(log.InfoLevel)
+	}
 
 }
 

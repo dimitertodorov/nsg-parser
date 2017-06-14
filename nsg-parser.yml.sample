@@ -2,4 +2,7 @@ storage_account_name: oivsjvoisjvoisjdvosdv
 storage_account_key: secretSquirrelKey
 prefix: resourceId=/SUBSCRIPTIONS/A8BB5151-C23C-4C2A-8043-AAA/RESOURCEGROUPS/SDCCDEV01RGP01/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/SOMENSG-NSG/y=2017/m=06/d=06
 container_name: insights-logs-networksecuritygroupflowevent
-path: /tmp/azlogs
+data_path: /tmp/azlogs
+syslog_protocol: tcp
+syslog_host: 127.0.0.1
+syslog_port: 5514
