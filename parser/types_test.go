@@ -1,4 +1,4 @@
-package model
+package parser
 
 import (
 	"encoding/json"
@@ -12,7 +12,7 @@ import (
 )
 
 var (
-	sampleName    = "resourceId=/SUBSCRIPTIONS/A8BB5151-C23C-4C2A-8043-B58C190C97A6/RESOURCEGROUPS/SDCCDEV01RGP01/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/SDCCDEV01EMCOL01-NSG/y=2017/m=06/d=09/h=21/m=00/PT1H.json"
+	sampleName    = "resourceId=/SUBSCRIPTIONS/SUBI/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/RGNAME-NSG/y=2017/m=06/d=09/h=21/m=00/PT1H.json"
 	sampleNsgFile = "../testdata/nsg_log_sample.json"
 	sampleNsgLog  = NsgLog{}
 )

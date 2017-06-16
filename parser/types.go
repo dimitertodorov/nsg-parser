@@ -1,11 +1,11 @@
-package model
+package parser
 
 import (
 	"bytes"
 	"encoding/json"
 	"fmt"
 	"github.com/Azure/azure-sdk-for-go/storage"
-	log "github.com/Sirupsen/logrus"
+	log "github.com/sirupsen/logrus"
 	"io/ioutil"
 	"regexp"
 	"strconv"
@@ -27,14 +27,16 @@ type NsgLogFile struct {
 	Etag          string        `json:etag`
 	LastModified  time.Time     `json:last_modified`
 	LastProcessed time.Time     `json:last_processed`
-	LastProcessedTimeStamp int64	`json:time`
-	LastCount     int           `json:last_count`
+	LastProcessedRecord time.Time `json:last_processed_record`
+	LastProcessedTimeStamp int64	`json:last_processed_time`
+	LastRecordCount     int           `json:last_count`
 	LogTime       time.Time     "json:log_time"
-	Blob          *storage.Blob `json:"-"`
+	Blob          storage.Blob `json:"-"`
 	NsgLog        *NsgLog       `json:"-"`
 	NsgName       string        `json:nsg_name`
 }
 
+// NsgLog is the GO Struct representing the .json files produced by NSG
 // Each NsgLog has multiple records. one per minute normally.
 type NsgLog struct {
 	Records Records `json:"records"`
@@ -60,6 +62,7 @@ type Record struct {
 	} `json:"properties"`
 }
 
+// Basic Struct to flatten NsgLog into
 type NsgFlowLog struct {
 	Timestamp       int64  `json:"time"`
 	SystemID        string `json:"systemId"`
@@ -79,7 +82,7 @@ type NsgFlowLog struct {
 
 type NsgFlowLogs []NsgFlowLog
 
-func NewNsgLogFile(blob *storage.Blob) (NsgLogFile, error) {
+func NewNsgLogFile(blob storage.Blob) (NsgLogFile, error) {
 	nsgLogFile := NsgLogFile{}
 	nsgLogFile.Blob = blob
 	nsgLogFile.Name = blob.Name
@@ -168,6 +171,22 @@ func (logFile *NsgLogFile) ConvertToPath(path string, startTimeStamp int64) (str
 	return path, nil
 }
 
+func (flowLogs NsgFlowLogs) AfterTimeStamp(timeStamp int64) NsgFlowLogs {
+	filteredFlowLogs := flowLogs[:0]
+
+	for _, flow := range flowLogs {
+		if flow.Timestamp > timeStamp {
+			filteredFlowLogs = append(filteredFlowLogs, flow)
+		}
+	}
+
+	logCount := len(filteredFlowLogs)
+	if logCount == 0 {
+		log.Debugf("FilterFlowLogs() - nothing needs doing - no new logs for %s")
+	}
+	return NsgFlowLogs(filteredFlowLogs)
+}
+
 func (logFile *NsgLogFile) LoadBlob() error {
 	log.Debugf("LoadBlob() for %s", logFile.Blob.Name)
 	readCloser, err := logFile.Blob.Get(nil)
@@ -189,7 +208,7 @@ func getLogTimeFromName(name string) (time.Time, error) {
 	nameTokens := NsgFileRegExp.FindStringSubmatch(name)
 
 	if len(nameTokens) != 7 {
-		return time.Time{}, fmt.Errorf("Name did not match Pattern. Expected something like: %s\n", "resourceId=/SUBSCRIPTIONS/A8BB5151-C23C-4C2A-8043-B58C190C97A6/RESOURCEGROUPS/SDCCDEV01RGP01/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/SDCCDEV01EMCOL01-NSG/y=2017/m=06/d=09/h=00/m=00/PT1H.json")
+		return time.Time{}, fmt.Errorf("Name did not match Pattern. Expected something like: %s\n", "resourceId=/SUBSCRIPTIONS/RGNAME/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/RGNAME-NSG/y=2017/m=06/d=09/h=00/m=00/PT1H.json")
 	}
 
 	timeLayout := "01/02 15:04:05 GMT 2006"
@@ -208,7 +227,7 @@ func getNsgName(name string) (string, error) {
 	nameTokens := NsgFileRegExp.FindStringSubmatch(name)
 
 	if len(nameTokens) != 7 {
-		return "", fmt.Errorf("Name did not match Pattern. Expected something like: %s\n", "resourceId=/SUBSCRIPTIONS/A8BB5151-C23C-4C2A-8043-B58C190C97A6/RESOURCEGROUPS/SDCCDEV01RGP01/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/SDCCDEV01EMCOL01-NSG/y=2017/m=06/d=09/h=00/m=00/PT1H.json")
+		return "", fmt.Errorf("Name did not match Pattern. Expected something like: %s\n", "resourceId=/SUBSCRIPTIONS/RGNAME/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/RGNAME-NSG/y=2017/m=06/d=09/h=00/m=00/PT1H.json")
 	}
 
 	return nameTokens[1], nil
@@ -234,6 +253,41 @@ func (slice Records) After(afterTime time.Time) Records {
 		}
 	}
 	return returnRecords
+}
+
+func (nsgLog *NsgLog) GetFlowLogsAfter(afterTime time.Time) (NsgFlowLogs, error) {
+	flowLogs := NsgFlowLogs{}
+	tl := "2006-01-02-15-04-05-GMT"
+	for _, record := range nsgLog.Records {
+		if !record.Time.After(afterTime){
+			log.Infof("record already processed %v", record.Time)
+		}else{
+			log.Infof("record not processed %s - %s", record.Time.Format(tl), afterTime.Format(tl))
+			for _, flow := range record.Properties.Flows {
+				for _, subFlow := range flow.Flows {
+					for _, flowTuple := range subFlow.FlowTuples {
+						alog := NsgFlowLog{}
+						tuples := strings.Split(flowTuple, ",")
+						epochTime, _ := strconv.ParseInt(tuples[0], 10, 64)
+						alog.ResourceID = record.ResourceID
+						alog.Timestamp = epochTime
+						alog.SourceIp = tuples[1]
+						alog.DestinationIp = tuples[2]
+						alog.SourcePort = tuples[3]
+						alog.DestinationPort = tuples[4]
+						alog.Protocol = tuples[5]
+						alog.TrafficFlow = tuples[6]
+						alog.Traffic = tuples[7]
+						alog.Rule = flow.Rule
+						alog.Mac = formatMac(subFlow.Mac)
+						flowLogs = append(flowLogs, alog)
+					}
+				}
+			}
+		}
+
+	}
+	return flowLogs, nil
 }
 
 func (nsgLog *NsgLog) ConvertToNsgFlowLogs() (NsgFlowLogs, error) {
