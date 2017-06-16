@@ -1,0 +1,21 @@
+package: github.com/dimitertodorov/nsg-parser
+import:
+- package: github.com/Azure/azure-sdk-for-go
+  version: ^10.0.4-beta
+  subpackages:
+  - storage
+- package: github.com/RackSec/srslog
+- package: github.com/mitchellh/go-homedir
+- package: github.com/prometheus/common
+  subpackages:
+  - version
+- package: github.com/sirupsen/logrus
+  version: ^1.0.0
+- package: github.com/spf13/cobra
+- package: github.com/spf13/viper
+testImport:
+- package: github.com/stretchr/testify
+  version: ^1.1.4
+  subpackages:
+  - assert
+  - require
