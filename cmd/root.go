@@ -35,16 +35,13 @@ func init() {
 }
 
 func initLogging(cmd *cobra.Command) {
-	// Output to stdout instead of the default stderr
-	// Can be any io.Writer, see below for File example
 	log.SetOutput(os.Stdout)
 
 	if debug{
 		log.SetLevel(log.DebugLevel)
 	}else{
-		log.SetLevel(log.DebugLevel)
+		log.SetLevel(log.InfoLevel)
 	}
-
 }
 
 func initViper() {

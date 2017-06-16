@@ -6,24 +6,25 @@ import (
 	"github.com/Azure/azure-sdk-for-go/storage"
 	log "github.com/sirupsen/logrus"
 	"github.com/dimitertodorov/nsg-parser/parser"
-	"github.com/dimitertodorov/nsg-parser/pool"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
-	"io/ioutil"
-	"os"
 	"time"
 )
 
 var (
-	accountName   string
-	accountKey    string
-	containerName string
-	prefix        string
-	dataPath          string
-	blobCli       storage.BlobStorageClient
-	timeLayout    = "2006-01-02-15-04-05-GMT"
-	parserCli	parser.AzureClient
-	syslogClient parser.SyslogClient
+	accountName    string
+	accountKey     string
+	containerName  string
+	prefix         string
+	dataPath       string
+	blobCli        storage.BlobStorageClient
+	nsgAzureClient parser.AzureClient
+	syslogClient   parser.SyslogClient
+	fileClient     parser.FileClient
+	pollLogs       bool
+	pollInterval   int
+
+	timeLayout = "2006-01-02-15-04-05-GMT"
 )
 
 var processCmd = &cobra.Command{
@@ -50,6 +51,7 @@ var fileCmd = &cobra.Command{
 	Short: "Process NSG Files from Azure Blob Storage to Local File",
 	Run: func(cmd *cobra.Command, args []string) {
 		initClient()
+		initFileClient()
 		processFiles(cmd)
 	},
 }
@@ -93,7 +95,7 @@ var scratchCmd = &cobra.Command{
     "traffic": "A"
   }]`)
 		aLogs := []parser.NsgFlowLog{}
-		_ = json.Unmarshal(logs,&aLogs)
+		_ = json.Unmarshal(logs, &aLogs)
 		for _, flowLog := range aLogs {
 			syslogClient.SendEvent(flowLog)
 		}
@@ -107,6 +109,8 @@ func init() {
 	processCmd.PersistentFlags().StringP("storage_account_key", "", "", "Key")
 	processCmd.PersistentFlags().StringP("container_name", "", "", "Container Name")
 	processCmd.PersistentFlags().StringP("begin_time", "", "2017-06-16-12", "Only Process Files after this time. 2017-01-01-01")
+	processCmd.PersistentFlags().BoolVar(&pollLogs, "poll_logs", false, "Keep Process Running")
+	processCmd.PersistentFlags().IntVar(&pollInterval, "poll_interval", 60, "Interval in Seconds to check Storage Account for Logs. ")
 
 	syslogCmd.PersistentFlags().StringP("syslog_protocol", "", "tcp", "tcp or udp")
 	syslogCmd.PersistentFlags().StringP("syslog_host", "", "127.0.0.1", "Syslog Hostname or IP")
@@ -145,8 +149,7 @@ func initClient() {
 	if err != nil {
 		log.Errorf("error creating storage client")
 	}
-	parserCli=client
-
+	nsgAzureClient = client
 
 }
 
@@ -154,173 +157,31 @@ func initSyslog() {
 	slProtocol := viper.GetString("syslog_protocol")
 	slHost := viper.GetString("syslog_host")
 	slPort := viper.GetString("syslog_port")
-	err := syslogClient.Initialize(slProtocol, slHost, slPort)
+	err := syslogClient.Initialize(slProtocol, slHost, slPort, &nsgAzureClient)
 	if err != nil {
 		log.Fatalf("error initializing syslog client %s", err)
 	}
 }
 
-func processFiles(cmd *cobra.Command) {
-	var lastTimeStamp int64
-	container := blobCli.GetContainerReference(containerName)
-	matchingBlobs, err := getBlobList(container)
-	if err != nil {
-		log.Errorf("Error Loading Blob List - Error %v", err)
-		os.Exit(2)
-	}
-	beginTime := cmd.Flags().Lookup("begin_time").Value.String()
-
-	lastTimeStamp = 0
-	afterTime, err := time.Parse(timeLayout, fmt.Sprintf("%s-00-00-GMT", beginTime))
-	processedFiles := make(map[string]*parser.NsgLogFile)
-	oldProcessStatus, err := LoadProcessStatus()
-	if err != nil {
-		log.Warnf("process-status.json does not exist. Processing All Files %s", err)
-	}
-	for _, blob := range matchingBlobs {
-		logFile, _ := parser.NewNsgLogFile(blob)
-		if logFile.LogTime.After(afterTime) {
-			lastBeat, ok := oldProcessStatus[logFile.Blob.Name]
-			if ok {
-
-				if logFile.LastModified.After(lastBeat.LastModified) {
-					lastTimeStamp = lastBeat.LastProcessedTimeStamp
-					log.Debugf("processing modified blob - %s-%s", lastBeat.NsgName, lastBeat.ShortName())
-				} else {
-					log.Infof("blob already processed - %s-%s", lastBeat.NsgName, lastBeat.ShortName())
-					processedFiles[lastBeat.Name] = lastBeat
-					continue
-				}
-			}
-			err = logFile.LoadBlob()
-			if err != nil {
-				log.Errorf("error processing %s - %s", err, blob.Name)
-			}
-
-			filePath, err := logFile.ConvertToPath(dataPath, lastTimeStamp); if err != nil {
-				log.Errorf("%s", err)
-			}
-
-			logFile.LastProcessed = time.Now()
-			logFile.LastRecordCount = len(logFile.NsgLog.Records)
-			log.Infof("processed %s", filePath)
-			processedFiles[logFile.Blob.Name] = &logFile
-		} else {
-			log.Infof("before  begin_date ignoring %v", logFile.ShortName())
-		}
-	}
-	outJson, err := json.Marshal(processedFiles)
-	if err != nil {
-		log.Errorf("error marshalling to disk")
-	}
-	path := fmt.Sprintf("%s/process-status.json", dataPath)
-	err = ioutil.WriteFile(path, outJson, 0666)
+func initFileClient() {
+	fileClient.Initialize(dataPath, &nsgAzureClient)
 }
 
-func LoadProcessStatus() (map[string]*parser.NsgLogFile, error) {
-	path := fmt.Sprintf("%s/process-status.json", dataPath)
-	var processMap map[string]*parser.NsgLogFile
-	file, err := ioutil.ReadFile(path)
+func processFiles(cmd *cobra.Command) {
+	beginTime := cmd.Flags().Lookup("begin_time").Value.String()
+	afterTime, err := time.Parse(timeLayout, fmt.Sprintf("%s-00-00-GMT", beginTime))
+	err = nsgAzureClient.ProcessBlobsAfter(afterTime, fileClient)
 	if err != nil {
-		return processMap, fmt.Errorf("File error: %v\n", err)
+		log.Error(err)
 	}
-	err = json.Unmarshal(file, &processMap)
-	if err != nil {
-		return processMap, fmt.Errorf("File error: %v\n", err)
-	}
-	return processMap, nil
-
 }
 
 func processSyslog(cmd *cobra.Command) {
-	var tasks = []*pool.Task{}
-
 	beginTime := cmd.Flags().Lookup("begin_time").Value.String()
 	afterTime, err := time.Parse(timeLayout, fmt.Sprintf("%s-00-00-GMT", beginTime))
-
-	resultsChan := make(chan parser.NsgLogFile)
-	done := make(chan bool)
-	logFiles, processedFiles, err := parserCli.LoadUnprocessedBlobs(afterTime)
-	for _, logFile := range *logFiles {
-		taskFile := logFile
-		blobTask := pool.NewTask(func() error { return processSysBlob(taskFile, resultsChan) })
-		tasks = append(tasks, blobTask)
-	}
-	p := pool.NewPool(tasks, 4)
-	go func() {
-		for {
-			processedFile, more := <-resultsChan
-			if more {
-				processedFiles[processedFile.Blob.Name] = &processedFile
-				log.Debugf("processed file %s", processedFile.Blob.Name)
-			} else {
-				log.Infof("finished all files")
-				done <- true
-				return
-			}
-		}
-	}()
-	p.Run()
-	close(resultsChan)
-	<- done
-	var numErrors int
-	for _, task := range p.Tasks {
-		if task.Err != nil {
-			log.Error(task.Err)
-			numErrors++
-		}
-		if numErrors >= 10 {
-			log.Error("Too many errors.")
-			break
-		}
-	}
-
-	outJson, err := json.Marshal(processedFiles)
-	if err != nil {
-		log.Errorf("error marshalling to disk")
-	}else{
-		log.Debugf("%s", string(outJson[:]))
-	}
-	path := fmt.Sprintf("%s/process-status.json", dataPath)
-
-	err = ioutil.WriteFile(path, outJson, 0666)
-	if err != nil{
-		log.Fatalf("Error Saving Process Status", err)
-	}
-	parserCli.LoadProcessStatus()
-}
-
-func processSysBlob(logFile parser.NsgLogFile, resultsChan chan parser.NsgLogFile) error {
-	log.Infof("syslog processing %v", logFile.ShortName())
-	err := logFile.LoadBlob()
+	err = nsgAzureClient.ProcessBlobsAfter(afterTime, syslogClient)
 	if err != nil {
 		log.Error(err)
-		return err
-	} else {
-		//alogs, _ := logFile.NsgLog.ConvertToNsgFlowLogs()
-		filteredLogs, _ := logFile.NsgLog.GetFlowLogsAfter(logFile.LastProcessedRecord)
-		logCount := len(filteredLogs)
-		endTimeStamp := filteredLogs[logCount-1].Timestamp
-		logFile.LastProcessedTimeStamp = endTimeStamp
-		log.Debugf("Got %d events for %d - %d", logCount, logFile.LastProcessedTimeStamp, len(filteredLogs))
-		for _, nsgEvent := range filteredLogs {
-			syslogClient.SendEvent(nsgEvent)
-		}
 	}
-	logFile.LastProcessed = time.Now()
-	logFile.LastRecordCount = len(logFile.NsgLog.Records)
-	logFile.LastProcessedRecord = logFile.NsgLog.Records[logFile.LastRecordCount-1].Time
-	resultsChan <- logFile
-	return nil
-}
 
-func getBlobList(cnt *storage.Container) ([]storage.Blob, error) {
-	params := storage.ListBlobsParameters{}
-	params.Prefix = prefix
-	list, err := cnt.ListBlobs(params)
-	log.Debugf("Got Blobs %v", list.Blobs)
-	if err != nil {
-		return []storage.Blob{}, err
-	}
-	return list.Blobs, nil
 }

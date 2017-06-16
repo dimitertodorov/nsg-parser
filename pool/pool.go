@@ -58,7 +58,7 @@ func (p *Pool) HasErrors() bool {
 
 // Run runs all work within the pool and blocks until it's finished.
 func (p *Pool) Run() {
-	log.Debugf("Running %v task(s) at concurrency %v.",
+	log.Debugf("Pool - Running %v task(s) at concurrency %v.",
 		len(p.Tasks), p.concurrency)
 
 	for i := 0; i < p.concurrency; i++ {

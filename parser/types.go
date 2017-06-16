@@ -23,17 +23,26 @@ func init() {
 
 // NsgLogFile represents individual .json Log files in azure
 type NsgLogFile struct {
-	Name          string        `json:name`
-	Etag          string        `json:etag`
-	LastModified  time.Time     `json:last_modified`
-	LastProcessed time.Time     `json:last_processed`
-	LastProcessedRecord time.Time `json:last_processed_record`
-	LastProcessedTimeStamp int64	`json:last_processed_time`
-	LastRecordCount     int           `json:last_count`
-	LogTime       time.Time     "json:log_time"
-	Blob          storage.Blob `json:"-"`
-	NsgLog        *NsgLog       `json:"-"`
-	NsgName       string        `json:nsg_name`
+	Name                   string        `json:name`
+	Etag                   string        `json:etag`
+	LastModified           time.Time     `json:last_modified`
+	LastProcessed          time.Time     `json:last_processed`
+	LastProcessedRecord    time.Time 	 `json:last_processed_record`
+	LastProcessedTimeStamp int64    	 `json:last_processed_time`
+	LastRecordCount        int           `json:last_count`
+	LogTime                time.Time     "json:log_time"
+	Blob                   storage.Blob  `json:"-"`
+	NsgLog                 *NsgLog       `json:"-"`
+	NsgName                string        `json:nsg_name`
+}
+
+func (logFile *NsgLogFile) Logger() *log.Entry {
+	return log.WithFields(log.Fields{
+		"ShortName": logFile.ShortName(),
+		"LastProcessedRecord": logFile.LastProcessedRecord,
+		"LastModified": logFile.LastModified,
+		"Nsg": logFile.NsgName,
+	})
 }
 
 // NsgLog is the GO Struct representing the .json files produced by NSG
@@ -50,10 +59,10 @@ type Record struct {
 	Category      string    `json:"category"`
 	ResourceID    string    `json:"resourceId"`
 	OperationName string    `json:"operationName"`
-	Properties    struct {
+	Properties struct {
 		Version int `json:"Version"`
-		Flows   []struct {
-			Rule  string `json:"rule"`
+		Flows []struct {
+			Rule string `json:"rule"`
 			Flows []struct {
 				Mac        string   `json:"mac"`
 				FlowTuples []string `json:"flowTuples"`
@@ -81,6 +90,10 @@ type NsgFlowLog struct {
 }
 
 type NsgFlowLogs []NsgFlowLog
+
+type NsgParserClient interface {
+	ProcessNsgLogFile(*NsgLogFile, chan NsgLogFile) error
+}
 
 func NewNsgLogFile(blob storage.Blob) (NsgLogFile, error) {
 	nsgLogFile := NsgLogFile{}
@@ -118,77 +131,16 @@ func (logFile *NsgLogFile) SaveToPath(path string) error {
 
 	path = fmt.Sprintf("%s/%s", path, fileName)
 
-	err = ioutil.WriteFile(path, outJson, 0666); if err != nil{
+	err = ioutil.WriteFile(path, outJson, 0666);
+	if err != nil {
 		log.Errorf("SaveToPath() - %s %s", path, err)
 		return err
 	}
 	return nil
 }
 
-
-func (logFile *NsgLogFile) ConvertToPath(path string, startTimeStamp int64) (string, error) {
-	var fileName string
-	flowLogs, err := logFile.NsgLog.ConvertToNsgFlowLogs(); if err != nil {
-		return "", err
-	}
-
-	bm := NsgFileRegExp.FindStringSubmatch(logFile.Blob.Name)
-	if len(bm) == 7 {
-		fileName = fmt.Sprintf("nsgLog-%s-%s%s%s%s%s", bm[1], bm[2], bm[3], bm[4], bm[5], bm[6])
-	} else {
-		return "", fmt.Errorf("Error Parsing Blob.Name")
-	}
-
-	filteredFlowLogs := flowLogs[:0]
-
-	for _, flow := range flowLogs {
-		if flow.Timestamp > startTimeStamp {
-			filteredFlowLogs = append(filteredFlowLogs, flow)
-		}
-	}
-
-	logCount := len(filteredFlowLogs)
-	if logCount == 0 {
-		log.Debugf("nothing needs doing - no new logs for %s", logFile.Blob.Name)
-		return "", nil
-	}
-	startTimeStamp = filteredFlowLogs[0].Timestamp
-	endTimeStamp := filteredFlowLogs[logCount-1].Timestamp
-
-	fileName = fmt.Sprintf("%s-%d-%d.json", fileName, startTimeStamp, endTimeStamp)
-
-	outJson, err := json.Marshal(filteredFlowLogs)
-	if err != nil {
-		return "", fmt.Errorf("error marshalling to json")
-	}
-
-	path = fmt.Sprintf("%s/%s", path, fileName)
-	err = ioutil.WriteFile(path, outJson, 0666)
-	logFile.LastProcessedTimeStamp = endTimeStamp
-	err = ioutil.WriteFile(path, outJson, 0666); if err != nil{
-		return "", fmt.Errorf("error during ConvertToPath() - %s %s", path, err)
-	}
-	return path, nil
-}
-
-func (flowLogs NsgFlowLogs) AfterTimeStamp(timeStamp int64) NsgFlowLogs {
-	filteredFlowLogs := flowLogs[:0]
-
-	for _, flow := range flowLogs {
-		if flow.Timestamp > timeStamp {
-			filteredFlowLogs = append(filteredFlowLogs, flow)
-		}
-	}
-
-	logCount := len(filteredFlowLogs)
-	if logCount == 0 {
-		log.Debugf("FilterFlowLogs() - nothing needs doing - no new logs for %s")
-	}
-	return NsgFlowLogs(filteredFlowLogs)
-}
-
 func (logFile *NsgLogFile) LoadBlob() error {
-	log.Debugf("LoadBlob() for %s", logFile.Blob.Name)
+	logFile.Logger().Debug("LoadBlob()")
 	readCloser, err := logFile.Blob.Get(nil)
 	nsgLog := NsgLog{}
 	if err != nil {
@@ -257,12 +209,8 @@ func (slice Records) After(afterTime time.Time) Records {
 
 func (nsgLog *NsgLog) GetFlowLogsAfter(afterTime time.Time) (NsgFlowLogs, error) {
 	flowLogs := NsgFlowLogs{}
-	tl := "2006-01-02-15-04-05-GMT"
 	for _, record := range nsgLog.Records {
-		if !record.Time.After(afterTime){
-			log.Infof("record already processed %v", record.Time)
-		}else{
-			log.Infof("record not processed %s - %s", record.Time.Format(tl), afterTime.Format(tl))
+		if record.Time.After(afterTime) {
 			for _, flow := range record.Properties.Flows {
 				for _, subFlow := range flow.Flows {
 					for _, flowTuple := range subFlow.FlowTuples {
