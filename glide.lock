@@ -1,5 +1,5 @@
 hash: 33befe3991a4ce53d1d02251bfbd063f843de2492686ac348e31e56fb2b2f342
-updated: 2017-06-16T19:17:26.643566199-04:00
+updated: 2017-06-18T18:24:04.874814965-04:00
 imports:
 - name: github.com/Azure/azure-sdk-for-go
   version: 2629e2dfcfeab50896230140542c3b9d89b35ae1
@@ -38,6 +38,10 @@ imports:
   - json/token
 - name: github.com/inconshreveable/mousetrap
   version: 76626ae9c91c4f2a10f34cad8ce83ea42c93bb75
+- name: github.com/lestrrat/go-file-rotatelogs
+  version: 9df8b44f21785240553882138c5df2e9cc1db910
+- name: github.com/lestrrat/go-strftime
+  version: 04ef93e285313c8978cbc7cad26d2aa7a9927451
 - name: github.com/magiconair/properties
   version: 51463bfca2576e06c62a8504b5c0f06d61312647
 - name: github.com/matttproud/golang_protobuf_extensions
@@ -52,6 +56,8 @@ imports:
   version: c37440a7cf42ac63b919c752ca73a85067e05992
 - name: github.com/pelletier/go-toml
   version: fe7536c3dee2596cdd23ee9976a17c22bdaae286
+- name: github.com/pkg/errors
+  version: c605e284fe17294bda444b34710735b29d1a9d90
 - name: github.com/prometheus/client_golang
   version: de4d4ffe63b9eff7f27484fdef6e421597e6abb4
   subpackages:
@@ -73,6 +79,8 @@ imports:
   - xfs
 - name: github.com/RackSec/srslog
   version: a974ba6f7fb527d2ddc73ee9c05d3e2ccc0af0dc
+- name: github.com/rcrowley/go-metrics
+  version: 1f30fe9094a513ce4c700b9a54458bbb0c96996c
 - name: github.com/satori/uuid
   version: 5bf94b69c6b68ee1b541973bb8e1144db23a194b
 - name: github.com/sirupsen/logrus
