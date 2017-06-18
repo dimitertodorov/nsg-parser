@@ -7,16 +7,30 @@ import (
 	"os"
 )
 
-func init() {
-	RootCmd.AddCommand(versionCmd)
-}
+var (
+	short bool
+)
 
 var versionCmd = &cobra.Command{
 	Use:   "version",
-	Short: "Print the version number of nsg-parser",
+	Short: "Print the version number of nsg-parser and other build information.",
 	Long:  `All software has versions. This is nsg-parser's`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Fprintln(os.Stdout, version.Print("nsg-parser"))
+		runVersion()
 		os.Exit(0)
 	},
+}
+
+func init() {
+	RootCmd.AddCommand(versionCmd)
+	versionCmd.Flags().BoolVarP(&short, "short", "s", false, "Print shorter version")
+}
+
+func runVersion() {
+	if short != false {
+		fmt.Printf(version.Version)
+		return
+	}
+	fmt.Println(version.Print("nsg-parser"))
+	return
 }

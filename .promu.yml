@@ -14,8 +14,9 @@ build:
 tarball:
   prefix: .
   files:
-    - gomi.json.sample
+    - nsg-parser.yml.sample
     - VERSION
+    - LICENSE.txt
     - README.md
 
 crossbuild:

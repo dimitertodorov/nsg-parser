@@ -2,16 +2,23 @@ package cmd
 
 import (
 	"fmt"
-	log "github.com/sirupsen/logrus"
+	rotatelogs "github.com/lestrrat/go-file-rotatelogs"
 	"github.com/mitchellh/go-homedir"
+	log "github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 	"os"
+	"time"
 )
 
-var cfgFile string
-var devMode bool
-var debug bool
+var (
+	cfgFile       string
+	devMode       bool
+	debug         bool
+	dataPath      string
+	logNameFormat = `nsg-parser-%Y%m%d%H%M.log`
+	stdoutLog	*log.Logger
+)
 
 var RootCmd = &cobra.Command{
 	Use:   "nsg-parser",
@@ -21,27 +28,58 @@ var RootCmd = &cobra.Command{
 	},
 	PersistentPreRun: func(cmd *cobra.Command, args []string) {
 		initViper()
+		initDataPath(cmd)
 		initLogging(cmd)
 	},
 }
 
 func init() {
-
-
 	RootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/nsg-parser.json)")
 	RootCmd.PersistentFlags().BoolVar(&devMode, "dev_mode", false, "DEV MODE: Use Storage Emulator? \n Must be reachable at http://127.0.0.1:10000")
 	RootCmd.PersistentFlags().BoolVar(&debug, "debug", false, "DEBUG? Turn on Debug logging with this.")
 
+	RootCmd.PersistentFlags().StringP("data_path", "", "", "Where to Save the files")
+	viper.BindPFlag("data_path", RootCmd.PersistentFlags().Lookup("data_path"))
+}
+
+func initDataPath(cmd *cobra.Command) {
+	dataPath = viper.GetString("data_path")
 }
 
 func initLogging(cmd *cobra.Command) {
-	log.SetOutput(os.Stdout)
+	stdoutLog = log.New()
+	stdoutLog.Out = os.Stdout
 
-	if debug{
+	log.SetOutput(os.Stdout)
+	log.SetFormatter(&log.JSONFormatter{})
+
+	if debug {
 		log.SetLevel(log.DebugLevel)
-	}else{
+	} else {
 		log.SetLevel(log.InfoLevel)
 	}
+
+	logf, err := rotatelogs.New(
+		logPath(),
+		rotatelogs.WithMaxAge(24*time.Hour),
+		rotatelogs.WithRotationTime(time.Hour),
+	)
+	if err != nil {
+		log.Printf("failed to create rotatelogs: %s", err)
+		return
+	}
+
+	stdoutLog.WithFields(log.Fields{
+		"LogPath": logPath(),
+		"LogLevel": log.GetLevel().String(),
+		"CurrentFileName": logf.CurrentFileName(),
+	}).Info("Started Logging")
+
+	log.SetOutput(logf)
+}
+
+func logPath() string {
+	return fmt.Sprintf("%s/%s", dataPath, logNameFormat)
 }
 
 func initViper() {

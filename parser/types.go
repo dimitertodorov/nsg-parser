@@ -23,25 +23,25 @@ func init() {
 
 // NsgLogFile represents individual .json Log files in azure
 type NsgLogFile struct {
-	Name                   string        `json:name`
-	Etag                   string        `json:etag`
-	LastModified           time.Time     `json:last_modified`
-	LastProcessed          time.Time     `json:last_processed`
-	LastProcessedRecord    time.Time 	 `json:last_processed_record`
-	LastProcessedTimeStamp int64    	 `json:last_processed_time`
-	LastRecordCount        int           `json:last_count`
-	LogTime                time.Time     "json:log_time"
-	Blob                   storage.Blob  `json:"-"`
-	NsgLog                 *NsgLog       `json:"-"`
-	NsgName                string        `json:nsg_name`
+	Name                   string       `json:name`
+	Etag                   string       `json:etag`
+	LastModified           time.Time    `json:last_modified`
+	LastProcessed          time.Time    `json:last_processed`
+	LastProcessedRecord    time.Time    `json:last_processed_record`
+	LastProcessedTimeStamp int64        `json:last_processed_time`
+	LastRecordCount        int          `json:last_count`
+	LogTime                time.Time    "json:log_time"
+	Blob                   storage.Blob `json:"-"`
+	NsgLog                 *NsgLog      `json:"-"`
+	NsgName                string       `json:nsg_name`
 }
 
 func (logFile *NsgLogFile) Logger() *log.Entry {
 	return log.WithFields(log.Fields{
-		"ShortName": logFile.ShortName(),
+		"ShortName":           logFile.ShortName(),
 		"LastProcessedRecord": logFile.LastProcessedRecord,
-		"LastModified": logFile.LastModified,
-		"Nsg": logFile.NsgName,
+		"LastModified":        logFile.LastModified,
+		"Nsg":                 logFile.NsgName,
 	})
 }
 
@@ -59,10 +59,10 @@ type Record struct {
 	Category      string    `json:"category"`
 	ResourceID    string    `json:"resourceId"`
 	OperationName string    `json:"operationName"`
-	Properties struct {
+	Properties    struct {
 		Version int `json:"Version"`
-		Flows []struct {
-			Rule string `json:"rule"`
+		Flows   []struct {
+			Rule  string `json:"rule"`
 			Flows []struct {
 				Mac        string   `json:"mac"`
 				FlowTuples []string `json:"flowTuples"`
@@ -71,14 +71,14 @@ type Record struct {
 	} `json:"properties"`
 }
 
-// Basic Struct to flatten NsgLog into
+// Flat Representation of each Flow tuple.
 type NsgFlowLog struct {
 	Timestamp       int64  `json:"time"`
-	SystemID        string `json:"systemId"`
-	Category        string `json:"category"`
-	ResourceID      string `json:"resourceId"`
-	OperationName   string `json:"operationName"`
-	Rule            string `json:"rule"`
+	SystemID        *string `json:"systemId"`
+	Category        *string `json:"category"`
+	ResourceID      *string `json:"resourceId"`
+	OperationName   *string `json:"operationName"`
+	Rule            *string `json:"rule"`
 	Mac             string `json:"mac"`
 	SourceIp        string `json:"sourceIp"`
 	DestinationIp   string `json:"destinationIp"`
@@ -131,7 +131,7 @@ func (logFile *NsgLogFile) SaveToPath(path string) error {
 
 	path = fmt.Sprintf("%s/%s", path, fileName)
 
-	err = ioutil.WriteFile(path, outJson, 0666);
+	err = ioutil.WriteFile(path, outJson, 0666)
 	if err != nil {
 		log.Errorf("SaveToPath() - %s %s", path, err)
 		return err
@@ -217,7 +217,7 @@ func (nsgLog *NsgLog) GetFlowLogsAfter(afterTime time.Time) (NsgFlowLogs, error)
 						alog := NsgFlowLog{}
 						tuples := strings.Split(flowTuple, ",")
 						epochTime, _ := strconv.ParseInt(tuples[0], 10, 64)
-						alog.ResourceID = record.ResourceID
+						alog.ResourceID = &record.ResourceID
 						alog.Timestamp = epochTime
 						alog.SourceIp = tuples[1]
 						alog.DestinationIp = tuples[2]
@@ -226,7 +226,7 @@ func (nsgLog *NsgLog) GetFlowLogsAfter(afterTime time.Time) (NsgFlowLogs, error)
 						alog.Protocol = tuples[5]
 						alog.TrafficFlow = tuples[6]
 						alog.Traffic = tuples[7]
-						alog.Rule = flow.Rule
+						alog.Rule = &flow.Rule
 						alog.Mac = formatMac(subFlow.Mac)
 						flowLogs = append(flowLogs, alog)
 					}
@@ -247,7 +247,7 @@ func (nsgLog *NsgLog) ConvertToNsgFlowLogs() (NsgFlowLogs, error) {
 					alog := NsgFlowLog{}
 					tuples := strings.Split(flowTuple, ",")
 					epochTime, _ := strconv.ParseInt(tuples[0], 10, 64)
-					alog.ResourceID = record.ResourceID
+					alog.ResourceID = &record.ResourceID
 					alog.Timestamp = epochTime
 					alog.SourceIp = tuples[1]
 					alog.DestinationIp = tuples[2]
@@ -256,7 +256,7 @@ func (nsgLog *NsgLog) ConvertToNsgFlowLogs() (NsgFlowLogs, error) {
 					alog.Protocol = tuples[5]
 					alog.TrafficFlow = tuples[6]
 					alog.Traffic = tuples[7]
-					alog.Rule = flow.Rule
+					alog.Rule = &flow.Rule
 					alog.Mac = formatMac(subFlow.Mac)
 					flowLogs = append(flowLogs, alog)
 				}

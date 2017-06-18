@@ -1,11 +1,10 @@
 package cmd
 
 import (
-	"encoding/json"
 	"fmt"
 	"github.com/Azure/azure-sdk-for-go/storage"
-	log "github.com/sirupsen/logrus"
 	"github.com/dimitertodorov/nsg-parser/parser"
+	log "github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 	"time"
@@ -15,16 +14,16 @@ var (
 	accountName    string
 	accountKey     string
 	containerName  string
-	prefix         string
-	dataPath       string
-	blobCli        storage.BlobStorageClient
 	nsgAzureClient parser.AzureClient
 	syslogClient   parser.SyslogClient
 	fileClient     parser.FileClient
-	pollLogs       bool
+	daemon         bool
 	pollInterval   int
-
-	timeLayout = "2006-01-02-15-04-05-GMT"
+	prefix         string
+	timeLayout     = "2006-01-02-15-04-05-GMT"
+	serveHttp      bool
+	serveBindIp    string
+	servePort      int
 )
 
 var processCmd = &cobra.Command{
@@ -42,7 +41,17 @@ var syslogCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		initClient()
 		initSyslog()
-		processSyslog(cmd)
+		if serveHttp {
+			go startHttpServer(cmd)
+		}
+		for {
+			processSyslog(cmd)
+			if !daemon {
+				break
+			}
+			time.Sleep(time.Duration(pollInterval) * time.Second)
+		}
+
 	},
 }
 
@@ -52,71 +61,37 @@ var fileCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		initClient()
 		initFileClient()
-		processFiles(cmd)
-	},
-}
-
-var scratchCmd = &cobra.Command{
-	Use:   "scratch",
-	Short: "Tester",
-	Run: func(cmd *cobra.Command, args []string) {
-		initClient()
-		initSyslog()
-		logs := []byte(`[{
-    "time": 1497477570,
-    "systemId": "",
-    "category": "",
-    "resourceId": "/SUBSCRIPTIONS/RGNAME/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/RGNAME-NSG",
-    "operationName": "",
-    "rule": "Fake_UDP_RULE",
-    "mac": "00:0D:3A:F3:38:54",
-    "sourceIp": "10.193.60.4",
-    "destinationIp": "10.44.55.66",
-    "sourcePort": "14953",
-    "destinationPort": "80",
-    "protocol": "U",
-    "trafficFlow": "O",
-    "traffic": "D"
-  },
-  {
-    "time": 1497477572,
-    "systemId": "",
-    "category": "",
-    "resourceId": "/SUBSCRIPTIONS/RGNAME/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/RGNAME-NSG",
-    "operationName": "",
-    "rule": "Fake_TCP_RULE",
-    "mac": "00:0D:3A:F3:38:54",
-    "sourceIp": "10.44.55.66",
-    "destinationIp": "10.193.160.4",
-    "sourcePort": "14954",
-    "destinationPort": "80",
-    "protocol": "T",
-    "trafficFlow": "I",
-    "traffic": "A"
-  }]`)
-		aLogs := []parser.NsgFlowLog{}
-		_ = json.Unmarshal(logs, &aLogs)
-		for _, flowLog := range aLogs {
-			syslogClient.SendEvent(flowLog)
+		if serveHttp {
+			go startHttpServer(cmd)
 		}
+		for {
+			processFiles(cmd)
+			if !daemon {
+				break
+			}
+			time.Sleep(time.Duration(pollInterval) * time.Second)
+		}
+
 	},
 }
 
 func init() {
-	processCmd.PersistentFlags().StringP("data_path", "", "", "Where to Save the files")
-	processCmd.PersistentFlags().StringP("prefix", "", "", "Prefix")
-	processCmd.PersistentFlags().StringP("storage_account_name", "", "", "Account")
-	processCmd.PersistentFlags().StringP("storage_account_key", "", "", "Key")
-	processCmd.PersistentFlags().StringP("container_name", "", "", "Container Name")
-	processCmd.PersistentFlags().StringP("begin_time", "", "2017-06-16-12", "Only Process Files after this time. 2017-01-01-01")
-	processCmd.PersistentFlags().BoolVar(&pollLogs, "poll_logs", false, "Keep Process Running")
-	processCmd.PersistentFlags().IntVar(&pollInterval, "poll_interval", 60, "Interval in Seconds to check Storage Account for Logs. ")
+	processCmd.PersistentFlags().String("prefix", "", "Azure Blob Prefix. Optional")
+	processCmd.PersistentFlags().String("storage_account_name", "", "Azure Account Name")
+	processCmd.PersistentFlags().String("storage_account_key", "", "Azure Account Key")
+	processCmd.PersistentFlags().String("container_name", "", "Azure Container Name")
+	processCmd.PersistentFlags().String("begin_time", "2017-06-16-12", "Only process blobs for period after this time.")
+	processCmd.PersistentFlags().BoolVarP(&daemon, "daemon", "d", false, "")
+	processCmd.PersistentFlags().IntVar(&pollInterval, "poll_interval", 60, "Interval in Seconds to check Storage Account for Log updates.")
 
-	syslogCmd.PersistentFlags().StringP("syslog_protocol", "", "tcp", "tcp or udp")
-	syslogCmd.PersistentFlags().StringP("syslog_host", "", "127.0.0.1", "Syslog Hostname or IP")
-	syslogCmd.PersistentFlags().StringP("syslog_port", "", "5514", "Syslog Port")
+	processCmd.PersistentFlags().BoolVar(&serveHttp, "serve_http", false, "Serve an HTTP Endpoint with Status Details?")
+	processCmd.PersistentFlags().StringVar(&serveBindIp, "serve_bind_ip", "127.0.0.1", "IP on which to serve. 0.0.0.0 for all.")
+	processCmd.PersistentFlags().IntVar(&servePort, "serve_port", 3000, "Port on which to serve ")
 
-	viper.BindPFlag("data_path", processCmd.PersistentFlags().Lookup("data_path"))
+	syslogCmd.PersistentFlags().String("syslog_protocol", "tcp", "tcp or udp")
+	syslogCmd.PersistentFlags().String("syslog_host", "127.0.0.1", "Syslog Hostname or IP")
+	syslogCmd.PersistentFlags().String("syslog_port", "5514", "Syslog Port")
+
 	viper.BindPFlag("prefix", processCmd.PersistentFlags().Lookup("prefix"))
 	viper.BindPFlag("storage_account_name", processCmd.PersistentFlags().Lookup("storage_account_name"))
 	viper.BindPFlag("storage_account_key", processCmd.PersistentFlags().Lookup("storage_account_key"))
@@ -129,7 +104,7 @@ func init() {
 
 	processCmd.AddCommand(syslogCmd)
 	processCmd.AddCommand(fileCmd)
-	processCmd.AddCommand(scratchCmd)
+
 }
 
 func initClient() {
@@ -143,7 +118,6 @@ func initClient() {
 	containerName = viper.GetString("container_name")
 
 	prefix = viper.GetString("prefix")
-	dataPath = viper.GetString("data_path")
 
 	client, err := parser.NewAzureClient(accountName, accountKey, containerName, dataPath)
 	if err != nil {
@@ -184,4 +158,12 @@ func processSyslog(cmd *cobra.Command) {
 		log.Error(err)
 	}
 
+}
+
+func startHttpServer(cmd *cobra.Command) {
+	stdoutLog.WithFields(log.Fields{
+		"Host": serveBindIp,
+		"Port": servePort,
+	}).Info("serving nsg-parser status  on HTTP")
+	parser.ServeClient(&nsgAzureClient, serveBindIp, servePort)
 }
