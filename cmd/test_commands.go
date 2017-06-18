@@ -6,6 +6,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
+//Useful command for testing your arcsight endpoint.
 var testSendCmd = &cobra.Command{
 	Use:   "test_send",
 	Short: "Test Sending events to Syslog.",

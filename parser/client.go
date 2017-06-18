@@ -7,21 +7,21 @@ import (
 	"github.com/Azure/azure-sdk-for-go/storage"
 	syslog "github.com/RackSec/srslog"
 	"github.com/dimitertodorov/nsg-parser/pool"
-	log "github.com/sirupsen/logrus"
 	metrics "github.com/rcrowley/go-metrics"
+	log "github.com/sirupsen/logrus"
 	"io/ioutil"
+	"sync"
 	"text/template"
 	"time"
-	"sync"
 )
 
 const (
-	DestinationFile = iota
-	DestinationSyslog
+	DestinationFile   = "file"
+	DestinationSyslog = "syslog"
 )
 
 var (
-	syslogFormat = "nsgflow:{{.Timestamp}},{{.Rule}},{{.Mac}},{{.SourceIp}},{{.SourcePort}},{{.DestinationIp}},{{.DestinationPort}},{{.Protocol}},{{.TrafficFlow}},{{.Traffic}}"
+	syslogFormat       = "nsgflow:{{.Timestamp}},{{.Rule}},{{.Mac}},{{.SourceIp}},{{.SourcePort}},{{.DestinationIp}},{{.DestinationPort}},{{.Protocol}},{{.TrafficFlow}},{{.Traffic}}"
 	processedFlowCount = metrics.GetOrRegisterCounter("processed_events", nil)
 )
 
@@ -32,9 +32,9 @@ type AzureClient struct {
 	Prefix          string
 	ProcessStatus   ProcessStatus
 	DataPath        string
-	DestinationType int
+	DestinationType string
 	Concurrency     int
-	processMutex	*sync.Mutex
+	processMutex    *sync.Mutex
 }
 
 type SyslogClient struct {
@@ -250,14 +250,7 @@ func (client *AzureClient) ProcessBlobsAfter(afterTime time.Time, parserClient N
 }
 
 func (client *AzureClient) ProcessStatusFileName() string {
-	if client.DestinationType == DestinationSyslog {
-		return "nsg-parser-status-syslog.json"
-	} else if client.DestinationType == DestinationFile {
-		return "nsg-parser-status-file.json"
-	} else {
-		return "nsg-parser-status"
-	}
-
+	return fmt.Sprintf("nsg-parser-status-%s.json", client.DestinationType)
 }
 
 func (client *AzureClient) SaveProcessStatus() error {
@@ -277,7 +270,11 @@ func (client SyslogClient) ProcessNsgLogFile(logFile *NsgLogFile, resultsChan ch
 		return err
 	}
 
-	filteredLogs, _ := logFile.NsgLog.GetFlowLogsAfter(logFile.LastProcessedRecord)
+	filteredLogs, err := logFile.NsgLog.GetFlowLogsAfter(logFile.LastProcessedRecord)
+	if err != nil {
+		return err
+	}
+
 	logCount := len(filteredLogs)
 	endTimeStamp := filteredLogs[logCount-1].Timestamp
 	logFile.LastProcessedTimeStamp = endTimeStamp
@@ -306,6 +303,7 @@ func (client FileClient) ProcessNsgLogFile(logFile *NsgLogFile, resultsChan chan
 		if err != nil {
 			return err
 		}
+
 		logCount := len(filteredLogs)
 		startTimeStamp := filteredLogs[0].Timestamp
 		endTimeStamp := filteredLogs[logCount-1].Timestamp
@@ -337,7 +335,7 @@ func (client FileClient) ProcessNsgLogFile(logFile *NsgLogFile, resultsChan chan
 		logFile.LastProcessedTimeStamp = endTimeStamp
 
 		processedFlowCount.Inc(int64(logCount))
-		
+
 		resultsChan <- *logFile
 		return nil
 	}

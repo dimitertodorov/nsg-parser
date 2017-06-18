@@ -17,7 +17,7 @@ var (
 	debug         bool
 	dataPath      string
 	logNameFormat = `nsg-parser-%Y%m%d%H%M.log`
-	stdoutLog	*log.Logger
+	stdoutLog     *log.Logger
 )
 
 var RootCmd = &cobra.Command{
@@ -38,7 +38,7 @@ func init() {
 	RootCmd.PersistentFlags().BoolVar(&devMode, "dev_mode", false, "DEV MODE: Use Storage Emulator? \n Must be reachable at http://127.0.0.1:10000")
 	RootCmd.PersistentFlags().BoolVar(&debug, "debug", false, "DEBUG? Turn on Debug logging with this.")
 
-	RootCmd.PersistentFlags().StringP("data_path", "", "", "Where to Save the files")
+	RootCmd.PersistentFlags().String("data_path", "", "Where to Save the files")
 	viper.BindPFlag("data_path", RootCmd.PersistentFlags().Lookup("data_path"))
 }
 
@@ -68,14 +68,18 @@ func initLogging(cmd *cobra.Command) {
 		log.Printf("failed to create rotatelogs: %s", err)
 		return
 	}
-
-	stdoutLog.WithFields(log.Fields{
-		"LogPath": logPath(),
-		"LogLevel": log.GetLevel().String(),
-		"CurrentFileName": logf.CurrentFileName(),
-	}).Info("Started Logging")
-
 	log.SetOutput(logf)
+
+	logFields := log.Fields{
+		"path":  logPath(),
+		"level": log.GetLevel().String(),
+	}
+	log.WithFields(logFields).Info("started logging")
+
+	//CurrentFileName() doesn't get return anything until first write.
+	logFields["current_file"] = logf.CurrentFileName()
+
+	stdoutLog.WithFields(logFields).Info("started logging")
 }
 
 func logPath() string {
@@ -104,8 +108,10 @@ func initViper() {
 	viper.AutomaticEnv()
 
 	if err := viper.ReadInConfig(); err == nil {
-		log.Debug(fmt.Sprintf("Using config file: %v", viper.ConfigFileUsed()))
+		log.WithField("config_file", viper.ConfigFileUsed()).
+			Info("loaded config file")
 	} else {
-		log.Panic(fmt.Sprintf("Error Loading Config File - %v - Err: %v", viper.ConfigFileUsed(), err))
+		log.WithField("config_file", viper.ConfigFileUsed()).
+			Error("error loading config file")
 	}
 }

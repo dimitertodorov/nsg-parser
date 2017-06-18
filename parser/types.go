@@ -73,20 +73,20 @@ type Record struct {
 
 // Flat Representation of each Flow tuple.
 type NsgFlowLog struct {
-	Timestamp       int64  `json:"time"`
+	Timestamp       int64   `json:"time"`
 	SystemID        *string `json:"systemId"`
 	Category        *string `json:"category"`
 	ResourceID      *string `json:"resourceId"`
 	OperationName   *string `json:"operationName"`
 	Rule            *string `json:"rule"`
-	Mac             string `json:"mac"`
-	SourceIp        string `json:"sourceIp"`
-	DestinationIp   string `json:"destinationIp"`
-	SourcePort      string `json:"sourcePort"`
-	DestinationPort string `json:"destinationPort"`
-	Protocol        string `json:"protocol"`
-	TrafficFlow     string `json:"trafficFlow"`
-	Traffic         string `json:"traffic"`
+	Mac             string  `json:"mac"`
+	SourceIp        string  `json:"sourceIp"`
+	DestinationIp   string  `json:"destinationIp"`
+	SourcePort      string  `json:"sourcePort"`
+	DestinationPort string  `json:"destinationPort"`
+	Protocol        string  `json:"protocol"`
+	TrafficFlow     string  `json:"trafficFlow"`
+	Traffic         string  `json:"traffic"`
 }
 
 type NsgFlowLogs []NsgFlowLog
@@ -214,54 +214,29 @@ func (nsgLog *NsgLog) GetFlowLogsAfter(afterTime time.Time) (NsgFlowLogs, error)
 			for _, flow := range record.Properties.Flows {
 				for _, subFlow := range flow.Flows {
 					for _, flowTuple := range subFlow.FlowTuples {
-						alog := NsgFlowLog{}
+						flowLog := NsgFlowLog{}
 						tuples := strings.Split(flowTuple, ",")
+						if len(tuples) != 8 {
+							return flowLogs, fmt.Errorf("unexpected tokens in tuple %s. expected 8", flowTuple)
+						}
 						epochTime, _ := strconv.ParseInt(tuples[0], 10, 64)
-						alog.ResourceID = &record.ResourceID
-						alog.Timestamp = epochTime
-						alog.SourceIp = tuples[1]
-						alog.DestinationIp = tuples[2]
-						alog.SourcePort = tuples[3]
-						alog.DestinationPort = tuples[4]
-						alog.Protocol = tuples[5]
-						alog.TrafficFlow = tuples[6]
-						alog.Traffic = tuples[7]
-						alog.Rule = &flow.Rule
-						alog.Mac = formatMac(subFlow.Mac)
-						flowLogs = append(flowLogs, alog)
+						flowLog.ResourceID = &record.ResourceID
+						flowLog.Timestamp = epochTime
+						flowLog.SourceIp = tuples[1]
+						flowLog.DestinationIp = tuples[2]
+						flowLog.SourcePort = tuples[3]
+						flowLog.DestinationPort = tuples[4]
+						flowLog.Protocol = tuples[5]
+						flowLog.TrafficFlow = tuples[6]
+						flowLog.Traffic = tuples[7]
+						flowLog.Rule = &flow.Rule
+						flowLog.Mac = formatMac(subFlow.Mac)
+						flowLogs = append(flowLogs, flowLog)
 					}
 				}
 			}
 		}
 
-	}
-	return flowLogs, nil
-}
-
-func (nsgLog *NsgLog) ConvertToNsgFlowLogs() (NsgFlowLogs, error) {
-	flowLogs := NsgFlowLogs{}
-	for _, record := range nsgLog.Records {
-		for _, flow := range record.Properties.Flows {
-			for _, subFlow := range flow.Flows {
-				for _, flowTuple := range subFlow.FlowTuples {
-					alog := NsgFlowLog{}
-					tuples := strings.Split(flowTuple, ",")
-					epochTime, _ := strconv.ParseInt(tuples[0], 10, 64)
-					alog.ResourceID = &record.ResourceID
-					alog.Timestamp = epochTime
-					alog.SourceIp = tuples[1]
-					alog.DestinationIp = tuples[2]
-					alog.SourcePort = tuples[3]
-					alog.DestinationPort = tuples[4]
-					alog.Protocol = tuples[5]
-					alog.TrafficFlow = tuples[6]
-					alog.Traffic = tuples[7]
-					alog.Rule = &flow.Rule
-					alog.Mac = formatMac(subFlow.Mac)
-					flowLogs = append(flowLogs, alog)
-				}
-			}
-		}
 	}
 	return flowLogs, nil
 }
