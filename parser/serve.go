@@ -2,7 +2,6 @@ package parser
 
 import (
 	"encoding/json"
-	"fmt"
 	"github.com/prometheus/common/version"
 	"net/http"
 	"runtime"
@@ -22,15 +21,14 @@ type NsgParserStatus struct {
 	ProcessedFlowCount int64
 }
 
-func ServeClient(client *AzureClient, ip string, port int) {
+func ServeClient(client *AzureClient, ip string) {
 	httpStatusClient = client
 	http.HandleFunc("/status", GetProcessStatus)
-
-	http.ListenAndServe(fmt.Sprintf("%s:%d", ip, port), nil)
+	http.ListenAndServe(ip, nil)
 }
 
 func loadStatus() (NsgParserStatus, error) {
-	processStatus, err := ReadProcessStatus(httpStatusClient.DataPath, "nsg-parser-status-file.json")
+	processStatus, err := ReadProcessStatus(httpStatusClient.DataPath, httpStatusClient.ProcessStatusFileName())
 
 	if err != nil {
 		return NsgParserStatus{}, err

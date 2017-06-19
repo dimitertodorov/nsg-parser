@@ -1,20 +1,24 @@
 package parser
 
 import (
-	"encoding/json"
-	"fmt"
-	"github.com/stretchr/testify/assert"
-	"io/ioutil"
-	"os"
-	"sort"
-	"testing"
-	"time"
+"encoding/json"
+"fmt"
+"github.com/stretchr/testify/assert"
+"io/ioutil"
+"os"
+"sort"
+"testing"
+"time"
+"github.com/Azure/azure-sdk-for-go/storage"
 )
 
 var (
 	sampleName    = "resourceId=/SUBSCRIPTIONS/SUBI/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/RGNAME-NSG/y=2017/m=06/d=09/h=21/m=00/PT1H.json"
 	sampleNsgFile = "../testdata/nsg_log_sample.json"
 	sampleNsgLog  = NsgLog{}
+
+	sampleProcessStatusFile = "../testdata/process_status_sample.json"
+
 	timeLayout    = "01/02 15:04:05 GMT 2006"
 )
 
@@ -52,5 +56,15 @@ func TestGetRecordsAfter(t *testing.T) {
 }
 
 func TestShortName(t *testing.T) {
-	assert.Equal(t, "NSG-123", sampleNsgLog.ShortName(), "should filter out older records")
+	testBlob := storage.Blob{Name: sampleName}
+	testLogFile, _ := NewNsgLogFile(testBlob)
+	assert.Equal(t, "RGNAME-NSG-2017-06-09-21", testLogFile.ShortName(), "Should compose shortname.")
+}
+
+func TestLoadProcessStatus(t *testing.T) {
+	if processStatus, err := ReadProcessStatus("",sampleProcessStatusFile); err != nil {
+		t.Fatal(err)
+	}else{
+		assert.Equal(t, 79, len(processStatus), "should read process status properly")
+	}
 }

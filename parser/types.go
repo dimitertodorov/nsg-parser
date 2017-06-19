@@ -11,6 +11,7 @@ import (
 	"strconv"
 	"strings"
 	"time"
+	"path/filepath"
 )
 
 var (
@@ -116,20 +117,22 @@ func (logFile *NsgLogFile) ShortName() string {
 	return fmt.Sprintf("%s-%s", logFile.NsgName, logTime)
 }
 func (logFile *NsgLogFile) SaveToPath(path string) error {
+	var fileName string
+
 	bm := NsgFileRegExp.FindStringSubmatch(logFile.Blob.Name)
-	fileName := "default.json"
 	if len(bm) == 7 {
 		fileName = fmt.Sprintf("nsgLog-%s-%s%s%s%s%s.json", bm[1], bm[2], bm[3], bm[4], bm[5], bm[6])
 		fileName = fmt.Sprintf("%s-%s.json", fileName, logFile.LastModified.Format("2006-01-02-15-04-05"))
 	} else {
-		return fmt.Errorf("Error Parsing Blob.Name")
+		return fmt.Errorf("error in Blob.Name, expected 7 tokens. Got %d. Name: %s", len(bm), logFile.Blob.Name )
 	}
+
 	outJson, err := json.Marshal(logFile.NsgLog)
 	if err != nil {
 		return fmt.Errorf("error marshalling to disk")
 	}
 
-	path = fmt.Sprintf("%s/%s", path, fileName)
+	path = filepath.Join(path, fileName)
 
 	err = ioutil.WriteFile(path, outJson, 0666)
 	if err != nil {

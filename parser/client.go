@@ -13,6 +13,7 @@ import (
 	"sync"
 	"text/template"
 	"time"
+	"path/filepath"
 )
 
 const (
@@ -135,7 +136,7 @@ func (client *AzureClient) LoadProcessStatus() error {
 
 func ReadProcessStatus(path, fileName string) (ProcessStatus, error) {
 	var processStatus ProcessStatus
-	filePath := fmt.Sprintf("%s/%s", path, fileName)
+	filePath := filepath.Join(path, fileName)
 
 	file, err := ioutil.ReadFile(filePath)
 	if err != nil {
@@ -203,7 +204,7 @@ func (client *AzureClient) ProcessBlobsAfter(afterTime time.Time, parserClient N
 	for _, logFile := range *logFiles {
 		taskFile := logFile
 		blobTask := pool.NewTask(func() error {
-			taskFile.Logger().WithField("ClientType", fmt.Sprintf("%T", parserClient)).Debug("processing started")
+			taskFile.Logger().WithField("type", fmt.Sprintf("%T", parserClient)).Debug("processing started")
 			return parserClient.ProcessNsgLogFile(&taskFile, resultsChan)
 		})
 		tasks = append(tasks, blobTask)
@@ -258,7 +259,7 @@ func (client *AzureClient) SaveProcessStatus() error {
 	if err != nil {
 		return err
 	}
-	path := fmt.Sprintf("%s/%s", client.DataPath, client.ProcessStatusFileName())
+	path := filepath.Join(client.DataPath, client.ProcessStatusFileName())
 	err = ioutil.WriteFile(path, outJson, 0666)
 	return err
 }
@@ -298,46 +299,45 @@ func (client FileClient) ProcessNsgLogFile(logFile *NsgLogFile, resultsChan chan
 	if err != nil {
 		log.Error(err)
 		return err
+	}
+
+	filteredLogs, err := logFile.NsgLog.GetFlowLogsAfter(logFile.LastProcessedRecord)
+	if err != nil {
+		return err
+	}
+
+	logCount := len(filteredLogs)
+	startTimeStamp := filteredLogs[0].Timestamp
+	endTimeStamp := filteredLogs[logCount-1].Timestamp
+
+	bm := NsgFileRegExp.FindStringSubmatch(logFile.Blob.Name)
+	if len(bm) == 7 {
+		fileName = fmt.Sprintf("nsgLog-%s-%s%s%s%s%s", bm[1], bm[2], bm[3], bm[4], bm[5], bm[6])
 	} else {
-		filteredLogs, err := logFile.NsgLog.GetFlowLogsAfter(logFile.LastProcessedRecord)
-		if err != nil {
-			return err
-		}
+		return fmt.Errorf("error in Blob.Name, expected 7 tokens. Got %d. Name: %s", len(bm), logFile.Blob.Name)
+	}
 
-		logCount := len(filteredLogs)
-		startTimeStamp := filteredLogs[0].Timestamp
-		endTimeStamp := filteredLogs[logCount-1].Timestamp
-
-		bm := NsgFileRegExp.FindStringSubmatch(logFile.Blob.Name)
-		if len(bm) == 7 {
-			fileName = fmt.Sprintf("nsgLog-%s-%s%s%s%s%s", bm[1], bm[2], bm[3], bm[4], bm[5], bm[6])
-		} else {
-			return fmt.Errorf("Error Parsing Blob.Name")
-		}
-
-		if logCount == 0 {
-			log.Debugf("no new logs for %s", logFile.Blob.Name)
-			return nil
-		}
-
-		fileName = fmt.Sprintf("%s-%d-%d.json", fileName, startTimeStamp, endTimeStamp)
-		outJson, err := json.Marshal(filteredLogs)
-		if err != nil {
-			return fmt.Errorf("error marshalling to json")
-		}
-
-		path := fmt.Sprintf("%s/%s", client.DataPath, fileName)
-		err = ioutil.WriteFile(path, outJson, 0666)
-
-		logFile.LastProcessed = time.Now()
-		logFile.LastRecordCount = len(logFile.NsgLog.Records)
-		logFile.LastProcessedRecord = logFile.NsgLog.Records[logFile.LastRecordCount-1].Time
-		logFile.LastProcessedTimeStamp = endTimeStamp
-
-		processedFlowCount.Inc(int64(logCount))
-
-		resultsChan <- *logFile
+	if logCount == 0 {
+		log.Debugf("no new logs for %s", logFile.Blob.Name)
 		return nil
 	}
+
+	fileName = fmt.Sprintf("%s-%d-%d.json", fileName, startTimeStamp, endTimeStamp)
+	outJson, err := json.Marshal(filteredLogs)
+	if err != nil {
+		return fmt.Errorf("error marshalling to json %s", err)
+	}
+	path := filepath.Join(client.DataPath, fileName)
+	err = ioutil.WriteFile(path, outJson, 0666)
+
+	logFile.LastProcessed = time.Now()
+	logFile.LastRecordCount = len(logFile.NsgLog.Records)
+	logFile.LastProcessedRecord = logFile.NsgLog.Records[logFile.LastRecordCount-1].Time
+	logFile.LastProcessedTimeStamp = endTimeStamp
+
+	processedFlowCount.Inc(int64(logCount))
+
+	resultsChan <- *logFile
 	return nil
+
 }
