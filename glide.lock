@@ -1,12 +1,12 @@
-hash: 33befe3991a4ce53d1d02251bfbd063f843de2492686ac348e31e56fb2b2f342
-updated: 2017-06-18T18:24:04.874814965-04:00
+hash: 7cfb2d771c25a8616f7c6005f4a63fc081fa695ce8c2d4717eda5aeee5dbd994
+updated: 2017-06-19T11:07:46.2312604-04:00
 imports:
 - name: github.com/Azure/azure-sdk-for-go
   version: 2629e2dfcfeab50896230140542c3b9d89b35ae1
   subpackages:
   - storage
 - name: github.com/Azure/go-autorest
-  version: 58f6f26e200fa5dfb40c9cd1c83f3e2c860d779d
+  version: 10791a4516e77c53ab10f198f144804cca3d5b43
   subpackages:
   - autorest
   - autorest/adal
@@ -38,6 +38,10 @@ imports:
   - json/token
 - name: github.com/inconshreveable/mousetrap
   version: 76626ae9c91c4f2a10f34cad8ce83ea42c93bb75
+- name: github.com/kardianos/osext
+  version: ae77be60afb1dcacde03767a8c37337fad28ac14
+- name: github.com/kardianos/service
+  version: f6635a45eccea31fd54922e3c1bf7e5e5a5df097
 - name: github.com/lestrrat/go-file-rotatelogs
   version: 9df8b44f21785240553882138c5df2e9cc1db910
 - name: github.com/lestrrat/go-strftime
@@ -98,11 +102,16 @@ imports:
 - name: github.com/spf13/pflag
   version: e57e3eeb33f795204c1ca35f56c44f83227c6e66
 - name: github.com/spf13/viper
-  version: a1ecfa6a20bd4ef9e9caded262ee1b1b26847675
+  version: c1de95864d73a5465492829d7cb2dd422b19ac96
 - name: golang.org/x/sys
   version: fb4cac33e3196ff7f507ab9b2d2a44b0142f5b5a
   subpackages:
   - unix
+  - windows
+  - windows/registry
+  - windows/svc
+  - windows/svc/eventlog
+  - windows/svc/mgr
 - name: golang.org/x/text
   version: 9e2f80a6ba7ed4ba13e0cd4b1f094bf916875735
   repo: https://github.com/golang/text.git
@@ -115,7 +124,7 @@ imports:
   version: cd8b52f8269e0feb286dfeef29f8fe4d5b397e0b
 testImports:
 - name: github.com/davecgh/go-spew
-  version: 6d212800a42e8ab5c146b8ace3490ee17e5225f9
+  version: 04cdfd42973bb9c8589fd6a731800cf222fde1a9
   subpackages:
   - spew
 - name: github.com/pmezard/go-difflib
