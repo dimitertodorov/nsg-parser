@@ -1,122 +1,255 @@
 # nsg-parser
 ### NOTICE: ALPHA
-
-Currently in alpha.
+This project is currently in alpha.
 All functionality is subject to change.
 Major refactoring is still ahead.
 
-
 ## Purpose
-This tool was written in order to convert Azure NSG Flow logs into other formats.
-
-Go was choosen for its performance.
+This tool is being developed in order to convert Azure NSG Flow logs into other formats.
 
 Some background on NSG Flow Logs can be found here.
 https://docs.microsoft.com/en-us/azure/network-watcher/network-watcher-nsg-flow-logging-overview
 
+Go (golang) was choosen for its performance, cross-platform capabilities, and the great Azure SDK for GO
+https://github.com/Azure/azure-sdk-for-go/tree/master/storage
+
+## Features
+### Basic
+* Convert NSG Flow logs to flat local JSON files.
+* Send NSG Flows to remote Syslog. 
+* Cross-Platform (Windows, OSX, Linux)
+* Can run as daemon
+* Can be installed as a service on Windows/Linux
+* Provides HTTP endpoint for status and metric information (WIP)
+### Implementation
+* Processing status is persisted to disk, keeping track of changes.
+* Blob contents are paged to reduce loading the same parts of the Flow JSON multiple times.
+* Processing can be interrupted and restarted at any time.
+
 ### Config
 Base Config is stored in nsg-parser.yml file.
-But can also be defined on the command line.
+Most options can be overriden on the command line.
+Path to this config file is provided on the command-line with `--config`
 
 Example:
 ```yaml
+# Base Azure settings.
 storage_account_name: oivsjvoisjvoisjdvosdv
 storage_account_key: secretSquirrelKey
-prefix: resourceId=/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/SOMENSG-NSG/y=2017/m=06/d=06
 container_name: insights-logs-networksecuritygroupflowevent
-data_path: /tmp/azlogs
+# Prefix is not required, but can be useful if sharing containers.
+prefix: resourceId=/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/SOMENSG-NSG/y=2017/m=06/d=06
+# User must have write privileges to this directory. Must be a full path.
+data_path: L:\nsg-data\
+# Serve HTTP Process/Metrics endpoint at /status. NOT Secure
+serve_http: true
+serve_http_bind: 127.0.0.1:3000
+# How often do we poll? Less than 60 seconds is pointless since NSG Flows are paged by the minute.
+poll_interval: 60
+# Set begin_time here to ignore any Blobs stamped before this hour.
+# Failing to set this sensibly could result in processing huge amounts of data.
+begin_time: 2017-06-20-11
+# file or syslog
+destination: file
+# syslog settings are required for syslog destination only
 syslog_protocol: tcp
 syslog_host: 127.0.0.1
 syslog_port: 5514
+# Equivalent to setting http_proxy and https_proxy variables. Useful for service config.
+http_proxy: http://10.4.3.2:2222
 ```
 
-## Features
+### Logging
+Log Path: `data_path` 
+
+Logs are patterned and rotated every hour 
+
+`nsg-parser-%Y%m%d%H%M.log`
+
+Limited logging to Stdout
 
 ### Process to File
-This is a POC module to pre-process the NSG files into a flat format.
-
-Full options:
+```yaml
+destination: file
 ```
-Process NSG Files from Azure Blob Storage to Local File
-
-Usage:
-  nsg-parser process file [flags]
-
-Flags:
-      --begin_time string   Only Process Files after this time. 2017-01-01-01 (default "2017-06-14-01")
-  -h, --help                help for file
-
-Global Flags:
-      --config string                 config file (default is $HOME/nsg-parser.json)
-      --container_name string         Container Name
-      --data_path string              Where to Save the files
-      --debug                         DEBUG? Turn on Debug logging with this.
-      --dev_mode                      DEV MODE: Use Storage Emulator?
- Must be reachable at http://127.0.0.1:10000
-      --prefix string                 Prefix
-      --storage_account_key string    Key
-      --storage_account_name string   Account
+Processing to file will convert the Azure NSG Flow logs into a flat format.
+Each file will be formatted with 
+```
+nsgLog-NSGNAME-HOURTIME-STARTTIMESTAMP-ENDTIMESTAMP
 ```
 
 Example:
 ```
-go run main.go process file --data_path /tmp/azlog --begin_time=2017-06-14-20
+nsgLog-NSGNAME-201706201400-1497967953-1497968013
 ```
 
-Specify Prefix in Command Line
-```
-go run main.go process file \
- --prefix resourceId=/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME/y=2017/m=06/d=14 \
- --data_path /tmp/azlog \
- --begin_time=2017-06-14-20
-```
-Output 
-```
-WARN[0000] process-status.json does not exist. Processing All Files File error: open /tmp/azlog/process-status.json: no such file or directory
-...
-INFO[0000] before  begin_date ignoring NSGNAME-2017-06-14-17
-INFO[0000] before  begin_date ignoring NSGNAME-2017-06-14-18
-INFO[0000] before  begin_date ignoring NSGNAME-2017-06-14-19
-INFO[0000] before  begin_date ignoring NSGNAME-2017-06-14-20
-INFO[0000] processed /tmp/azlog/nsgLog-NSGNAME-201706142100-1497473974-1497477572.json
-INFO[0000] processed /tmp/azlog/nsgLog-NSGNAME-201706142200-1497477574-1497477692.json
-```
-## Syslog
-Sending Syslog is similar to pre-processing to file; however all work is done in-memory and directly streamed to remote Syslog.
+See: NsgFlowLog in `parser\types.go`
 
-`--data_path` is still required to store metadata.
-
-Processing Status is preserved between runs so that events are not sent more than once.
-NOTE: Currently, no guarantees are made about event receipt.
-
-
-
-#### Config
-Configuration is done in the nsg-parser.yml or on the command-line.
+Sample Object:
+```json
+{
+    "time": 1497967953,
+    "systemId": null,
+    "category": null,
+    "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGRP/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/MYNSG",
+    "operationName": null,
+    "rule": "UserRule_HTTP",
+    "mac": "00:01:11:14:38:14",
+    "sourceIp": "10.44.1.8",
+    "destinationIp": "10.55.11.4",
+    "sourcePort": "23653",
+    "destinationPort": "80",
+    "protocol": "T",
+    "trafficFlow": "I",
+    "traffic": "A"
+  }
 ```
-Process NSG Files from Azure Blob Storage to Remote Syslog
+
+### Process to Syslog:
+```yaml
+destination: syslog
+```
+Send events to remote syslog.
+Events are sent once only.
+Ensure remote-syslog parses the UNIX timestamp if correlating events.
+
+Format is
+```
+"nsgflow:{{.Timestamp}},{{.Rule}},{{.Mac}},{{.SourceIp}},{{.SourcePort}},{{.DestinationIp}},{{.DestinationPort}},{{.Protocol}},{{.TrafficFlow}},{{.Traffic}}"
+```
+
+Example
+```
+nsgflow:1497052774,UserRule_HTTP,00:0D:3A:F3:38:54,10.199.1.8,25356,10.193.160.4,80,T,I,A
+```
+
+#### Sample Config
+```yaml
+storage_account_name: oivsjvoisjvoisjdvosdv
+storage_account_key: secretSquirrelKey
+container_name: insights-logs-networksecuritygroupflowevent
+data_path: L:\nsg-data-syslog\
+serve_http: true
+serve_http_bind: 127.0.0.1:3000
+poll_interval: 60
+destination: syslog
+http_proxy: http://142.107.185.64:2222
+begin_time: 2017-06-20-11
+syslog_protocol: udp
+syslog_host: 142.107.186.142
+syslog_port: 514
+```
+
+Run:
+```
+λ nsg-parser.exe process --config l:\syslog-nsg.yml
+INFO[0000] loaded config file                            config_file="l:\syslog-nsg.yml"
+INFO[0000] started logging                               current_file="L:\nsg-data-syslog\nsg-parser-201706201100.log" logLevel=info path="L:\nsg-data-syslog\nsg-parser-%Y%m%d%H%M.log"
+```
+
+In the Log File:
+```
+time="2017-06-20T11:14:03-04:00" level=info msg="started logging" logLevel=info path="L:\nsg-data-syslog\nsg-parser-%Y%m%d%H%M.log" 
+time="2017-06-20T11:14:03-04:00" level=info msg="using proxy" proxy="http://142.107.185.64:2222" 
+time="2017-06-20T11:14:03-04:00" level=info msg="serving nsg-parser status  on HTTP" Host="127.0.0.1:3000" 
+time="2017-06-20T11:14:04-04:00" level=info msg="processing new blob" LastModified=2017-06-20 13:01:16 +0000 GMT LastProcessedRecord=0001-01-01 00:00:00 +0000 UTC Nsg=NSG-NAME ShortName=NSG-NAME-2017-06-20-12 
+time="2017-06-20T11:14:04-04:00" level=info msg="processing new blob" LastModified=2017-06-20 14:01:16 +0000 GMT LastProcessedRecord=0001-01-01 00:00:00 +0000 UTC Nsg=NSG-NAME ShortName=NSG-NAME-2017-06-20-13 
+time="2017-06-20T11:14:04-04:00" level=info msg="processing new blob" LastModified=2017-06-20 15:01:19 +0000 GMT LastProcessedRecord=0001-01-01 00:00:00 +0000 UTC Nsg=NSG-NAME ShortName=NSG-NAME-2017-06-20-14 
+time="2017-06-20T11:14:04-04:00" level=info msg="processing new blob" LastModified=2017-06-20 15:13:17 +0000 GMT LastProcessedRecord=0001-01-01 00:00:00 +0000 UTC Nsg=NSG-NAME ShortName=NSG-NAME-2017-06-20-15 
+time="2017-06-20T11:14:04-04:00" level=info msg="LoadBlobRange()" end=378921 start=0 
+time="2017-06-20T11:14:04-04:00" level=info msg="LoadBlobRange()" end=379077 start=0 
+time="2017-06-20T11:14:05-04:00" level=info msg="LoadBlobRange()" end=379077 start=0 
+time="2017-06-20T11:14:05-04:00" level=info msg="LoadBlobRange()" end=75641 start=0 
+time="2017-06-20T11:14:05-04:00" level=info msg="processing completed" type=parser.SyslogClient 
+```
+
+
+### Running as a Service.
+This is a WIP. There are some outstanding stability/restart tests to be done.
+
+nsg-parser can be installed as a service.
+When installing as a service a config file MUST be used.
+```
+λ nsg-parser.exe --config l:\syslog-nsg.yml process service --help
+Manage nsg-parser service
 
 Usage:
-  nsg-parser process syslog [flags]
+  nsg-parser process service [flags]
+  nsg-parser process service [command]
+
+Available Commands:
+  install     Install/Reinstall nsg-parser service
+  run         run nsg-parser service
+  uninstall   Uninstall nsg-parser service
 
 Flags:
-  -h, --help                     help for syslog
-      --syslog_host string       Syslog Hostname or IP (default "127.0.0.1")
-      --syslog_port string       Syslog Port (default "5514")
-      --syslog_protocol string   tcp or udp (default "tcp")
-
-Global Flags:
-      --begin_time string             Only Process Files after this time. 2017-01-01-01 (default "2017-06-15-18")
-      --config string                 config file (default is $HOME/nsg-parser.json)
-      --container_name string         Container Name
-      --data_path string              Where to Save the files
-      --debug                         DEBUG? Turn on Debug logging with this.
-      --dev_mode                      DEV MODE: Use Storage Emulator?
- Must be reachable at http://127.0.0.1:10000
-      --prefix string                 Prefix
-      --storage_account_key string    Key
-      --storage_account_name string   Account
+  -h, --help                         help for service
+      --service_description string   Service Description (default "Parser for MS Azure NSG Flow Logs")
+      --service_name string          Service Name (default "nsg-parser")
 ```
+
+### Example on Windows
+```
+λ nsg-parser.exe --config l:\syslog-nsg.yml process service install
+INFO[0000] loaded config file                            config_file="l:\syslog-nsg.yml"
+INFO[0000] started logging                               current_file="L:\nsg-data-syslog\nsg-parser-201706201100.log" logLevel=info path="L:\nsg-data-syslog\nsg-parser-%Y%m%d%H%M.log"
+INFO[0000] installing service with config                config_file="l:\syslog-nsg.yml"
+INFO[0000] installed service
+
+λ net start nsg-parser
+The nsg-parser service is starting.
+The nsg-parser service was started successfully.
+```
+
+
+### Get Status over HTTP
+An optional feature.
+This is a WIP, will be split out into metrics and status.
+
+Example Contents:
+```aidl
+{
+  "GoVersion": "go1.8.3",
+  "Version": "0.0.3",
+  "ProcessStatus": {
+    "resourceId=/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSG-NAME/y=2017/m=06/d=20/h=14/m=00/PT1H.json": {
+      "name": "resourceId=/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSG-NAME/y=2017/m=06/d=20/h=14/m=00/PT1H.json",
+      "etag": "0x8D4B7ED358F55A9",
+      "last_modified": "2017-06-20T15:01:19Z",
+      "last_processed": "2017-06-20T11:14:05.7873103-04:00",
+      "last_processed_record": "2017-06-20T14:59:35.479Z",
+      "last_processed_time": 1497970773,
+      "last_count": 60,
+      "last_processed_range": {
+        "Start": 0,
+        "End": 379077
+      },
+      "log_time": "2017-06-20T14:00:00Z",
+      "nsg_name": "NSG-NAME"
+    },
+    "resourceId=/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSG-NAME/y=2017/m=06/d=20/h=15/m=00/PT1H.json": {
+      "name": "resourceId=/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSG-NAME/y=2017/m=06/d=20/h=15/m=00/PT1H.json",
+      "etag": "0x8D4B7F08F2A695D",
+      "last_modified": "2017-06-20T15:25:18Z",
+      "last_processed": "2017-06-20T11:25:36.8141728-04:00",
+      "last_processed_record": "2017-06-20T15:23:35.472Z",
+      "last_processed_time": 1497972213,
+      "last_count": 1,
+      "last_processed_range": {
+        "Start": 145186,
+        "End": 151513
+      },
+      "log_time": "2017-06-20T15:00:00Z",
+      "nsg_name": "NSG-NAME"
+    }
+  },
+  "BuildDate": "20170620-15:13:46",
+  "BuildUser": "bobthebuilder@itsdtojadim2022",
+  "Revision": "acffa303b7c9587e678d60e1281d021ca93685b7",
+  "ProcessedFlowCount": 973
+}
+```
+
 
 ## HPE Arcsight Integration
 Primary driver behind developing this was to integrate Azure NSG into our Arcsight Logging environment.
