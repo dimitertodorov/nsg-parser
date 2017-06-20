@@ -23,6 +23,7 @@ const (
 
 var (
 	syslogFormat       = "nsgflow:{{.Timestamp}},{{.Rule}},{{.Mac}},{{.SourceIp}},{{.SourcePort}},{{.DestinationIp}},{{.DestinationPort}},{{.Protocol}},{{.TrafficFlow}},{{.Traffic}}"
+	syslogFormatter    = syslog.RFC5424Formatter
 	processedFlowCount = metrics.GetOrRegisterCounter("processed_events", nil)
 )
 
@@ -64,7 +65,7 @@ func NewAzureClient(accountName, accountKey, containerName, dataPath string) (Az
 	azureClient.Concurrency = 1
 	azureClient.processMutex = &sync.Mutex{}
 
-	log.Debugf("Initialized AzureClient to %s", accountName)
+	log.Debugf("initialized AzureClient to %s", accountName)
 	return azureClient, nil
 }
 
@@ -72,8 +73,10 @@ func (client *FileClient) Initialize(dataPath string, azureClient *AzureClient) 
 	client.DataPath = dataPath
 
 	azureClient.DestinationType = DestinationFile
-	azureClient.LoadProcessStatus()
 
+	if err := azureClient.LoadProcessStatus(); err != nil {
+		return err
+	}
 	return nil
 }
 
@@ -85,7 +88,7 @@ func (client *SyslogClient) Initialize(protocol, host, port string, azureClient 
 		return err
 	}
 
-	syslogWriter.SetFormatter(syslog.RFC5424Formatter)
+	syslogWriter.SetFormatter(syslogFormatter)
 
 	logTemplate, err := template.New("nsgFlowTemplate").Parse(syslogFormat)
 	if err != nil {
@@ -97,15 +100,16 @@ func (client *SyslogClient) Initialize(protocol, host, port string, azureClient 
 	client.initialized = true
 
 	azureClient.DestinationType = DestinationSyslog
-	azureClient.LoadProcessStatus()
-
+	if err = azureClient.LoadProcessStatus(); err != nil {
+		return err
+	}
 	return nil
 }
 
 func (client *SyslogClient) SendEvent(flowLog NsgFlowLog) error {
 	var message bytes.Buffer
 	if !client.initialized {
-		return fmt.Errorf("cannot SendEvent() to uninitialized syslog")
+		return fmt.Errorf("uninitialized syslog client")
 	}
 	err := client.template.Execute(&message, flowLog)
 	if err != nil {
@@ -118,7 +122,6 @@ func (client *SyslogClient) SendEvent(flowLog NsgFlowLog) error {
 func (client *AzureClient) GetBlobsByPrefix(prefix string) ([]storage.Blob, error) {
 	params := storage.ListBlobsParameters{}
 	list, err := client.container.ListBlobs(params)
-	log.Debugf("GetBlobsByPrefix %v", len(list.Blobs))
 	if err != nil {
 		return []storage.Blob{}, err
 	}
@@ -127,10 +130,10 @@ func (client *AzureClient) GetBlobsByPrefix(prefix string) ([]storage.Blob, erro
 
 func (client *AzureClient) LoadProcessStatus() error {
 	processStatus, err := ReadProcessStatus(client.DataPath, client.ProcessStatusFileName())
-	client.ProcessStatus = processStatus
 	if err != nil {
 		return err
 	}
+	client.ProcessStatus = processStatus
 	return nil
 }
 
@@ -140,13 +143,13 @@ func ReadProcessStatus(path, fileName string) (ProcessStatus, error) {
 
 	file, err := ioutil.ReadFile(filePath)
 	if err != nil {
-		return processStatus, fmt.Errorf("file error: %v\n", err)
-	}
-	err = json.Unmarshal(file, &processStatus)
-	if err != nil {
-		return processStatus, fmt.Errorf("file error: %v\n", err)
+		return processStatus, nil
 	}
 
+	err = json.Unmarshal(file, &processStatus)
+	if err != nil {
+		return processStatus, fmt.Errorf("unmarshal error: %v\n", err)
+	}
 	return processStatus, nil
 }
 
@@ -154,7 +157,8 @@ func (client *AzureClient) LoadUnprocessedBlobs(afterTime time.Time) (*[]NsgLogF
 	var nsgLogFiles []NsgLogFile
 
 	processStatus := ProcessStatus{}
-	matchingBlobs, err := client.GetBlobsByPrefix("")
+
+	matchingBlobs, err := client.GetBlobsByPrefix(client.Prefix)
 	if err != nil {
 		return &nsgLogFiles, processStatus, fmt.Errorf("Error Loading Blob List - Error %v", err)
 	}
@@ -167,6 +171,7 @@ func (client *AzureClient) LoadUnprocessedBlobs(afterTime time.Time) (*[]NsgLogF
 				if logFile.LastModified.After(lastProcessedFile.LastModified) {
 					logFile.LastProcessedTimeStamp = lastProcessedFile.LastProcessedTimeStamp
 					logFile.LastProcessedRecord = lastProcessedFile.LastProcessedRecord
+					logFile.LastProcessedRange = lastProcessedFile.LastProcessedRange
 					logFile.Logger().Info("processing modified blob")
 					nsgLogFiles = append(nsgLogFiles, logFile)
 				} else {
@@ -216,9 +221,10 @@ func (client *AzureClient) ProcessBlobsAfter(afterTime time.Time, parserClient N
 			processedFile, more := <-resultsChan
 			if more {
 				processedFiles[processedFile.Blob.Name] = &processedFile
-				processedFile.Logger().WithField("ClientType", fmt.Sprintf("%T", parserClient)).Debug("processing completed")
+				processedFile.Logger().WithField("type", fmt.Sprintf("%T", parserClient)).Debug("processing completed")
 			} else {
-				log.Infof("finished all files")
+				log.WithField("type", fmt.Sprintf("%T", parserClient)).
+					Info("processing completed")
 				done <- true
 				return
 			}
@@ -265,7 +271,8 @@ func (client *AzureClient) SaveProcessStatus() error {
 }
 
 func (client SyslogClient) ProcessNsgLogFile(logFile *NsgLogFile, resultsChan chan NsgLogFile) error {
-	err := logFile.LoadBlob()
+	blobRange := logFile.getUnprocessedBlobRange()
+	err := logFile.LoadBlobRange(blobRange)
 	if err != nil {
 		log.Error(err)
 		return err
@@ -286,6 +293,7 @@ func (client SyslogClient) ProcessNsgLogFile(logFile *NsgLogFile, resultsChan ch
 	logFile.LastProcessed = time.Now()
 	logFile.LastRecordCount = len(logFile.NsgLog.Records)
 	logFile.LastProcessedRecord = logFile.NsgLog.Records[logFile.LastRecordCount-1].Time
+	logFile.LastProcessedRange = blobRange
 
 	processedFlowCount.Inc(int64(logCount))
 
@@ -295,7 +303,8 @@ func (client SyslogClient) ProcessNsgLogFile(logFile *NsgLogFile, resultsChan ch
 
 func (client FileClient) ProcessNsgLogFile(logFile *NsgLogFile, resultsChan chan NsgLogFile) error {
 	var fileName string
-	err := logFile.LoadBlob()
+	blobRange := logFile.getUnprocessedBlobRange()
+	err := logFile.LoadBlobRange(blobRange)
 	if err != nil {
 		log.Error(err)
 		return err
@@ -334,10 +343,20 @@ func (client FileClient) ProcessNsgLogFile(logFile *NsgLogFile, resultsChan chan
 	logFile.LastRecordCount = len(logFile.NsgLog.Records)
 	logFile.LastProcessedRecord = logFile.NsgLog.Records[logFile.LastRecordCount-1].Time
 	logFile.LastProcessedTimeStamp = endTimeStamp
+	logFile.LastProcessedRange = blobRange
 
 	processedFlowCount.Inc(int64(logCount))
 
 	resultsChan <- *logFile
 	return nil
+}
 
+func (logFile *NsgLogFile) getUnprocessedBlobRange() storage.BlobRange {
+	var blobRange storage.BlobRange
+	if logFile.LastProcessedRange.End != 0 {
+		blobRange = storage.BlobRange{Start: logFile.LastProcessedRange.End, End: uint64(logFile.Blob.Properties.ContentLength)}
+	} else {
+		blobRange = storage.BlobRange{Start: 0, End: uint64(logFile.Blob.Properties.ContentLength)}
+	}
+	return blobRange
 }

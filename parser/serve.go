@@ -24,7 +24,8 @@ type NsgParserStatus struct {
 func ServeClient(client *AzureClient, ip string) error {
 	httpStatusClient = client
 	http.HandleFunc("/status", GetProcessStatus)
-	err := http.ListenAndServe(ip, nil); if err != nil {
+	err := http.ListenAndServe(ip, nil)
+	if err != nil {
 		return err
 	}
 	return nil

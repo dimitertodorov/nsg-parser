@@ -24,17 +24,18 @@ func init() {
 
 // NsgLogFile represents individual .json Log files in azure
 type NsgLogFile struct {
-	Name                   string       `json:name`
-	Etag                   string       `json:etag`
-	LastModified           time.Time    `json:last_modified`
-	LastProcessed          time.Time    `json:last_processed`
-	LastProcessedRecord    time.Time    `json:last_processed_record`
-	LastProcessedTimeStamp int64        `json:last_processed_time`
-	LastRecordCount        int          `json:last_count`
-	LogTime                time.Time    "json:log_time"
-	Blob                   storage.Blob `json:"-"`
-	NsgLog                 *NsgLog      `json:"-"`
-	NsgName                string       `json:nsg_name`
+	Name                   string            `json:"name"`
+	Etag                   string            `json:"etag"`
+	LastModified           time.Time         `json:"last_modified"`
+	LastProcessed          time.Time         `json:"last_processed"`
+	LastProcessedRecord    time.Time         `json:"last_processed_record"`
+	LastProcessedTimeStamp int64             `json:"last_processed_time"`
+	LastRecordCount        int               `json:"last_count"`
+	LastProcessedRange     storage.BlobRange `json:"last_processed_range"`
+	LogTime                time.Time         `json:"log_time"`
+	Blob                   storage.Blob      `json:"-"`
+	NsgLog                 *NsgLog           `json:"-"`
+	NsgName                string            `json:"nsg_name"`
 }
 
 func (logFile *NsgLogFile) Logger() *log.Entry {
@@ -143,16 +144,36 @@ func (logFile *NsgLogFile) SaveToPath(path string) error {
 }
 
 func (logFile *NsgLogFile) LoadBlob() error {
-	logFile.Logger().Debug("LoadBlob()")
-	readCloser, err := logFile.Blob.Get(nil)
+	blobRange := storage.BlobRange{Start: 0, End: uint64(logFile.Blob.Properties.ContentLength)}
+	return logFile.LoadBlobRange(blobRange)
+}
+
+// Primary function for loading the storage.Blob object into an NsgLog
+// Range is a set of byte offsets for reading the contents.
+func (logFile *NsgLogFile) LoadBlobRange(blobRange storage.BlobRange) error {
 	nsgLog := NsgLog{}
+	log.WithFields(log.Fields{
+		"start": blobRange.Start,
+		"end":   blobRange.End,
+	}).Info("LoadBlobRange()")
+	bOptions := storage.GetBlobRangeOptions{
+		Range: &blobRange,
+	}
+	readCloser, err := logFile.Blob.GetRange(&bOptions)
 	if err != nil {
-		return fmt.Errorf("get blob failed: %v", err)
+		log.Fatalf("get blob range failed: %v", err)
 	}
 	defer readCloser.Close()
 	bytesRead, err := ioutil.ReadAll(readCloser)
-	err = json.Unmarshal(bytesRead, &nsgLog)
+	firstRecord := bytes.Index(bytesRead, []byte(`"time"`))
+	if firstRecord == -1 {
+		return fmt.Errorf("failed to find \"time\" in JSON payload")
+	}
+	structuredJson := []byte(`{"records": [{ `)
+	structuredJson = append(structuredJson, bytesRead[firstRecord:]...)
+	err = json.Unmarshal(structuredJson, &nsgLog)
 	if err != nil {
+		log.Info(string(structuredJson[:]))
 		return fmt.Errorf("json parse body failed: %v - %v", err, logFile.Blob.Name)
 	}
 	logFile.NsgLog = &nsgLog
@@ -163,7 +184,7 @@ func getLogTimeFromName(name string) (time.Time, error) {
 	nameTokens := NsgFileRegExp.FindStringSubmatch(name)
 
 	if len(nameTokens) != 7 {
-		return time.Time{}, fmt.Errorf("Name did not match Pattern. Expected something like: %s\n", "resourceId=/SUBSCRIPTIONS/RGNAME/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/RGNAME-NSG/y=2017/m=06/d=09/h=00/m=00/PT1H.json")
+		return time.Time{}, fmt.Errorf("name did not match Pattern. Expected something like: %s\n", "resourceId=/SUBSCRIPTIONS/RGNAME/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/RGNAME-NSG/y=2017/m=06/d=09/h=00/m=00/PT1H.json")
 	}
 
 	timeLayout := "01/02 15:04:05 GMT 2006"
