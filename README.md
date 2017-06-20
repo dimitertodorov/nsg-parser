@@ -250,6 +250,32 @@ Example Contents:
 }
 ```
 
+### Install from Binary
+Only Windows binaries are being provided for the time being.
+
+#### Windows Powershell
+The following will download and extract the required files.
+
+You must still edit/create the nsg-parser.yml file before using.
+```
+$url = "https://github.com/dimitertodorov/nsg-parser/releases/download/v0.0.4/nsg-parser-0.0.4.windows-amd64.zip"
+
+$basePath = "l:\latest-nsg-parser\"
+$dataPath = "$basePath\data"
+$env:DATA_PATH=$dataPath
+
+New-Item -ItemType Directory -Force -Path $basePath
+New-Item -ItemType Directory -Force -Path $dataPath
+
+$filePath = "$basePath\nsg-parser.zip"
+Invoke-WebRequest -Uri $url -OutFile $filePath
+Add-Type -assembly “system.io.compression.filesystem”
+[io.compression.zipfile]::ExtractToDirectory($filePath, $basePath)
+```
+
+
+### Building
+To build on Windows see `scripts\build_windows.ps1`
 
 ## HPE Arcsight Integration
 Primary driver behind developing this was to integrate Azure NSG into our Arcsight Logging environment.
@@ -306,11 +332,10 @@ event.deviceDirection=__safeToInteger(__simpleMap(FlowDirection,"O=1","I=0"))
 event.categoryOutcome=__simpleMap(AllowDeny,"A=Success","D=Failure")
 ```
 
-
 ### TODO
 * Secure Syslog
-* CEF?
-* Send Directly to Arcsight SmartMessage
+* Send Directly to Arcsight SmartMessage, Bypass SmartConnector
+* 
 
 ### Contributions
 Any suggestions/contributions are welcome.
