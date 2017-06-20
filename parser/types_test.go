@@ -1,15 +1,15 @@
 package parser
 
 import (
-"encoding/json"
-"fmt"
-"github.com/stretchr/testify/assert"
-"io/ioutil"
-"os"
-"sort"
-"testing"
-"time"
-"github.com/Azure/azure-sdk-for-go/storage"
+	"encoding/json"
+	"fmt"
+	"github.com/Azure/azure-sdk-for-go/storage"
+	"github.com/stretchr/testify/assert"
+	"io/ioutil"
+	"os"
+	"sort"
+	"testing"
+	"time"
 )
 
 var (
@@ -19,7 +19,7 @@ var (
 
 	sampleProcessStatusFile = "../testdata/process_status_sample.json"
 
-	timeLayout    = "01/02 15:04:05 GMT 2006"
+	timeLayout = "01/02 15:04:05 GMT 2006"
 )
 
 func init() {
@@ -62,9 +62,9 @@ func TestShortName(t *testing.T) {
 }
 
 func TestLoadProcessStatus(t *testing.T) {
-	if processStatus, err := ReadProcessStatus("",sampleProcessStatusFile); err != nil {
+	if processStatus, err := ReadProcessStatus("", sampleProcessStatusFile); err != nil {
 		t.Fatal(err)
-	}else{
+	} else {
 		assert.Equal(t, 79, len(processStatus), "should read process status properly")
 	}
 }

@@ -21,10 +21,13 @@ type NsgParserStatus struct {
 	ProcessedFlowCount int64
 }
 
-func ServeClient(client *AzureClient, ip string) {
+func ServeClient(client *AzureClient, ip string) error {
 	httpStatusClient = client
 	http.HandleFunc("/status", GetProcessStatus)
-	http.ListenAndServe(ip, nil)
+	err := http.ListenAndServe(ip, nil); if err != nil {
+		return err
+	}
+	return nil
 }
 
 func loadStatus() (NsgParserStatus, error) {

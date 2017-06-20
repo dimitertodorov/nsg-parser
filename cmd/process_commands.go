@@ -11,19 +11,20 @@ import (
 )
 
 var (
-	accountName    string
-	accountKey     string
-	containerName  string
-	nsgAzureClient parser.AzureClient
-	syslogClient   parser.SyslogClient
-	fileClient     parser.FileClient
-	daemon         bool
-	pollInterval   int
-	prefix         string
-	timeLayout     = "2006-01-02-15-04-05-GMT"
-	serveHttp      bool
-	serveBind    string
-	destinationType	string
+	accountName     string
+	accountKey      string
+	containerName   string
+	nsgAzureClient  parser.AzureClient
+	syslogClient    parser.SyslogClient
+	fileClient      parser.FileClient
+	daemon          bool
+	pollInterval    int
+	prefix          string
+	timeLayout      = "2006-01-02-15-04-05-GMT"
+	serveHttp       bool
+	serveBind       string
+	destinationType string
+	beginTime       time.Time
 )
 
 var processCmd = &cobra.Command{
@@ -56,17 +57,19 @@ var processCmd = &cobra.Command{
 }
 
 func init() {
-	processCmd.PersistentFlags().String("prefix", "", "Azure Blob Prefix. Optional")
+	processCmd.PersistentFlags().BoolVarP(&daemon, "daemon", "d", false, "")
+	processCmd.PersistentFlags().Int("poll_interval", 60, "Interval in Seconds to check Storage Account for Log updates.")
+
 	processCmd.PersistentFlags().String("destination", "file", "file or syslog")
 
 	processCmd.PersistentFlags().String("storage_account_name", "", "Azure Account Name")
 	processCmd.PersistentFlags().String("storage_account_key", "", "Azure Account Key")
 	processCmd.PersistentFlags().String("container_name", "", "Azure Container Name")
-	processCmd.PersistentFlags().String("begin_time", "2017-06-16-12", "Only process blobs for period after this time.")
-	processCmd.PersistentFlags().BoolVarP(&daemon, "daemon", "d", false, "")
-	processCmd.PersistentFlags().Int( "poll_interval", 60, "Interval in Seconds to check Storage Account for Log updates.")
+	processCmd.PersistentFlags().String("prefix", "", "Azure Blob Prefix. Optional")
 
-	processCmd.PersistentFlags().Bool("serve_http",  false, "Serve an HTTP Endpoint with Status Details?")
+	processCmd.PersistentFlags().String("begin_time", "2017-06-19-19", "Only process blobs for period after this time.")
+
+	processCmd.PersistentFlags().Bool("serve_http", false, "Serve an HTTP Endpoint with Status Details?")
 	processCmd.PersistentFlags().String("serve_http_bind", "127.0.0.1:9889", "IP:PORT on which to serve. 0.0.0.0 for all.")
 
 	processCmd.PersistentFlags().String("syslog_protocol", "tcp", "Syslog Protocol. tcp or udp")
@@ -80,8 +83,8 @@ func init() {
 	viper.BindPFlag("storage_account_name", processCmd.PersistentFlags().Lookup("storage_account_name"))
 	viper.BindPFlag("storage_account_key", processCmd.PersistentFlags().Lookup("storage_account_key"))
 	viper.BindPFlag("container_name", processCmd.PersistentFlags().Lookup("container_name"))
-	viper.BindPFlag("serve_http",processCmd.PersistentFlags().Lookup("serve_http"))
-	viper.BindPFlag("serve_http_bind",processCmd.PersistentFlags().Lookup("serve_http_bind"))
+	viper.BindPFlag("serve_http", processCmd.PersistentFlags().Lookup("serve_http"))
+	viper.BindPFlag("serve_http_bind", processCmd.PersistentFlags().Lookup("serve_http_bind"))
 
 	viper.BindPFlag("syslog_protocol", processCmd.PersistentFlags().Lookup("syslog_protocol"))
 	viper.BindPFlag("syslog_host", processCmd.PersistentFlags().Lookup("syslog_host"))
@@ -108,6 +111,11 @@ func initClient() {
 
 	destinationType = viper.GetString("destination")
 
+	_beginTime := viper.GetString("begin_time")
+	if _beginTime != "" {
+		beginTime, _ = time.Parse(timeLayout, fmt.Sprintf("%s-00-00-GMT", _beginTime))
+	}
+
 	client, err := parser.NewAzureClient(accountName, accountKey, containerName, dataPath)
 	if err != nil {
 		log.Errorf("error creating storage client")
@@ -130,27 +138,27 @@ func initFileClient() {
 }
 
 func processFiles() {
-	beginTime := viper.GetString("begin_time")
-	afterTime, err := time.Parse(timeLayout, fmt.Sprintf("%s-00-00-GMT", beginTime))
-	err = nsgAzureClient.ProcessBlobsAfter(afterTime, fileClient)
+	err := nsgAzureClient.ProcessBlobsAfter(beginTime, fileClient)
 	if err != nil {
 		log.Error(err)
 	}
 }
 
 func processSyslog() {
-	beginTime := viper.GetString("begin_time")
-	afterTime, err := time.Parse(timeLayout, fmt.Sprintf("%s-00-00-GMT", beginTime))
-	err = nsgAzureClient.ProcessBlobsAfter(afterTime, syslogClient)
+	err := nsgAzureClient.ProcessBlobsAfter(beginTime, syslogClient)
 	if err != nil {
 		log.Error(err)
 	}
-
 }
 
 func startHttpServer() {
-	log.WithFields(log.Fields{
-		"Host": viper.GetString("serve_http_bind"),
-	}).Info("serving nsg-parser status  on HTTP")
-	parser.ServeClient(&nsgAzureClient, serveBind)
+	logFields := log.Fields{
+		"Host": serveBind,
+	}
+	log.WithFields(logFields).Info("serving nsg-parser status on HTTP")
+	if err := parser.ServeClient(&nsgAzureClient, serveBind); err != nil {
+		logFields["error"] = err
+		log.WithFields(logFields).Error("error starting http server")
+		stdoutLog.WithFields(logFields).Fatal("error starting http server")
+	}
 }

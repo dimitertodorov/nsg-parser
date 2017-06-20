@@ -8,8 +8,8 @@ import (
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 	"os"
-	"time"
 	"path/filepath"
+	"time"
 )
 
 var (
@@ -19,7 +19,6 @@ var (
 	dataPath      string
 	logNameFormat = `nsg-parser-%Y%m%d%H%M.log`
 	stdoutLog     *log.Logger
-	httpProxy	string
 )
 
 var RootCmd = &cobra.Command{
@@ -50,6 +49,10 @@ func init() {
 
 func initDataPath() {
 	dataPath = viper.GetString("data_path")
+	if _, err := os.Stat(dataPath); os.IsNotExist(err) {
+		log.WithField("data_path", dataPath).Info("creating data path")
+		os.Mkdir(dataPath, 0777)
+	}
 }
 
 func initProxy() {
@@ -85,7 +88,7 @@ func initLogging() {
 	log.SetOutput(logf)
 
 	logFields := log.Fields{
-		"path":  logPath(),
+		"path":     logPath(),
 		"logLevel": log.GetLevel().String(),
 	}
 	log.WithFields(logFields).Info("started logging")
@@ -104,8 +107,7 @@ func initViper() {
 	viper.AddConfigPath("/etc/nsg-parser/")  // path to look for the config file in
 	viper.AddConfigPath("$HOME/.nsg-parser") // call multiple times to add many search paths
 	viper.AddConfigPath(".")                 // optionally look for config in the working directory
-	if cfgFile, err := cfgFilePath(); err == nil{
-		log.Error(cfgFile)
+	if cfgFile, err := cfgFilePath(); err == nil {
 		// Use config file from the flag.
 		viper.SetConfigFile(cfgFile)
 		if err := viper.ReadInConfig(); err != nil {

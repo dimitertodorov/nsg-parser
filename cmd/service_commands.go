@@ -2,20 +2,18 @@ package cmd
 
 import (
 	"github.com/kardianos/service"
+	log "github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 	"time"
-	log "github.com/sirupsen/logrus"
 )
-
 
 var (
-	serviceType string
-	serviceName	string
+	serviceName        string
 	serviceDescription string
-	serviceConfig	*service.Config
+	serviceConfig      *service.Config
 )
 
-type nsgParserService struct{
+type nsgParserService struct {
 	cmd *cobra.Command
 }
 
@@ -57,10 +55,10 @@ var installServiceCmd = &cobra.Command{
 		if cfgFile, err := cfgFilePath(); err != nil {
 			stdoutLog.WithField("config_file", cfgFile).
 				Fatal("unable to load provided config file. exiting")
-		}else{
+		} else {
 			stdoutLog.WithField("config_file", cfgFile).
 				Info("installing service with config")
-			serviceConfig.Arguments = []string{"process","service","run","--config", cfgFile}
+			serviceConfig.Arguments = []string{"process", "service", "run", "--config", cfgFile}
 		}
 
 		prog := &nsgParserService{}
@@ -70,14 +68,14 @@ var installServiceCmd = &cobra.Command{
 			stdoutLog.Fatal(err)
 		}
 
-		_= s.Stop()
-		_= s.Uninstall()
+		_ = s.Stop()
+		_ = s.Uninstall()
 
 		err = s.Install()
 
 		if err != nil {
 			stdoutLog.Fatalf("error while installing service %s", err)
-		}else{
+		} else {
 			stdoutLog.Infof("installed service")
 		}
 
@@ -100,7 +98,7 @@ var uninstallServiceCmd = &cobra.Command{
 		err = s.Uninstall()
 		if err != nil {
 			stdoutLog.Fatalf("error while uninstalling service %s", err)
-		}else{
+		} else {
 			stdoutLog.Infof("uninstalled service")
 		}
 	},
@@ -138,7 +136,7 @@ func init() {
 
 func initServiceParams() {
 	serviceConfig = &service.Config{
-		Name: serviceName,
+		Name:        serviceName,
 		DisplayName: serviceName,
 		Description: serviceDescription,
 	}

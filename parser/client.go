@@ -10,10 +10,10 @@ import (
 	metrics "github.com/rcrowley/go-metrics"
 	log "github.com/sirupsen/logrus"
 	"io/ioutil"
+	"path/filepath"
 	"sync"
 	"text/template"
 	"time"
-	"path/filepath"
 )
 
 const (
