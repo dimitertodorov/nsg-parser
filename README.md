@@ -111,16 +111,21 @@ destination: syslog
 ```
 Send events to remote syslog.
 Events are sent once only.
-Ensure remote-syslog parses the UNIX timestamp if correlating events.
+
+All Syslog is formatted as CEF
+
+See here for documentation:
+
+https://community.saas.hpe.com/t5/ArcSight-Connectors/ArcSight-Common-Event-Format-CEF-Guide/ta-p/1589306
 
 Format is
 ```
-"nsgflow:{{.Timestamp}},{{.Rule}},{{.Mac}},{{.SourceIp}},{{.SourcePort}},{{.DestinationIp}},{{.DestinationPort}},{{.Protocol}},{{.TrafficFlow}},{{.Traffic}}"
+timestamp host CEF:Version|Device Vendor|Device Product|Device Version|Device Event Class ID|Name|Severity|[Extension]
 ```
 
 Example
 ```
-nsgflow:1497052774,UserRule_HTTP,00:0D:3A:F3:38:54,10.199.1.8,25356,10.193.160.4,80,T,I,A
+Jun 21 13:15:34|CEF:0|Microsoft|Azure NSG|1|nsg-flow|nsg-flow|0|cs1=UserRule_HTTP deviceDirection=0 dmac=00:0D:3A:F3:38:54 dpt=80 dst=10.193.160.4 outcome=Allow proto=TCP spt=18166 src=10.199.1.8 start=1498065334000
 ```
 
 #### Sample Config
