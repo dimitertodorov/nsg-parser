@@ -25,6 +25,7 @@ var testSendCmd = &cobra.Command{
     "DeviceProduct": "Azure NSG",
     "DeviceVersion": "1",
     "DeviceEventClassId": "nsg-flow",
+    "Time": "2017-06-21T15:58:09.8052328-04:00",
     "Name": "nsg-flow",
     "Severity": 0,
     "Extension": {
@@ -32,14 +33,18 @@ var testSendCmd = &cobra.Command{
         "deviceDirection": "0",
         "dmac": "00:0D:3A:F3:38:54",
         "dpt": "80",
-        "dst": "10.193.160.4",
+        "dst": "10.44.160.4",
         "outcome": "Allow",
         "proto": "TCP",
         "spt": "15425",
-        "src": "10.199.1.8"
-    }]`)
+        "src": "10.22.1.8"
+    }}]`)
 		events := []parser.CefEvent{}
-		_ = json.Unmarshal(logs, &events)
+		err := json.Unmarshal(logs, &events)
+		if err != nil {
+			log.Fatal(err)
+		}
+
 		for _, flowLog := range events {
 			syslogClient.SendEvent(flowLog)
 		}
@@ -92,4 +97,5 @@ func getBlobRange(b *parser.NsgLogFile) {
 
 func init() {
 	processCmd.AddCommand(testRangeCmd)
+	processCmd.AddCommand(testSendCmd)
 }
