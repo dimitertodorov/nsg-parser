@@ -1,18 +1,15 @@
 package parser
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"github.com/Azure/azure-sdk-for-go/storage"
-	syslog "github.com/RackSec/srslog"
 	"github.com/dimitertodorov/nsg-parser/pool"
 	metrics "github.com/rcrowley/go-metrics"
 	log "github.com/sirupsen/logrus"
 	"io/ioutil"
 	"path/filepath"
 	"sync"
-	"text/template"
 	"time"
 )
 
@@ -22,8 +19,6 @@ const (
 )
 
 var (
-	syslogFormat       = "nsgflow:{{.Timestamp}},{{.Rule}},{{.Mac}},{{.SourceIp}},{{.SourcePort}},{{.DestinationIp}},{{.DestinationPort}},{{.Protocol}},{{.TrafficFlow}},{{.Traffic}}"
-	syslogFormatter    = syslog.RFC5424Formatter
 	processedFlowCount = metrics.GetOrRegisterCounter("processed_events", nil)
 )
 
@@ -37,12 +32,6 @@ type AzureClient struct {
 	DestinationType string
 	Concurrency     int
 	processMutex    *sync.Mutex
-}
-
-type SyslogClient struct {
-	writer      *syslog.Writer
-	template    template.Template
-	initialized bool
 }
 
 type FileClient struct {
@@ -77,45 +66,6 @@ func (client *FileClient) Initialize(dataPath string, azureClient *AzureClient) 
 	if err := azureClient.LoadProcessStatus(); err != nil {
 		return err
 	}
-	return nil
-}
-
-func (client *SyslogClient) Initialize(protocol, host, port string, azureClient *AzureClient) error {
-	syslogWriter, err := syslog.Dial(protocol, fmt.Sprintf("%s:%s", host, port),
-		syslog.LOG_ERR, "nsg-parser")
-	if err != nil {
-		log.Fatal(err)
-		return err
-	}
-
-	syslogWriter.SetFormatter(syslogFormatter)
-
-	logTemplate, err := template.New("nsgFlowTemplate").Parse(syslogFormat)
-	if err != nil {
-		return fmt.Errorf("%s", err)
-	}
-
-	client.template = *logTemplate
-	client.writer = syslogWriter
-	client.initialized = true
-
-	azureClient.DestinationType = DestinationSyslog
-	if err = azureClient.LoadProcessStatus(); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (client *SyslogClient) SendEvent(flowLog NsgFlowLog) error {
-	var message bytes.Buffer
-	if !client.initialized {
-		return fmt.Errorf("uninitialized syslog client")
-	}
-	err := client.template.Execute(&message, flowLog)
-	if err != nil {
-		return fmt.Errorf("event_format_error %s", err)
-	}
-	fmt.Fprintf(client.writer, "%s", message.String())
 	return nil
 }
 
@@ -256,10 +206,6 @@ func (client *AzureClient) ProcessBlobsAfter(afterTime time.Time, parserClient N
 	return nil
 }
 
-func (client *AzureClient) ProcessStatusFileName() string {
-	return fmt.Sprintf("nsg-parser-status-%s.json", client.DestinationType)
-}
-
 func (client *AzureClient) SaveProcessStatus() error {
 	outJson, err := json.Marshal(client.ProcessStatus)
 	if err != nil {
@@ -270,35 +216,8 @@ func (client *AzureClient) SaveProcessStatus() error {
 	return err
 }
 
-func (client SyslogClient) ProcessNsgLogFile(logFile *NsgLogFile, resultsChan chan NsgLogFile) error {
-	blobRange := logFile.getUnprocessedBlobRange()
-	err := logFile.LoadBlobRange(blobRange)
-	if err != nil {
-		log.Error(err)
-		return err
-	}
-
-	filteredLogs, err := logFile.NsgLog.GetFlowLogsAfter(logFile.LastProcessedRecord)
-	if err != nil {
-		return err
-	}
-
-	logCount := len(filteredLogs)
-	endTimeStamp := filteredLogs[logCount-1].Timestamp
-	logFile.LastProcessedTimeStamp = endTimeStamp
-	for _, nsgEvent := range filteredLogs {
-		client.SendEvent(nsgEvent)
-	}
-
-	logFile.LastProcessed = time.Now()
-	logFile.LastRecordCount = len(logFile.NsgLog.Records)
-	logFile.LastProcessedRecord = logFile.NsgLog.Records[logFile.LastRecordCount-1].Time
-	logFile.LastProcessedRange = blobRange
-
-	processedFlowCount.Inc(int64(logCount))
-
-	resultsChan <- *logFile
-	return nil
+func (client *AzureClient) ProcessStatusFileName() string {
+	return fmt.Sprintf("nsg-parser-status-%s.json", client.DestinationType)
 }
 
 func (client FileClient) ProcessNsgLogFile(logFile *NsgLogFile, resultsChan chan NsgLogFile) error {

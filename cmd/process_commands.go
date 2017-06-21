@@ -15,7 +15,7 @@ var (
 	accountKey      string
 	containerName   string
 	nsgAzureClient  parser.AzureClient
-	syslogClient    parser.SyslogClient
+	syslogClient    parser.CefSyslogClient
 	fileClient      parser.FileClient
 	daemon          bool
 	pollInterval    int
