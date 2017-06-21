@@ -16,10 +16,12 @@ import (
 
 var (
 	NsgFileRegExp *regexp.Regexp
+	RecordRegExp	*regexp.Regexp
 )
 
 func init() {
 	NsgFileRegExp = regexp.MustCompile(`.*\/(.*)\/y=([0-9]{4})\/m=([0-9]{2})\/d=([0-9]{2})\/h=([0-9]{2})\/m=([0-9]{2}).*`)
+	RecordRegExp = regexp.MustCompile(`.*SUBSCRIPTIONS\/(.*)\/RESOURCEGROUPS\/(.*)\/PROVIDERS\/.*NETWORKSECURITYGROUPS\/(.*)[\/]?[.*]*`)
 }
 
 // NsgLogFile represents individual .json Log files in azure
@@ -263,6 +265,33 @@ func (nsgLog *NsgLog) GetFlowLogsAfter(afterTime time.Time) (NsgFlowLogs, error)
 
 	}
 	return flowLogs, nil
+}
+
+func (record *Record) GetNsg() (string, error){
+	nameTokens := RecordRegExp.FindStringSubmatch(record.ResourceID)
+
+	if len(nameTokens) != 4 {
+		return "", fmt.Errorf("Name did not match Pattern. Expected something like: %s\n", "resourceId=/SUBSCRIPTIONS/RGNAME/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/RGNAME-NSG/y=2017/m=06/d=09/h=00/m=00/PT1H.json")
+	}
+	return nameTokens[3], nil
+}
+
+func (record *Record) GetSubscription() (string, error){
+	nameTokens := RecordRegExp.FindStringSubmatch(record.ResourceID)
+
+	if len(nameTokens) != 4 {
+		return "", fmt.Errorf("Name did not match Pattern. Expected something like: %s\n", "resourceId=/SUBSCRIPTIONS/RGNAME/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/RGNAME-NSG/y=2017/m=06/d=09/h=00/m=00/PT1H.json")
+	}
+	return nameTokens[1], nil
+}
+
+func (record *Record) GetResourceGroup() (string, error){
+	nameTokens := RecordRegExp.FindStringSubmatch(record.ResourceID)
+
+	if len(nameTokens) != 4 {
+		return "", fmt.Errorf("Name did not match Pattern. Expected something like: %s\n", "resourceId=/SUBSCRIPTIONS/RGNAME/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/RGNAME-NSG/y=2017/m=06/d=09/h=00/m=00/PT1H.json")
+	}
+	return nameTokens[2], nil
 }
 
 func formatMac(s string) string {
