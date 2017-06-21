@@ -85,7 +85,7 @@ func initLogging() {
 		log.Fatalf("failed to create rotatelogs: %s", err)
 	}
 
-	//log.SetOutput(logf)
+	log.SetOutput(logf)
 
 	logFields := log.Fields{
 		"path":     logPath(),
