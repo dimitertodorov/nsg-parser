@@ -13,8 +13,6 @@ import (
 	"time"
 )
 
-//CEF:Version|Device Vendor|Device Product|Device Version|Device Event Class ID|Name|Severity|[Extension]
-
 const (
 	EventClassIdFlow          = "nsg-flow"
 	EventClassIdFlowAggregate = "nsg-flow-aggregate"
@@ -163,24 +161,35 @@ func GetCefEventListFromNsg(nsgLog *NsgLog, options GetCefEventListOptions) (*Ce
 	var eventList CefEventList
 	var events []*CefEvent
 	for _, record := range nsgLog.Records {
+		nsgName, _ := record.GetNsg()
+		subscriptionId, _ := record.GetSubscription()
+		resourceGroup, _ := record.GetResourceGroup()
 		if record.Time.After(options.StartTime) {
 			for _, flow := range record.Properties.Flows {
 				for _, subFlow := range flow.Flows {
 					for _, flowTuple := range subFlow.FlowTuples {
 						event := NewNsgCefEvent()
+						event.Name = EventClassIdFlow
+						event.DeviceEventClassId = EventClassIdFlow
+						event.Extension["deviceExternalId"] = record.SystemID
+						event.Extension["cs1"] = flow.Rule
+						event.Extension["cs1label"] = "Rule Name"
+						event.Extension["cs2"] = nsgName
+						event.Extension["cs2label"] = "NSG Name"
+						event.Extension["cs3"] = subscriptionId
+						event.Extension["cs3label"] = "Subscription ID"
+						event.Extension["cs4"] = resourceGroup
+						event.Extension["cs4label"] = "Resource Group"
+
+						//Tuple-Specific properties below here.
 						tuples := strings.Split(flowTuple, ",")
 						if len(tuples) != 8 {
 							return &eventList, fmt.Errorf("unexpected tokens in tuple %s. expected 8", flowTuple)
 						}
 						epochTime, _ := strconv.ParseInt(tuples[0], 10, 64)
 						event.Time = time.Unix(epochTime, 0)
-						event.Name = EventClassIdFlow
-						event.DeviceEventClassId = EventClassIdFlow
-						event.Severity = 0
 
 						event.Extension["start"] = fmt.Sprintf("%d", 1000*epochTime)
-
-						event.Extension["cs1"] = flow.Rule
 
 						event.Extension["src"] = tuples[1]
 						event.Extension["dst"] = tuples[2]
@@ -195,8 +204,20 @@ func GetCefEventListFromNsg(nsgLog *NsgLog, options GetCefEventListOptions) (*Ce
 						case 1:
 							event.Extension["smac"] = formatMac(subFlow.Mac)
 						}
+
+						flowOutcome := outcomeMap[tuples[7]]
+						event.Extension["outcome"] = flowOutcome
+						switch flowOutcome {
+						case "Allow":
+							event.Severity = 0
+						case "Deny":
+							event.Severity = 6
+						default:
+							event.Severity = 4
+							event.Extension["outcome"] = "Unknown"
+						}
+
 						event.Extension["deviceDirection"] = fmt.Sprintf("%d", flowDirection)
-						event.Extension["outcome"] = outcomeMap[tuples[7]]
 						events = append(events, &event)
 					}
 				}
