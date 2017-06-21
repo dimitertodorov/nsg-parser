@@ -64,14 +64,14 @@ func TestCEFSyslogFormatter(t *testing.T) {
 	out := CEFSyslogFormatter(syslog.LOG_ERR, "hostname", "tag", "CEF")
 	expected := fmt.Sprintf("%s %s %s",
 		time.Now().Format(CefTimeFormat), "hostname", "CEF")
-	assert.Equal(t, out, expected, "Base CEF Message should get formatted properly")
+	assert.Equal(t, expected, out, "Base CEF Message should get formatted properly")
 }
 
 func TestCEFSyslogFormatterWithTime(t *testing.T) {
 	out := CEFSyslogFormatter(syslog.LOG_ERR, "hostname", "tag", "Jan 02 15:04:05|CEF")
 	expected := fmt.Sprintf("%s %s %s",
 		"Jan 02 15:04:05", "hostname", "CEF")
-	assert.Equal(t, out, expected, "CEF Formatter should use specified timestamp when provided.")
+	assert.Equal(t, expected, out, "CEF Formatter should use specified timestamp when provided.")
 }
 
 func TestConvertNsgRecordToCEFEvents(t *testing.T) {
@@ -94,9 +94,7 @@ func TestToSyslogEvent(t *testing.T) {
 
 func TestMarshal(t *testing.T) {
 	for _, tt := range testEvents {
-		j, err := json.MarshalIndent(tt.event, "", "    ")
-
-		fmt.Printf("%s\n", string(j[:]))
+		_, err := json.MarshalIndent(tt.event, "", "    ")
 		assert.Nil(t, err, "no error")
 	}
 }

@@ -54,7 +54,7 @@ type CefSyslogClient struct {
 
 var (
 	cefTemplateText = `CEF:{{.CefVersion}}|{{.DeviceVendor}}|{{.DeviceProduct}}|{{.DeviceVersion}}|{{.DeviceEventClassId}}|{{.Name}}|{{.Severity}}{{.ExtensionText}}`
-	eventWithTime   = regexp.MustCompile(`^(.*)\|(.*)$`)
+	eventWithTime   = regexp.MustCompile(`^(.*)\|(CEF.*)`)
 	cefTemplate     template.Template
 )
 
@@ -206,7 +206,7 @@ func GetCefEventListFromNsg(nsgLog *NsgLog, options GetCefEventListOptions) (*Ce
 						}
 
 						flowOutcome := outcomeMap[tuples[7]]
-						event.Extension["outcome"] = flowOutcome
+						event.Extension["categoryOutcome"] = flowOutcome
 						switch flowOutcome {
 						case "Allow":
 							event.Severity = 0
@@ -214,7 +214,7 @@ func GetCefEventListFromNsg(nsgLog *NsgLog, options GetCefEventListOptions) (*Ce
 							event.Severity = 6
 						default:
 							event.Severity = 4
-							event.Extension["outcome"] = "Unknown"
+							event.Extension["categoryOutcome"] = "Unknown"
 						}
 
 						event.Extension["deviceDirection"] = fmt.Sprintf("%d", flowDirection)
