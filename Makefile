@@ -58,7 +58,6 @@ convert_windows:
 	@rm -rf ./.windows/*
 	$(eval winFormat := "*$(VERSION)*windows*")
 	$(eval winTarball := $(shell find ./.tarballs/ -type f -name $(winFormat).tar.gz))
-	@echo "$(winTarball)--"
 	@for f in $(winTarball); do tar -C ./.windows/ -zxf $$f && rm -f $$f; done
 	$(eval winfiles := $(shell find ./.windows/ -type d -name $(winFormat)))
 	@for d in $(winfiles); \
@@ -71,7 +70,7 @@ convert_windows:
 
 release_all: github_release
 	$(eval versionFmt := "*$(VERSION)*")
-	$(eval releaseFiles := $(shell find ./.tarballs/ -type f \( -name "$(versionFmt).zip" -or -name "$(versionFmt).tar.gz" \)))
+	$(eval releaseFiles := $(shell find ./.tarballs/ -type f \( -name "$(versionFmt)*windows*.zip" -or -name "$(versionFmt)*darwin*.tar.gz" -or -name "$(versionFmt)*linux*.tar.gz" \)))
 	@for d in $(releaseFiles); \
 	do \
 	basename=`basename $$d`; \
