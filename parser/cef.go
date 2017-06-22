@@ -103,8 +103,6 @@ func (event *CefEvent) SyslogText() (string, error) {
 	} else {
 		return templateText.String(), nil
 	}
-
-	return "", nil
 }
 
 func (event *CefEvent) ExtensionText() (string, error) {
