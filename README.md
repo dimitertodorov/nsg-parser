@@ -15,8 +15,8 @@ https://github.com/Azure/azure-sdk-for-go/tree/master/storage
 
 ## Features
 ### Basic
-* Convert NSG Flow logs to flat local JSON files.
-* Send NSG Flows to remote Syslog. 
+* Convert NSG Flow Event logs to flat local JSON files.
+* Send NSG Flows Event logs to remote CEF Syslog. 
 * Cross-Platform (Windows, OSX, Linux)
 * Can run as daemon
 * Can be installed as a service on Windows/Linux
@@ -282,65 +282,26 @@ Add-Type -assembly “system.io.compression.filesystem”
 ### Building
 To build on Windows see `scripts\build_windows.ps1`
 
+To build on UNIX see `Makefile`
+
+e.g.
+```bash
+make build
+```
+
 ## HPE Arcsight Integration
 Primary driver behind developing this was to integrate Azure NSG into our Arcsight Logging environment.
 
-In our instance, we use SmartConnector running a Syslog Daemon
+The `syslog` destination uses CEF Syslog by default.
 
-Then, place the following file into `user/agent/flexagent/microsoft_nsgflow.subagent.sdkrfilereader.properties` 
-### Sample FlexConnector Props
-```properties
-#Microsoft Azure NSG Configuration File
-#To be used with https://github.com/dimitertodorov/nsg-parser
-replace.defaults=true
-trim.tokens=true
-comments.start.with=#
+Currently, we are encountering an issue where the event timestamp is being overwritten somewhere along the way.
 
-#nsgflow:1497052774,UserRule_HTTP,00:0D:3A:F3:38:54,10.199.1.8,25356,10.193.160.4,80,T,I,A
-
-regex=.*nsgflow:(\\d+),(.*),(.*),(.*),(\\d+),(.*),(\\d+),([A-Z]),([A-Z]),([A-Z])
-
-token.count=10
-
-token[0].name=NsgFlowTime
-token[0].type=Long
-token[1].name=NsgRule
-token[1].type=String
-token[2].name=SourceMac
-token[2].type=MacAddress
-token[3].name=Source
-token[3].type=IPAddress
-token[4].name=SourcePort
-token[4].type=Integer
-token[5].name=Destination
-token[5].type=IPAddress
-token[6].name=DestinationPort
-token[6].type=Integer
-token[7].name=Protocol
-token[8].name=FlowDirection
-token[9].name=AllowDeny
-
-additionaldata.enabled=false
-
-event.deviceReceiptTime=__createLocalTimeStampFromSecondsSinceEpoch(NsgFlowTime)
-event.deviceVendor=__stringConstant(Microsoft)
-event.deviceProduct=__stringConstant(Azure NSG)
-event.deviceCustomString1=NsgRule
-event.deviceCustomString1Label=__oneOf(null,"Rule Label")
-event.sourceMacAddress=SourceMac
-event.sourceAddress=Source
-event.sourcePort=SourcePort
-event.destinationAddress=Destination
-event.destinationPort=DestinationPort
-event.transportProtocol=__simpleMap(Protocol,"T=TCP","U=UDP")
-event.deviceDirection=__safeToInteger(__simpleMap(FlowDirection,"O=1","I=0"))
-event.categoryOutcome=__simpleMap(AllowDeny,"A=Success","D=Failure")
-```
+event.startTime is being preserved though.
 
 ### TODO
-* Secure Syslog
-* Send Directly to Arcsight SmartMessage, Bypass SmartConnector
-* 
+* Process NetworkSecurityGroupEvent (Not Flow)
+* Add other destination clients (LogStash, Encrypted Syslog)
+* More Tests (Mock Azure?)
 
 ### Contributions
 Any suggestions/contributions are welcome.
