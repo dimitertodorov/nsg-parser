@@ -16,7 +16,7 @@ import (
 
 var (
 	NsgFileRegExp *regexp.Regexp
-	RecordRegExp	*regexp.Regexp
+	RecordRegExp  *regexp.Regexp
 )
 
 func init() {
@@ -267,7 +267,7 @@ func (nsgLog *NsgLog) GetFlowLogsAfter(afterTime time.Time) (NsgFlowLogs, error)
 	return flowLogs, nil
 }
 
-func (record *Record) GetNsg() (string, error){
+func (record *Record) GetNsg() (string, error) {
 	nameTokens := RecordRegExp.FindStringSubmatch(record.ResourceID)
 
 	if len(nameTokens) != 4 {
@@ -276,7 +276,7 @@ func (record *Record) GetNsg() (string, error){
 	return nameTokens[3], nil
 }
 
-func (record *Record) GetSubscription() (string, error){
+func (record *Record) GetSubscription() (string, error) {
 	nameTokens := RecordRegExp.FindStringSubmatch(record.ResourceID)
 
 	if len(nameTokens) != 4 {
@@ -285,7 +285,7 @@ func (record *Record) GetSubscription() (string, error){
 	return nameTokens[1], nil
 }
 
-func (record *Record) GetResourceGroup() (string, error){
+func (record *Record) GetResourceGroup() (string, error) {
 	nameTokens := RecordRegExp.FindStringSubmatch(record.ResourceID)
 
 	if len(nameTokens) != 4 {
