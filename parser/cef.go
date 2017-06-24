@@ -7,53 +7,51 @@ import (
 	log "github.com/sirupsen/logrus"
 	"regexp"
 	"sort"
-	"strconv"
 	"strings"
 	"text/template"
 	"time"
 )
 
 const (
-	EventClassIdFlow          = "nsg-flow"
-	EventClassIdFlowAggregate = "nsg-flow-aggregate"
-	CefTimeFormat             = "Jan 02 15:04:05"
+	EventClassIdFlow = "nsg-flow"
+	CEFTimeFormat    = "Jan 02 15:04:05"
 )
 
 var (
-	CefVersion       = 0
+	CEFVersion       = 0
 	NsgDeviceVendor  = "Microsoft"
 	NsgDeviceProduct = "Azure NSG"
 	NsgDeviceVersion = "1"
 )
 
-type CefEvent struct {
-	CefVersion         *int
-	DeviceVendor       *string
-	DeviceProduct      *string
-	DeviceVersion      *string
-	DeviceEventClassId string
-	Time               time.Time
-	Name               string
-	Severity           int
-	Extension          map[string]string
+type CEFEvent struct {
+	CEFVersion         *int              `json:"cef_version"`
+	DeviceVendor       *string           `json:"device_vendor"`
+	DeviceProduct      *string           `json:"device_product"`
+	DeviceVersion      *string           `json:"device_product"`
+	DeviceEventClassId string            `json:"device_event_class_id"`
+	Time               time.Time         `json:"time"`
+	Name               string            `json:"name"`
+	Severity           int               `json:"severity"`
+	Extension          map[string]string `json:"extension"`
 }
 
-type CefEventList struct {
-	Events []*CefEvent
+type CEFEventList struct {
+	Events []*CEFEvent
 }
 
-type GetCefEventListOptions struct {
+type GetCEFEventListOptions struct {
 	StartTime time.Time
 }
 
-type CefSyslogClient struct {
+type CEFSyslogClient struct {
 	writer      *syslog.Writer
 	template    template.Template
 	initialized bool
 }
 
 var (
-	cefTemplateText = `CEF:{{.CefVersion}}|{{.DeviceVendor}}|{{.DeviceProduct}}|{{.DeviceVersion}}|{{.DeviceEventClassId}}|{{.Name}}|{{.Severity}}{{.ExtensionText}}`
+	cefTemplateText = `CEF:{{.CEFVersion}}|{{.DeviceVendor}}|{{.DeviceProduct}}|{{.DeviceVersion}}|{{.DeviceEventClassId}}|{{.Name}}|{{.Severity}}{{.ExtensionText}}`
 	eventWithTime   = regexp.MustCompile(`^(.*)\|(CEF.*)`)
 	cefTemplate     template.Template
 )
@@ -63,12 +61,12 @@ var protocolMap = map[string]string{
 	"U": "UDP",
 }
 
-var directionMap = map[string]int{
+var cefDirectionMap = map[string]int{
 	"I": 0,
 	"O": 1,
 }
 
-var outcomeMap = map[string]string{
+var cefOutcomeMap = map[string]string{
 	"A": "Allow",
 	"D": "Deny",
 }
@@ -81,9 +79,9 @@ func init() {
 	cefTemplate = *tpl
 }
 
-func NewNsgCefEvent() CefEvent {
-	return CefEvent{
-		CefVersion:    &CefVersion,
+func NewNsgCEFEvent() CEFEvent {
+	return CEFEvent{
+		CEFVersion:    &CEFVersion,
 		DeviceVendor:  &NsgDeviceVendor,
 		DeviceProduct: &NsgDeviceProduct,
 		DeviceVersion: &NsgDeviceVersion,
@@ -91,7 +89,7 @@ func NewNsgCefEvent() CefEvent {
 	}
 }
 
-func (event *CefEvent) SyslogText() (string, error) {
+func (event *CEFEvent) SyslogText() (string, error) {
 	var templateText bytes.Buffer
 	err := cefTemplate.Execute(&templateText, event)
 	if err != nil {
@@ -99,13 +97,13 @@ func (event *CefEvent) SyslogText() (string, error) {
 	}
 
 	if event.Time != (time.Time{}) {
-		return fmt.Sprintf("%s|%s", event.Time.Format(CefTimeFormat), templateText.String()), nil
+		return fmt.Sprintf("%s|%s", event.Time.Format(CEFTimeFormat), templateText.String()), nil
 	} else {
 		return templateText.String(), nil
 	}
 }
 
-func (event *CefEvent) ExtensionText() (string, error) {
+func (event *CEFEvent) ExtensionText() (string, error) {
 	var extensionText []byte
 
 	keyCount := 0
@@ -137,7 +135,7 @@ func formatValue(value string) string {
 }
 
 // CEFSyslogFormatter provides a CEF Compliant message
-// This implementation also extracts a timestamp if pre-pended to the message.
+// This implementation also extracts a timestamp if pre-pended to the message
 // If a timestamp is provided, the event time is set to that.
 // Example: Sep 19 08:26:10 host CEF:0|Security|threatmanager|1.0|100|worm successfully stopped|10|src=10.0.0.1 dst=2.1.2.2 spt=1232
 func CEFSyslogFormatter(_ syslog.Priority, hostname, _, content string) string {
@@ -148,86 +146,14 @@ func CEFSyslogFormatter(_ syslog.Priority, hostname, _, content string) string {
 		timestamp = msgParts[1]
 		content = msgParts[2]
 	} else {
-		timestamp = time.Now().Format(CefTimeFormat)
+		timestamp = time.Now().Format(CEFTimeFormat)
 	}
 	msg = fmt.Sprintf("%s %s %s",
 		timestamp, hostname, content)
 	return msg
 }
 
-func GetCefEventListFromNsg(nsgLog *NsgLog, options GetCefEventListOptions) (*CefEventList, error) {
-	var eventList CefEventList
-	var events []*CefEvent
-	for _, record := range nsgLog.Records {
-		nsgName, _ := record.GetNsg()
-		subscriptionId, _ := record.GetSubscription()
-		resourceGroup, _ := record.GetResourceGroup()
-		if record.Time.After(options.StartTime) {
-			for _, flow := range record.Properties.Flows {
-				for _, subFlow := range flow.Flows {
-					for _, flowTuple := range subFlow.FlowTuples {
-						event := NewNsgCefEvent()
-						event.Name = EventClassIdFlow
-						event.DeviceEventClassId = EventClassIdFlow
-						event.Extension["deviceExternalId"] = record.SystemID
-						event.Extension["cs1"] = flow.Rule
-						event.Extension["cs1label"] = "Rule Name"
-						event.Extension["cs2"] = nsgName
-						event.Extension["cs2label"] = "NSG Name"
-						event.Extension["cs3"] = subscriptionId
-						event.Extension["cs3label"] = "Subscription ID"
-						event.Extension["cs4"] = resourceGroup
-						event.Extension["cs4label"] = "Resource Group"
-
-						//Tuple-Specific properties below here.
-						tuples := strings.Split(flowTuple, ",")
-						if len(tuples) != 8 {
-							return &eventList, fmt.Errorf("unexpected tokens in tuple %s. expected 8", flowTuple)
-						}
-						epochTime, _ := strconv.ParseInt(tuples[0], 10, 64)
-						event.Time = time.Unix(epochTime, 0)
-
-						event.Extension["start"] = fmt.Sprintf("%d", 1000*epochTime)
-
-						event.Extension["src"] = tuples[1]
-						event.Extension["dst"] = tuples[2]
-						event.Extension["spt"] = tuples[3]
-						event.Extension["dpt"] = tuples[4]
-
-						event.Extension["proto"] = protocolMap[tuples[5]]
-						flowDirection := directionMap[tuples[6]]
-						switch flowDirection {
-						case 0:
-							event.Extension["dmac"] = formatMac(subFlow.Mac)
-						case 1:
-							event.Extension["smac"] = formatMac(subFlow.Mac)
-						}
-
-						flowOutcome := outcomeMap[tuples[7]]
-						event.Extension["categoryOutcome"] = flowOutcome
-						switch flowOutcome {
-						case "Allow":
-							event.Severity = 0
-						case "Deny":
-							event.Severity = 6
-						default:
-							event.Severity = 4
-							event.Extension["categoryOutcome"] = "Unknown"
-						}
-
-						event.Extension["deviceDirection"] = fmt.Sprintf("%d", flowDirection)
-						events = append(events, &event)
-					}
-				}
-			}
-		}
-
-	}
-	eventList.Events = events
-	return &eventList, nil
-}
-
-func (client *CefSyslogClient) Initialize(protocol, host, port string, azureClient *AzureClient) error {
+func (client *CEFSyslogClient) Initialize(protocol, host, port string) error {
 	syslogWriter, err := syslog.Dial(protocol, fmt.Sprintf("%s:%s", host, port),
 		syslog.LOG_ERR, "nsg-parser")
 	if err != nil {
@@ -241,14 +167,10 @@ func (client *CefSyslogClient) Initialize(protocol, host, port string, azureClie
 	client.writer = syslogWriter
 	client.initialized = true
 
-	azureClient.DestinationType = DestinationSyslog
-	if err = azureClient.LoadProcessStatus(); err != nil {
-		return err
-	}
 	return nil
 }
 
-func (client *CefSyslogClient) SendEvent(event CefEvent) error {
+func (client *CEFSyslogClient) SendEvent(event CEFEvent) error {
 	if !client.initialized {
 		return fmt.Errorf("uninitialized syslog client")
 	}
@@ -260,7 +182,7 @@ func (client *CefSyslogClient) SendEvent(event CefEvent) error {
 	return nil
 }
 
-func (client CefSyslogClient) ProcessNsgLogFile(logFile *NsgLogFile, resultsChan chan NsgLogFile) error {
+func (client CEFSyslogClient) ProcessNsgLogFile(logFile *AzureNsgLogFile, resultsChan chan AzureNsgLogFile) error {
 	blobRange := logFile.getUnprocessedBlobRange()
 	err := logFile.LoadBlobRange(blobRange)
 	if err != nil {
@@ -268,21 +190,22 @@ func (client CefSyslogClient) ProcessNsgLogFile(logFile *NsgLogFile, resultsChan
 		return err
 	}
 
-	cefEvents, err := GetCefEventListFromNsg(logFile.NsgLog, GetCefEventListOptions{StartTime: logFile.LastProcessedRecord})
-	if err != nil {
-		return err
+	events := []*CEFEvent{}
+	for _, record := range logFile.AzureNsgEventLog.Records {
+		cefEvents, _ := record.GetCEFList(GetCEFEventListOptions{StartTime: logFile.LastProcessedRecord})
+		events = append(events, cefEvents...)
 	}
 
-	logCount := len(cefEvents.Events)
-	endTimeStamp := cefEvents.Events[logCount-1].Time.Unix()
+	logCount := len(events)
+	endTimeStamp := events[logCount-1].Time.Unix()
 	logFile.LastProcessedTimeStamp = endTimeStamp
-	for _, nsgEvent := range cefEvents.Events {
+	for _, nsgEvent := range events {
 		client.SendEvent(*nsgEvent)
 	}
 
 	logFile.LastProcessed = time.Now()
-	logFile.LastRecordCount = len(logFile.NsgLog.Records)
-	logFile.LastProcessedRecord = logFile.NsgLog.Records[logFile.LastRecordCount-1].Time
+	logFile.LastRecordCount = len(logFile.AzureNsgEventLog.Records)
+	logFile.LastProcessedRecord = logFile.AzureNsgEventLog.Records[logFile.LastRecordCount-1].Time
 	logFile.LastProcessedRange = blobRange
 
 	processedFlowCount.Inc(int64(logCount))

@@ -15,7 +15,7 @@ var (
 	accountKey      string
 	containerName   string
 	nsgAzureClient  parser.AzureClient
-	syslogClient    parser.CefSyslogClient
+	syslogClient    parser.CEFSyslogClient
 	fileClient      parser.FileClient
 	daemon          bool
 	pollInterval    int
@@ -121,20 +121,20 @@ func initSyslog() {
 	slProtocol := viper.GetString("syslog_protocol")
 	slHost := viper.GetString("syslog_host")
 	slPort := viper.GetString("syslog_port")
-	err := syslogClient.Initialize(slProtocol, slHost, slPort, &nsgAzureClient)
+	err := syslogClient.Initialize(slProtocol, slHost, slPort)
 	if err != nil {
 		log.Fatalf("error initializing syslog client %s", err)
 	}
 }
 
 func initFileClient() {
-	fileClient.Initialize(dataPath, &nsgAzureClient)
+	fileClient.Initialize(dataPath)
 }
 
 func processFiles() {
 	beginTime := viper.GetString("begin_time")
 	afterTime, err := time.Parse(timeLayout, fmt.Sprintf("%s-00-00-GMT", beginTime))
-	err = nsgAzureClient.ProcessBlobsAfter(afterTime, fileClient)
+	err = nsgAzureClient.ProcessBlobsAfter(afterTime, fileClient, "file")
 	if err != nil {
 		log.Error(err)
 	}
@@ -143,7 +143,7 @@ func processFiles() {
 func processSyslog() {
 	beginTime := viper.GetString("begin_time")
 	afterTime, err := time.Parse(timeLayout, fmt.Sprintf("%s-00-00-GMT", beginTime))
-	err = nsgAzureClient.ProcessBlobsAfter(afterTime, syslogClient)
+	err = nsgAzureClient.ProcessBlobsAfter(afterTime, syslogClient, "syslog")
 	if err != nil {
 		log.Error(err)
 	}

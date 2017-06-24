@@ -10,7 +10,7 @@ import (
 )
 
 var testEvents = []struct {
-	event          CefEvent
+	event          CEFEvent
 	expectedFormat string
 }{
 	{
@@ -50,8 +50,8 @@ var testEvents = []struct {
 	},
 }
 
-func createTestEvent(extensions map[string]string) CefEvent {
-	event := NewNsgCefEvent()
+func createTestEvent(extensions map[string]string) CEFEvent {
+	event := NewNsgCEFEvent()
 	event.Time = time.Now()
 	event.Name = EventClassIdFlow
 	event.DeviceEventClassId = EventClassIdFlow
@@ -63,7 +63,7 @@ func createTestEvent(extensions map[string]string) CefEvent {
 func TestCEFSyslogFormatter(t *testing.T) {
 	out := CEFSyslogFormatter(syslog.LOG_ERR, "hostname", "tag", "CEF")
 	expected := fmt.Sprintf("%s %s %s",
-		time.Now().Format(CefTimeFormat), "hostname", "CEF")
+		time.Now().Format(CEFTimeFormat), "hostname", "CEF")
 	assert.Equal(t, expected, out, "Base CEF Message should get formatted properly")
 }
 
@@ -74,21 +74,12 @@ func TestCEFSyslogFormatterWithTime(t *testing.T) {
 	assert.Equal(t, expected, out, "CEF Formatter should use specified timestamp when provided.")
 }
 
-func TestConvertNsgRecordToCEFEvents(t *testing.T) {
-	testTime, _ := time.Parse(timeLayout, "06/09 20:33:00 GMT 2017")
-	options := GetCefEventListOptions{
-		StartTime: testTime,
-	}
-	eventList, _ := GetCefEventListFromNsg(&sampleNsgLog, options)
-	assert.Equal(t, 1513, len(eventList.Events), "should filter out older records")
-}
-
 func TestToSyslogEvent(t *testing.T) {
 	for _, tt := range testEvents {
 		slText, err := tt.event.SyslogText()
 		assert.Nil(t, err, "got error converting to syslog")
-		expectedCef := fmt.Sprintf(tt.expectedFormat, tt.event.Time.Format(CefTimeFormat))
-		assert.Equal(t, expectedCef, slText, "should convert to CEF Properly")
+		expectedCEF := fmt.Sprintf(tt.expectedFormat, tt.event.Time.Format(CEFTimeFormat))
+		assert.Equal(t, expectedCEF, slText, "should convert to CEF Properly")
 	}
 }
 

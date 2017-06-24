@@ -14,7 +14,7 @@ var (
 type NsgParserStatus struct {
 	GoVersion          string
 	Version            string
-	ProcessStatus      *ProcessStatus
+	Jobs               map[string]*Job
 	BuildDate          string
 	BuildUser          string
 	Revision           string
@@ -32,19 +32,13 @@ func ServeClient(client *AzureClient, ip string) error {
 }
 
 func loadStatus() (NsgParserStatus, error) {
-	processStatus, err := ReadProcessStatus(httpStatusClient.DataPath, httpStatusClient.ProcessStatusFileName())
-
-	if err != nil {
-		return NsgParserStatus{}, err
-	}
-
 	nsgParserStatus := NsgParserStatus{
 		GoVersion:          runtime.Version(),
 		Version:            version.Version,
 		BuildDate:          version.BuildDate,
 		BuildUser:          version.BuildUser,
 		Revision:           version.Revision,
-		ProcessStatus:      &processStatus,
+		Jobs:               httpStatusClient.RegisteredJobs,
 		ProcessedFlowCount: processedFlowCount.Count(),
 	}
 

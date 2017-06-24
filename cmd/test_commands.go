@@ -5,6 +5,7 @@ import (
 	"github.com/dimitertodorov/nsg-parser/parser"
 	log "github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
+	"time"
 )
 
 //Useful command for testing your arcsight endpoint.
@@ -15,12 +16,12 @@ var testSendCmd = &cobra.Command{
 		initClient()
 		initSyslog()
 		logs := []byte(`[{
-    "CefVersion": 0,
+    "CEFVersion": 0,
     "DeviceVendor": "Microsoft",
     "DeviceProduct": "Azure NSG",
     "DeviceVersion": "1",
     "DeviceEventClassId": "nsg-flow",
-    "Time": "2017-06-21T15:58:09.8052328-04:00",
+    "Time": "2017-06-22T05:58:09.8052328-04:00",
     "Name": "nsg-flow",
     "Severity": 0,
     "Extension": {
@@ -32,15 +33,17 @@ var testSendCmd = &cobra.Command{
         "outcome": "Allow",
         "proto": "TCP",
         "spt": "15425",
-        "src": "10.22.1.8"
+        "src": "10.22.1.8",
+        "start": "1498075171000"
     }}]`)
-		events := []parser.CefEvent{}
+		events := []parser.CEFEvent{}
 		err := json.Unmarshal(logs, &events)
 		if err != nil {
 			log.Fatal(err)
 		}
 
 		for _, flowLog := range events {
+			flowLog.Time = time.Now().Add(-15 * time.Minute)
 			syslogClient.SendEvent(flowLog)
 		}
 	},

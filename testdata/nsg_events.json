@@ -1,0 +1,3568 @@
+{
+  "records": [
+    {
+      "time": "2017-06-22T00:00:11.3610000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "UserRule_its-vnet-any",
+        "direction": "In",
+        "priority": 120,
+        "type": "allow",
+        "conditions": {
+          "destinationPortRange": "0-65535",
+          "sourcePortRange": "0-65535",
+          "sourceIP": "10.144.0.0/23,10.194.0.0/15,10.88.0.0/16,10.200.0.0/21,142.0.0.0/8,1.1.2.0/30,10.86.0.0/16,168.63.129.16/32,10.193.160.0/20,10.193.176.0/20",
+          "destinationIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:00:11.3610000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "UserRule_IPSEC-500",
+        "direction": "In",
+        "priority": 130,
+        "type": "allow",
+        "conditions": {
+          "protocols": "17",
+          "destinationPortRange": "500-500",
+          "sourcePortRange": "0-65535",
+          "sourceIP": "44.55.66.0/25",
+          "destinationIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:00:11.3610000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "UserRule_IPSEC-1000",
+        "direction": "In",
+        "priority": 200,
+        "type": "allow",
+        "conditions": {
+          "protocols": "17",
+          "destinationPortRange": "4500-4500",
+          "sourcePortRange": "0-65535",
+          "sourceIP": "44.55.66.0/25",
+          "destinationIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:00:11.3610000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "UserRule_SSH",
+        "direction": "In",
+        "priority": 1010,
+        "type": "allow",
+        "conditions": {
+          "protocols": "6",
+          "destinationPortRange": "22-22",
+          "sourcePortRange": "0-65535",
+          "sourceIP": "204.0.0.0/8",
+          "destinationIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:00:11.3610000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "UserRule_SOME-SSH",
+        "direction": "In",
+        "priority": 1020,
+        "type": "allow",
+        "conditions": {
+          "protocols": "6",
+          "destinationPortRange": "22-22",
+          "sourcePortRange": "0-65535",
+          "sourceIP": "10.190.0.0/16",
+          "destinationIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:00:11.3610000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "DefaultRule_AllowVnetInBound",
+        "direction": "In",
+        "priority": 65000,
+        "type": "allow",
+        "conditions": {
+          "destinationPortRange": "0-65535",
+          "sourcePortRange": "0-65535",
+          "sourceIP": "10.144.0.0/23,10.194.0.0/15,10.88.0.0/16,10.200.0.0/21,142.0.0.0/8,1.1.2.0/30,10.86.0.0/16,168.63.129.16/32,10.193.160.0/20,10.193.176.0/20",
+          "destinationIP": "10.144.0.0/23,10.194.0.0/15,10.88.0.0/16,10.200.0.0/21,142.0.0.0/8,1.1.2.0/30,10.86.0.0/16,168.63.129.16/32,10.193.160.0/20,10.193.176.0/20"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:00:11.3610000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "DefaultRule_AllowAzureLoadBalancerInBound",
+        "direction": "In",
+        "priority": 65001,
+        "type": "allow",
+        "conditions": {
+          "destinationPortRange": "0-65535",
+          "sourcePortRange": "0-65535",
+          "sourceIP": "168.63.129.16/32",
+          "destinationIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:00:11.3610000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "DefaultInboundDenyAll",
+        "direction": "In",
+        "priority": 65500,
+        "type": "block",
+        "conditions": {
+          "None": ""
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:00:11.3610000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "DefaultRule_DenyAllInBound",
+        "direction": "In",
+        "priority": 65500,
+        "type": "block",
+        "conditions": {
+          "destinationPortRange": "0-65535",
+          "sourcePortRange": "0-65535",
+          "sourceIP": "0.0.0.0/0",
+          "destinationIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:00:11.3610000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "DefaultRule_AllowVnetOutBound",
+        "direction": "Out",
+        "priority": 65000,
+        "type": "allow",
+        "conditions": {
+          "destinationPortRange": "0-65535",
+          "sourcePortRange": "0-65535",
+          "destinationIP": "10.144.0.0/23,10.194.0.0/15,10.88.0.0/16,10.200.0.0/21,142.0.0.0/8,1.1.2.0/30,10.86.0.0/16,168.63.129.16/32,10.193.160.0/20,10.193.176.0/20",
+          "sourceIP": "10.144.0.0/23,10.194.0.0/15,10.88.0.0/16,10.200.0.0/21,142.0.0.0/8,1.1.2.0/30,10.86.0.0/16,168.63.129.16/32,10.193.160.0/20,10.193.176.0/20"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:00:11.3610000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "DefaultRule_AllowInternetOutBound",
+        "direction": "Out",
+        "priority": 65001,
+        "type": "allow",
+        "conditions": {
+          "destinationPortRange": "0-65535",
+          "sourcePortRange": "0-65535",
+          "destinationIP": "32.0.0.0/3,4.0.0.0/6,2.0.0.0/7,1.0.0.0/8,12.0.0.0/6,8.0.0.0/7,11.0.0.0/8,64.0.0.0/3,112.0.0.0/5,120.0.0.0/6,124.0.0.0/7,126.0.0.0/8,128.0.0.0/3,176.0.0.0/4,160.0.0.0/5,170.0.0.0/7,168.0.0.0/8,169.0.0.0/9,169.128.0.0/10,169.192.0.0/11,169.224.0.0/12,169.240.0.0/13,169.248.0.0/14,169.252.0.0/15,169.255.0.0/16,174.0.0.0/7,173.0.0.0/8,172.128.0.0/9,172.64.0.0/10,172.32.0.0/11,172.0.0.0/12,208.0.0.0/4,200.0.0.0/5,194.0.0.0/7,193.0.0.0/8,192.64.0.0/10,192.32.0.0/11,192.16.0.0/12,192.8.0.0/13,192.4.0.0/14,192.2.0.0/15,192.1.0.0/16,192.0.128.0/17,192.0.64.0/18,192.0.32.0/19,192.0.16.0/20,192.0.8.0/21,192.0.4.0/22,192.0.0.0/23,192.0.3.0/24,192.192.0.0/10,192.128.0.0/11,192.176.0.0/12,192.160.0.0/13,192.172.0.0/14,192.170.0.0/15,192.169.0.0/16,196.0.0.0/7,199.0.0.0/8,198.128.0.0/9,198.64.0.0/10,198.32.0.0/11,198.0.0.0/12,198.24.0.0/13,198.20.0.0/14,198.16.0.0/15,104.0.0.0/5,96.0.0.0/6,102.0.0.0/7,101.0.0.0/8,100.128.0.0/9,100.0.0.0/10,16.0.0.0/5,28.0.0.0/6,26.0.0.0/7,24.0.0.0/8",
+          "sourceIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:00:11.3610000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "DefaultOutboundDenyAll",
+        "direction": "Out",
+        "priority": 65500,
+        "type": "block",
+        "conditions": {
+          "None": ""
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:00:11.3610000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "DefaultRule_DenyAllOutBound",
+        "direction": "Out",
+        "priority": 65500,
+        "type": "block",
+        "conditions": {
+          "destinationPortRange": "0-65535",
+          "sourcePortRange": "0-65535",
+          "destinationIP": "0.0.0.0/0",
+          "sourceIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:05:11.2170000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "UserRule_its-vnet-any",
+        "direction": "In",
+        "priority": 120,
+        "type": "allow",
+        "conditions": {
+          "destinationPortRange": "0-65535",
+          "sourcePortRange": "0-65535",
+          "sourceIP": "10.144.0.0/23,10.194.0.0/15,10.88.0.0/16,10.200.0.0/21,142.0.0.0/8,1.1.2.0/30,10.86.0.0/16,168.63.129.16/32,10.193.160.0/20,10.193.176.0/20",
+          "destinationIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:05:11.2170000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "UserRule_IPSEC-500",
+        "direction": "In",
+        "priority": 130,
+        "type": "allow",
+        "conditions": {
+          "protocols": "17",
+          "destinationPortRange": "500-500",
+          "sourcePortRange": "0-65535",
+          "sourceIP": "44.55.66.0/25",
+          "destinationIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:05:11.2170000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "UserRule_IPSEC-1000",
+        "direction": "In",
+        "priority": 200,
+        "type": "allow",
+        "conditions": {
+          "protocols": "17",
+          "destinationPortRange": "4500-4500",
+          "sourcePortRange": "0-65535",
+          "sourceIP": "44.55.66.0/25",
+          "destinationIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:05:11.2170000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "UserRule_SSH",
+        "direction": "In",
+        "priority": 1010,
+        "type": "allow",
+        "conditions": {
+          "protocols": "6",
+          "destinationPortRange": "22-22",
+          "sourcePortRange": "0-65535",
+          "sourceIP": "204.0.0.0/8",
+          "destinationIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:05:11.2170000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "UserRule_SOME-SSH",
+        "direction": "In",
+        "priority": 1020,
+        "type": "allow",
+        "conditions": {
+          "protocols": "6",
+          "destinationPortRange": "22-22",
+          "sourcePortRange": "0-65535",
+          "sourceIP": "10.190.0.0/16",
+          "destinationIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:05:11.2170000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "DefaultRule_AllowVnetInBound",
+        "direction": "In",
+        "priority": 65000,
+        "type": "allow",
+        "conditions": {
+          "destinationPortRange": "0-65535",
+          "sourcePortRange": "0-65535",
+          "sourceIP": "10.144.0.0/23,10.194.0.0/15,10.88.0.0/16,10.200.0.0/21,142.0.0.0/8,1.1.2.0/30,10.86.0.0/16,168.63.129.16/32,10.193.160.0/20,10.193.176.0/20",
+          "destinationIP": "10.144.0.0/23,10.194.0.0/15,10.88.0.0/16,10.200.0.0/21,142.0.0.0/8,1.1.2.0/30,10.86.0.0/16,168.63.129.16/32,10.193.160.0/20,10.193.176.0/20"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:05:11.2170000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "DefaultRule_AllowAzureLoadBalancerInBound",
+        "direction": "In",
+        "priority": 65001,
+        "type": "allow",
+        "conditions": {
+          "destinationPortRange": "0-65535",
+          "sourcePortRange": "0-65535",
+          "sourceIP": "168.63.129.16/32",
+          "destinationIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:05:11.2170000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "DefaultInboundDenyAll",
+        "direction": "In",
+        "priority": 65500,
+        "type": "block",
+        "conditions": {
+          "None": ""
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:05:11.2170000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "DefaultRule_DenyAllInBound",
+        "direction": "In",
+        "priority": 65500,
+        "type": "block",
+        "conditions": {
+          "destinationPortRange": "0-65535",
+          "sourcePortRange": "0-65535",
+          "sourceIP": "0.0.0.0/0",
+          "destinationIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:05:11.2170000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "DefaultRule_AllowVnetOutBound",
+        "direction": "Out",
+        "priority": 65000,
+        "type": "allow",
+        "conditions": {
+          "destinationPortRange": "0-65535",
+          "sourcePortRange": "0-65535",
+          "destinationIP": "10.144.0.0/23,10.194.0.0/15,10.88.0.0/16,10.200.0.0/21,142.0.0.0/8,1.1.2.0/30,10.86.0.0/16,168.63.129.16/32,10.193.160.0/20,10.193.176.0/20",
+          "sourceIP": "10.144.0.0/23,10.194.0.0/15,10.88.0.0/16,10.200.0.0/21,142.0.0.0/8,1.1.2.0/30,10.86.0.0/16,168.63.129.16/32,10.193.160.0/20,10.193.176.0/20"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:05:11.2170000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "DefaultRule_AllowInternetOutBound",
+        "direction": "Out",
+        "priority": 65001,
+        "type": "allow",
+        "conditions": {
+          "destinationPortRange": "0-65535",
+          "sourcePortRange": "0-65535",
+          "destinationIP": "32.0.0.0/3,4.0.0.0/6,2.0.0.0/7,1.0.0.0/8,12.0.0.0/6,8.0.0.0/7,11.0.0.0/8,64.0.0.0/3,112.0.0.0/5,120.0.0.0/6,124.0.0.0/7,126.0.0.0/8,128.0.0.0/3,176.0.0.0/4,160.0.0.0/5,170.0.0.0/7,168.0.0.0/8,169.0.0.0/9,169.128.0.0/10,169.192.0.0/11,169.224.0.0/12,169.240.0.0/13,169.248.0.0/14,169.252.0.0/15,169.255.0.0/16,174.0.0.0/7,173.0.0.0/8,172.128.0.0/9,172.64.0.0/10,172.32.0.0/11,172.0.0.0/12,208.0.0.0/4,200.0.0.0/5,194.0.0.0/7,193.0.0.0/8,192.64.0.0/10,192.32.0.0/11,192.16.0.0/12,192.8.0.0/13,192.4.0.0/14,192.2.0.0/15,192.1.0.0/16,192.0.128.0/17,192.0.64.0/18,192.0.32.0/19,192.0.16.0/20,192.0.8.0/21,192.0.4.0/22,192.0.0.0/23,192.0.3.0/24,192.192.0.0/10,192.128.0.0/11,192.176.0.0/12,192.160.0.0/13,192.172.0.0/14,192.170.0.0/15,192.169.0.0/16,196.0.0.0/7,199.0.0.0/8,198.128.0.0/9,198.64.0.0/10,198.32.0.0/11,198.0.0.0/12,198.24.0.0/13,198.20.0.0/14,198.16.0.0/15,104.0.0.0/5,96.0.0.0/6,102.0.0.0/7,101.0.0.0/8,100.128.0.0/9,100.0.0.0/10,16.0.0.0/5,28.0.0.0/6,26.0.0.0/7,24.0.0.0/8",
+          "sourceIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:05:11.2170000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "DefaultOutboundDenyAll",
+        "direction": "Out",
+        "priority": 65500,
+        "type": "block",
+        "conditions": {
+          "None": ""
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:05:11.2170000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "DefaultRule_DenyAllOutBound",
+        "direction": "Out",
+        "priority": 65500,
+        "type": "block",
+        "conditions": {
+          "destinationPortRange": "0-65535",
+          "sourcePortRange": "0-65535",
+          "destinationIP": "0.0.0.0/0",
+          "sourceIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:10:11.2300000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "UserRule_its-vnet-any",
+        "direction": "In",
+        "priority": 120,
+        "type": "allow",
+        "conditions": {
+          "destinationPortRange": "0-65535",
+          "sourcePortRange": "0-65535",
+          "sourceIP": "10.144.0.0/23,10.194.0.0/15,10.88.0.0/16,10.200.0.0/21,142.0.0.0/8,1.1.2.0/30,10.86.0.0/16,168.63.129.16/32,10.193.160.0/20,10.193.176.0/20",
+          "destinationIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:10:11.2300000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "UserRule_IPSEC-500",
+        "direction": "In",
+        "priority": 130,
+        "type": "allow",
+        "conditions": {
+          "protocols": "17",
+          "destinationPortRange": "500-500",
+          "sourcePortRange": "0-65535",
+          "sourceIP": "44.55.66.0/25",
+          "destinationIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:10:11.2300000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "UserRule_IPSEC-1000",
+        "direction": "In",
+        "priority": 200,
+        "type": "allow",
+        "conditions": {
+          "protocols": "17",
+          "destinationPortRange": "4500-4500",
+          "sourcePortRange": "0-65535",
+          "sourceIP": "44.55.66.0/25",
+          "destinationIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:10:11.2300000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "UserRule_SSH",
+        "direction": "In",
+        "priority": 1010,
+        "type": "allow",
+        "conditions": {
+          "protocols": "6",
+          "destinationPortRange": "22-22",
+          "sourcePortRange": "0-65535",
+          "sourceIP": "204.0.0.0/8",
+          "destinationIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:10:11.2300000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "UserRule_SOME-SSH",
+        "direction": "In",
+        "priority": 1020,
+        "type": "allow",
+        "conditions": {
+          "protocols": "6",
+          "destinationPortRange": "22-22",
+          "sourcePortRange": "0-65535",
+          "sourceIP": "10.190.0.0/16",
+          "destinationIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:10:11.2300000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "DefaultRule_AllowVnetInBound",
+        "direction": "In",
+        "priority": 65000,
+        "type": "allow",
+        "conditions": {
+          "destinationPortRange": "0-65535",
+          "sourcePortRange": "0-65535",
+          "sourceIP": "10.144.0.0/23,10.194.0.0/15,10.88.0.0/16,10.200.0.0/21,142.0.0.0/8,1.1.2.0/30,10.86.0.0/16,168.63.129.16/32,10.193.160.0/20,10.193.176.0/20",
+          "destinationIP": "10.144.0.0/23,10.194.0.0/15,10.88.0.0/16,10.200.0.0/21,142.0.0.0/8,1.1.2.0/30,10.86.0.0/16,168.63.129.16/32,10.193.160.0/20,10.193.176.0/20"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:10:11.2300000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "DefaultRule_AllowAzureLoadBalancerInBound",
+        "direction": "In",
+        "priority": 65001,
+        "type": "allow",
+        "conditions": {
+          "destinationPortRange": "0-65535",
+          "sourcePortRange": "0-65535",
+          "sourceIP": "168.63.129.16/32",
+          "destinationIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:10:11.2300000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "DefaultInboundDenyAll",
+        "direction": "In",
+        "priority": 65500,
+        "type": "block",
+        "conditions": {
+          "None": ""
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:10:11.2300000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "DefaultRule_DenyAllInBound",
+        "direction": "In",
+        "priority": 65500,
+        "type": "block",
+        "conditions": {
+          "destinationPortRange": "0-65535",
+          "sourcePortRange": "0-65535",
+          "sourceIP": "0.0.0.0/0",
+          "destinationIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:10:11.2300000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "DefaultRule_AllowVnetOutBound",
+        "direction": "Out",
+        "priority": 65000,
+        "type": "allow",
+        "conditions": {
+          "destinationPortRange": "0-65535",
+          "sourcePortRange": "0-65535",
+          "destinationIP": "10.144.0.0/23,10.194.0.0/15,10.88.0.0/16,10.200.0.0/21,142.0.0.0/8,1.1.2.0/30,10.86.0.0/16,168.63.129.16/32,10.193.160.0/20,10.193.176.0/20",
+          "sourceIP": "10.144.0.0/23,10.194.0.0/15,10.88.0.0/16,10.200.0.0/21,142.0.0.0/8,1.1.2.0/30,10.86.0.0/16,168.63.129.16/32,10.193.160.0/20,10.193.176.0/20"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:10:11.2300000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "DefaultRule_AllowInternetOutBound",
+        "direction": "Out",
+        "priority": 65001,
+        "type": "allow",
+        "conditions": {
+          "destinationPortRange": "0-65535",
+          "sourcePortRange": "0-65535",
+          "destinationIP": "32.0.0.0/3,4.0.0.0/6,2.0.0.0/7,1.0.0.0/8,12.0.0.0/6,8.0.0.0/7,11.0.0.0/8,64.0.0.0/3,112.0.0.0/5,120.0.0.0/6,124.0.0.0/7,126.0.0.0/8,128.0.0.0/3,176.0.0.0/4,160.0.0.0/5,170.0.0.0/7,168.0.0.0/8,169.0.0.0/9,169.128.0.0/10,169.192.0.0/11,169.224.0.0/12,169.240.0.0/13,169.248.0.0/14,169.252.0.0/15,169.255.0.0/16,174.0.0.0/7,173.0.0.0/8,172.128.0.0/9,172.64.0.0/10,172.32.0.0/11,172.0.0.0/12,208.0.0.0/4,200.0.0.0/5,194.0.0.0/7,193.0.0.0/8,192.64.0.0/10,192.32.0.0/11,192.16.0.0/12,192.8.0.0/13,192.4.0.0/14,192.2.0.0/15,192.1.0.0/16,192.0.128.0/17,192.0.64.0/18,192.0.32.0/19,192.0.16.0/20,192.0.8.0/21,192.0.4.0/22,192.0.0.0/23,192.0.3.0/24,192.192.0.0/10,192.128.0.0/11,192.176.0.0/12,192.160.0.0/13,192.172.0.0/14,192.170.0.0/15,192.169.0.0/16,196.0.0.0/7,199.0.0.0/8,198.128.0.0/9,198.64.0.0/10,198.32.0.0/11,198.0.0.0/12,198.24.0.0/13,198.20.0.0/14,198.16.0.0/15,104.0.0.0/5,96.0.0.0/6,102.0.0.0/7,101.0.0.0/8,100.128.0.0/9,100.0.0.0/10,16.0.0.0/5,28.0.0.0/6,26.0.0.0/7,24.0.0.0/8",
+          "sourceIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:10:11.2300000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "DefaultOutboundDenyAll",
+        "direction": "Out",
+        "priority": 65500,
+        "type": "block",
+        "conditions": {
+          "None": ""
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:10:11.2300000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "DefaultRule_DenyAllOutBound",
+        "direction": "Out",
+        "priority": 65500,
+        "type": "block",
+        "conditions": {
+          "destinationPortRange": "0-65535",
+          "sourcePortRange": "0-65535",
+          "destinationIP": "0.0.0.0/0",
+          "sourceIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:15:11.3190000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "UserRule_its-vnet-any",
+        "direction": "In",
+        "priority": 120,
+        "type": "allow",
+        "conditions": {
+          "destinationPortRange": "0-65535",
+          "sourcePortRange": "0-65535",
+          "sourceIP": "10.144.0.0/23,10.194.0.0/15,10.88.0.0/16,10.200.0.0/21,142.0.0.0/8,1.1.2.0/30,10.86.0.0/16,168.63.129.16/32,10.193.160.0/20,10.193.176.0/20",
+          "destinationIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:15:11.3190000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "UserRule_IPSEC-500",
+        "direction": "In",
+        "priority": 130,
+        "type": "allow",
+        "conditions": {
+          "protocols": "17",
+          "destinationPortRange": "500-500",
+          "sourcePortRange": "0-65535",
+          "sourceIP": "44.55.66.0/25",
+          "destinationIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:15:11.3190000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "UserRule_IPSEC-1000",
+        "direction": "In",
+        "priority": 200,
+        "type": "allow",
+        "conditions": {
+          "protocols": "17",
+          "destinationPortRange": "4500-4500",
+          "sourcePortRange": "0-65535",
+          "sourceIP": "44.55.66.0/25",
+          "destinationIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:15:11.3190000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "UserRule_SSH",
+        "direction": "In",
+        "priority": 1010,
+        "type": "allow",
+        "conditions": {
+          "protocols": "6",
+          "destinationPortRange": "22-22",
+          "sourcePortRange": "0-65535",
+          "sourceIP": "204.0.0.0/8",
+          "destinationIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:15:11.3190000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "UserRule_SOME-SSH",
+        "direction": "In",
+        "priority": 1020,
+        "type": "allow",
+        "conditions": {
+          "protocols": "6",
+          "destinationPortRange": "22-22",
+          "sourcePortRange": "0-65535",
+          "sourceIP": "10.190.0.0/16",
+          "destinationIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:15:11.3190000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "DefaultRule_AllowVnetInBound",
+        "direction": "In",
+        "priority": 65000,
+        "type": "allow",
+        "conditions": {
+          "destinationPortRange": "0-65535",
+          "sourcePortRange": "0-65535",
+          "sourceIP": "10.144.0.0/23,10.194.0.0/15,10.88.0.0/16,10.200.0.0/21,142.0.0.0/8,1.1.2.0/30,10.86.0.0/16,168.63.129.16/32,10.193.160.0/20,10.193.176.0/20",
+          "destinationIP": "10.144.0.0/23,10.194.0.0/15,10.88.0.0/16,10.200.0.0/21,142.0.0.0/8,1.1.2.0/30,10.86.0.0/16,168.63.129.16/32,10.193.160.0/20,10.193.176.0/20"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:15:11.3190000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "DefaultRule_AllowAzureLoadBalancerInBound",
+        "direction": "In",
+        "priority": 65001,
+        "type": "allow",
+        "conditions": {
+          "destinationPortRange": "0-65535",
+          "sourcePortRange": "0-65535",
+          "sourceIP": "168.63.129.16/32",
+          "destinationIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:15:11.3190000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "DefaultInboundDenyAll",
+        "direction": "In",
+        "priority": 65500,
+        "type": "block",
+        "conditions": {
+          "None": ""
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:15:11.3190000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "DefaultRule_DenyAllInBound",
+        "direction": "In",
+        "priority": 65500,
+        "type": "block",
+        "conditions": {
+          "destinationPortRange": "0-65535",
+          "sourcePortRange": "0-65535",
+          "sourceIP": "0.0.0.0/0",
+          "destinationIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:15:11.3190000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "DefaultRule_AllowVnetOutBound",
+        "direction": "Out",
+        "priority": 65000,
+        "type": "allow",
+        "conditions": {
+          "destinationPortRange": "0-65535",
+          "sourcePortRange": "0-65535",
+          "destinationIP": "10.144.0.0/23,10.194.0.0/15,10.88.0.0/16,10.200.0.0/21,142.0.0.0/8,1.1.2.0/30,10.86.0.0/16,168.63.129.16/32,10.193.160.0/20,10.193.176.0/20",
+          "sourceIP": "10.144.0.0/23,10.194.0.0/15,10.88.0.0/16,10.200.0.0/21,142.0.0.0/8,1.1.2.0/30,10.86.0.0/16,168.63.129.16/32,10.193.160.0/20,10.193.176.0/20"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:15:11.3190000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "DefaultRule_AllowInternetOutBound",
+        "direction": "Out",
+        "priority": 65001,
+        "type": "allow",
+        "conditions": {
+          "destinationPortRange": "0-65535",
+          "sourcePortRange": "0-65535",
+          "destinationIP": "32.0.0.0/3,4.0.0.0/6,2.0.0.0/7,1.0.0.0/8,12.0.0.0/6,8.0.0.0/7,11.0.0.0/8,64.0.0.0/3,112.0.0.0/5,120.0.0.0/6,124.0.0.0/7,126.0.0.0/8,128.0.0.0/3,176.0.0.0/4,160.0.0.0/5,170.0.0.0/7,168.0.0.0/8,169.0.0.0/9,169.128.0.0/10,169.192.0.0/11,169.224.0.0/12,169.240.0.0/13,169.248.0.0/14,169.252.0.0/15,169.255.0.0/16,174.0.0.0/7,173.0.0.0/8,172.128.0.0/9,172.64.0.0/10,172.32.0.0/11,172.0.0.0/12,208.0.0.0/4,200.0.0.0/5,194.0.0.0/7,193.0.0.0/8,192.64.0.0/10,192.32.0.0/11,192.16.0.0/12,192.8.0.0/13,192.4.0.0/14,192.2.0.0/15,192.1.0.0/16,192.0.128.0/17,192.0.64.0/18,192.0.32.0/19,192.0.16.0/20,192.0.8.0/21,192.0.4.0/22,192.0.0.0/23,192.0.3.0/24,192.192.0.0/10,192.128.0.0/11,192.176.0.0/12,192.160.0.0/13,192.172.0.0/14,192.170.0.0/15,192.169.0.0/16,196.0.0.0/7,199.0.0.0/8,198.128.0.0/9,198.64.0.0/10,198.32.0.0/11,198.0.0.0/12,198.24.0.0/13,198.20.0.0/14,198.16.0.0/15,104.0.0.0/5,96.0.0.0/6,102.0.0.0/7,101.0.0.0/8,100.128.0.0/9,100.0.0.0/10,16.0.0.0/5,28.0.0.0/6,26.0.0.0/7,24.0.0.0/8",
+          "sourceIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:15:11.3190000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "DefaultOutboundDenyAll",
+        "direction": "Out",
+        "priority": 65500,
+        "type": "block",
+        "conditions": {
+          "None": ""
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:15:11.3190000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "DefaultRule_DenyAllOutBound",
+        "direction": "Out",
+        "priority": 65500,
+        "type": "block",
+        "conditions": {
+          "destinationPortRange": "0-65535",
+          "sourcePortRange": "0-65535",
+          "destinationIP": "0.0.0.0/0",
+          "sourceIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:20:11.2400000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "UserRule_its-vnet-any",
+        "direction": "In",
+        "priority": 120,
+        "type": "allow",
+        "conditions": {
+          "destinationPortRange": "0-65535",
+          "sourcePortRange": "0-65535",
+          "sourceIP": "10.144.0.0/23,10.194.0.0/15,10.88.0.0/16,10.200.0.0/21,142.0.0.0/8,1.1.2.0/30,10.86.0.0/16,168.63.129.16/32,10.193.160.0/20,10.193.176.0/20",
+          "destinationIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:20:11.2400000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "UserRule_IPSEC-500",
+        "direction": "In",
+        "priority": 130,
+        "type": "allow",
+        "conditions": {
+          "protocols": "17",
+          "destinationPortRange": "500-500",
+          "sourcePortRange": "0-65535",
+          "sourceIP": "44.55.66.0/25",
+          "destinationIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:20:11.2400000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "UserRule_IPSEC-1000",
+        "direction": "In",
+        "priority": 200,
+        "type": "allow",
+        "conditions": {
+          "protocols": "17",
+          "destinationPortRange": "4500-4500",
+          "sourcePortRange": "0-65535",
+          "sourceIP": "44.55.66.0/25",
+          "destinationIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:20:11.2400000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "UserRule_SSH",
+        "direction": "In",
+        "priority": 1010,
+        "type": "allow",
+        "conditions": {
+          "protocols": "6",
+          "destinationPortRange": "22-22",
+          "sourcePortRange": "0-65535",
+          "sourceIP": "204.0.0.0/8",
+          "destinationIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:20:11.2400000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "UserRule_SOME-SSH",
+        "direction": "In",
+        "priority": 1020,
+        "type": "allow",
+        "conditions": {
+          "protocols": "6",
+          "destinationPortRange": "22-22",
+          "sourcePortRange": "0-65535",
+          "sourceIP": "10.190.0.0/16",
+          "destinationIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:20:11.2400000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "DefaultRule_AllowVnetInBound",
+        "direction": "In",
+        "priority": 65000,
+        "type": "allow",
+        "conditions": {
+          "destinationPortRange": "0-65535",
+          "sourcePortRange": "0-65535",
+          "sourceIP": "10.144.0.0/23,10.194.0.0/15,10.88.0.0/16,10.200.0.0/21,142.0.0.0/8,1.1.2.0/30,10.86.0.0/16,168.63.129.16/32,10.193.160.0/20,10.193.176.0/20",
+          "destinationIP": "10.144.0.0/23,10.194.0.0/15,10.88.0.0/16,10.200.0.0/21,142.0.0.0/8,1.1.2.0/30,10.86.0.0/16,168.63.129.16/32,10.193.160.0/20,10.193.176.0/20"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:20:11.2400000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "DefaultRule_AllowAzureLoadBalancerInBound",
+        "direction": "In",
+        "priority": 65001,
+        "type": "allow",
+        "conditions": {
+          "destinationPortRange": "0-65535",
+          "sourcePortRange": "0-65535",
+          "sourceIP": "168.63.129.16/32",
+          "destinationIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:20:11.2400000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "DefaultInboundDenyAll",
+        "direction": "In",
+        "priority": 65500,
+        "type": "block",
+        "conditions": {
+          "None": ""
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:20:11.2400000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "DefaultRule_DenyAllInBound",
+        "direction": "In",
+        "priority": 65500,
+        "type": "block",
+        "conditions": {
+          "destinationPortRange": "0-65535",
+          "sourcePortRange": "0-65535",
+          "sourceIP": "0.0.0.0/0",
+          "destinationIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:20:11.2400000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "DefaultRule_AllowVnetOutBound",
+        "direction": "Out",
+        "priority": 65000,
+        "type": "allow",
+        "conditions": {
+          "destinationPortRange": "0-65535",
+          "sourcePortRange": "0-65535",
+          "destinationIP": "10.144.0.0/23,10.194.0.0/15,10.88.0.0/16,10.200.0.0/21,142.0.0.0/8,1.1.2.0/30,10.86.0.0/16,168.63.129.16/32,10.193.160.0/20,10.193.176.0/20",
+          "sourceIP": "10.144.0.0/23,10.194.0.0/15,10.88.0.0/16,10.200.0.0/21,142.0.0.0/8,1.1.2.0/30,10.86.0.0/16,168.63.129.16/32,10.193.160.0/20,10.193.176.0/20"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:20:11.2400000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "DefaultRule_AllowInternetOutBound",
+        "direction": "Out",
+        "priority": 65001,
+        "type": "allow",
+        "conditions": {
+          "destinationPortRange": "0-65535",
+          "sourcePortRange": "0-65535",
+          "destinationIP": "32.0.0.0/3,4.0.0.0/6,2.0.0.0/7,1.0.0.0/8,12.0.0.0/6,8.0.0.0/7,11.0.0.0/8,64.0.0.0/3,112.0.0.0/5,120.0.0.0/6,124.0.0.0/7,126.0.0.0/8,128.0.0.0/3,176.0.0.0/4,160.0.0.0/5,170.0.0.0/7,168.0.0.0/8,169.0.0.0/9,169.128.0.0/10,169.192.0.0/11,169.224.0.0/12,169.240.0.0/13,169.248.0.0/14,169.252.0.0/15,169.255.0.0/16,174.0.0.0/7,173.0.0.0/8,172.128.0.0/9,172.64.0.0/10,172.32.0.0/11,172.0.0.0/12,208.0.0.0/4,200.0.0.0/5,194.0.0.0/7,193.0.0.0/8,192.64.0.0/10,192.32.0.0/11,192.16.0.0/12,192.8.0.0/13,192.4.0.0/14,192.2.0.0/15,192.1.0.0/16,192.0.128.0/17,192.0.64.0/18,192.0.32.0/19,192.0.16.0/20,192.0.8.0/21,192.0.4.0/22,192.0.0.0/23,192.0.3.0/24,192.192.0.0/10,192.128.0.0/11,192.176.0.0/12,192.160.0.0/13,192.172.0.0/14,192.170.0.0/15,192.169.0.0/16,196.0.0.0/7,199.0.0.0/8,198.128.0.0/9,198.64.0.0/10,198.32.0.0/11,198.0.0.0/12,198.24.0.0/13,198.20.0.0/14,198.16.0.0/15,104.0.0.0/5,96.0.0.0/6,102.0.0.0/7,101.0.0.0/8,100.128.0.0/9,100.0.0.0/10,16.0.0.0/5,28.0.0.0/6,26.0.0.0/7,24.0.0.0/8",
+          "sourceIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:20:11.2400000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "DefaultOutboundDenyAll",
+        "direction": "Out",
+        "priority": 65500,
+        "type": "block",
+        "conditions": {
+          "None": ""
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:20:11.2400000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "DefaultRule_DenyAllOutBound",
+        "direction": "Out",
+        "priority": 65500,
+        "type": "block",
+        "conditions": {
+          "destinationPortRange": "0-65535",
+          "sourcePortRange": "0-65535",
+          "destinationIP": "0.0.0.0/0",
+          "sourceIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:25:11.2560000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "UserRule_its-vnet-any",
+        "direction": "In",
+        "priority": 120,
+        "type": "allow",
+        "conditions": {
+          "destinationPortRange": "0-65535",
+          "sourcePortRange": "0-65535",
+          "sourceIP": "10.144.0.0/23,10.194.0.0/15,10.88.0.0/16,10.200.0.0/21,142.0.0.0/8,1.1.2.0/30,10.86.0.0/16,168.63.129.16/32,10.193.160.0/20,10.193.176.0/20",
+          "destinationIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:25:11.2560000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "UserRule_IPSEC-500",
+        "direction": "In",
+        "priority": 130,
+        "type": "allow",
+        "conditions": {
+          "protocols": "17",
+          "destinationPortRange": "500-500",
+          "sourcePortRange": "0-65535",
+          "sourceIP": "44.55.66.0/25",
+          "destinationIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:25:11.2560000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "UserRule_IPSEC-1000",
+        "direction": "In",
+        "priority": 200,
+        "type": "allow",
+        "conditions": {
+          "protocols": "17",
+          "destinationPortRange": "4500-4500",
+          "sourcePortRange": "0-65535",
+          "sourceIP": "44.55.66.0/25",
+          "destinationIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:25:11.2560000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "UserRule_SSH",
+        "direction": "In",
+        "priority": 1010,
+        "type": "allow",
+        "conditions": {
+          "protocols": "6",
+          "destinationPortRange": "22-22",
+          "sourcePortRange": "0-65535",
+          "sourceIP": "204.0.0.0/8",
+          "destinationIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:25:11.2560000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "UserRule_SOME-SSH",
+        "direction": "In",
+        "priority": 1020,
+        "type": "allow",
+        "conditions": {
+          "protocols": "6",
+          "destinationPortRange": "22-22",
+          "sourcePortRange": "0-65535",
+          "sourceIP": "10.190.0.0/16",
+          "destinationIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:25:11.2560000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "DefaultRule_AllowVnetInBound",
+        "direction": "In",
+        "priority": 65000,
+        "type": "allow",
+        "conditions": {
+          "destinationPortRange": "0-65535",
+          "sourcePortRange": "0-65535",
+          "sourceIP": "10.144.0.0/23,10.194.0.0/15,10.88.0.0/16,10.200.0.0/21,142.0.0.0/8,1.1.2.0/30,10.86.0.0/16,168.63.129.16/32,10.193.160.0/20,10.193.176.0/20",
+          "destinationIP": "10.144.0.0/23,10.194.0.0/15,10.88.0.0/16,10.200.0.0/21,142.0.0.0/8,1.1.2.0/30,10.86.0.0/16,168.63.129.16/32,10.193.160.0/20,10.193.176.0/20"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:25:11.2560000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "DefaultRule_AllowAzureLoadBalancerInBound",
+        "direction": "In",
+        "priority": 65001,
+        "type": "allow",
+        "conditions": {
+          "destinationPortRange": "0-65535",
+          "sourcePortRange": "0-65535",
+          "sourceIP": "168.63.129.16/32",
+          "destinationIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:25:11.2560000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "DefaultInboundDenyAll",
+        "direction": "In",
+        "priority": 65500,
+        "type": "block",
+        "conditions": {
+          "None": ""
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:25:11.2560000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "DefaultRule_DenyAllInBound",
+        "direction": "In",
+        "priority": 65500,
+        "type": "block",
+        "conditions": {
+          "destinationPortRange": "0-65535",
+          "sourcePortRange": "0-65535",
+          "sourceIP": "0.0.0.0/0",
+          "destinationIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:25:11.2560000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "DefaultRule_AllowVnetOutBound",
+        "direction": "Out",
+        "priority": 65000,
+        "type": "allow",
+        "conditions": {
+          "destinationPortRange": "0-65535",
+          "sourcePortRange": "0-65535",
+          "destinationIP": "10.144.0.0/23,10.194.0.0/15,10.88.0.0/16,10.200.0.0/21,142.0.0.0/8,1.1.2.0/30,10.86.0.0/16,168.63.129.16/32,10.193.160.0/20,10.193.176.0/20",
+          "sourceIP": "10.144.0.0/23,10.194.0.0/15,10.88.0.0/16,10.200.0.0/21,142.0.0.0/8,1.1.2.0/30,10.86.0.0/16,168.63.129.16/32,10.193.160.0/20,10.193.176.0/20"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:25:11.2560000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "DefaultRule_AllowInternetOutBound",
+        "direction": "Out",
+        "priority": 65001,
+        "type": "allow",
+        "conditions": {
+          "destinationPortRange": "0-65535",
+          "sourcePortRange": "0-65535",
+          "destinationIP": "32.0.0.0/3,4.0.0.0/6,2.0.0.0/7,1.0.0.0/8,12.0.0.0/6,8.0.0.0/7,11.0.0.0/8,64.0.0.0/3,112.0.0.0/5,120.0.0.0/6,124.0.0.0/7,126.0.0.0/8,128.0.0.0/3,176.0.0.0/4,160.0.0.0/5,170.0.0.0/7,168.0.0.0/8,169.0.0.0/9,169.128.0.0/10,169.192.0.0/11,169.224.0.0/12,169.240.0.0/13,169.248.0.0/14,169.252.0.0/15,169.255.0.0/16,174.0.0.0/7,173.0.0.0/8,172.128.0.0/9,172.64.0.0/10,172.32.0.0/11,172.0.0.0/12,208.0.0.0/4,200.0.0.0/5,194.0.0.0/7,193.0.0.0/8,192.64.0.0/10,192.32.0.0/11,192.16.0.0/12,192.8.0.0/13,192.4.0.0/14,192.2.0.0/15,192.1.0.0/16,192.0.128.0/17,192.0.64.0/18,192.0.32.0/19,192.0.16.0/20,192.0.8.0/21,192.0.4.0/22,192.0.0.0/23,192.0.3.0/24,192.192.0.0/10,192.128.0.0/11,192.176.0.0/12,192.160.0.0/13,192.172.0.0/14,192.170.0.0/15,192.169.0.0/16,196.0.0.0/7,199.0.0.0/8,198.128.0.0/9,198.64.0.0/10,198.32.0.0/11,198.0.0.0/12,198.24.0.0/13,198.20.0.0/14,198.16.0.0/15,104.0.0.0/5,96.0.0.0/6,102.0.0.0/7,101.0.0.0/8,100.128.0.0/9,100.0.0.0/10,16.0.0.0/5,28.0.0.0/6,26.0.0.0/7,24.0.0.0/8",
+          "sourceIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:25:11.2560000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "DefaultOutboundDenyAll",
+        "direction": "Out",
+        "priority": 65500,
+        "type": "block",
+        "conditions": {
+          "None": ""
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:25:11.2560000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "DefaultRule_DenyAllOutBound",
+        "direction": "Out",
+        "priority": 65500,
+        "type": "block",
+        "conditions": {
+          "destinationPortRange": "0-65535",
+          "sourcePortRange": "0-65535",
+          "destinationIP": "0.0.0.0/0",
+          "sourceIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:30:11.2700000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "UserRule_its-vnet-any",
+        "direction": "In",
+        "priority": 120,
+        "type": "allow",
+        "conditions": {
+          "destinationPortRange": "0-65535",
+          "sourcePortRange": "0-65535",
+          "sourceIP": "10.144.0.0/23,10.194.0.0/15,10.88.0.0/16,10.200.0.0/21,142.0.0.0/8,1.1.2.0/30,10.86.0.0/16,168.63.129.16/32,10.193.160.0/20,10.193.176.0/20",
+          "destinationIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:30:11.2700000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "UserRule_IPSEC-500",
+        "direction": "In",
+        "priority": 130,
+        "type": "allow",
+        "conditions": {
+          "protocols": "17",
+          "destinationPortRange": "500-500",
+          "sourcePortRange": "0-65535",
+          "sourceIP": "44.55.66.0/25",
+          "destinationIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:30:11.2700000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "UserRule_IPSEC-1000",
+        "direction": "In",
+        "priority": 200,
+        "type": "allow",
+        "conditions": {
+          "protocols": "17",
+          "destinationPortRange": "4500-4500",
+          "sourcePortRange": "0-65535",
+          "sourceIP": "44.55.66.0/25",
+          "destinationIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:30:11.2700000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "UserRule_SSH",
+        "direction": "In",
+        "priority": 1010,
+        "type": "allow",
+        "conditions": {
+          "protocols": "6",
+          "destinationPortRange": "22-22",
+          "sourcePortRange": "0-65535",
+          "sourceIP": "204.0.0.0/8",
+          "destinationIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:30:11.2700000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "UserRule_SOME-SSH",
+        "direction": "In",
+        "priority": 1020,
+        "type": "allow",
+        "conditions": {
+          "protocols": "6",
+          "destinationPortRange": "22-22",
+          "sourcePortRange": "0-65535",
+          "sourceIP": "10.190.0.0/16",
+          "destinationIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:30:11.2700000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "DefaultRule_AllowVnetInBound",
+        "direction": "In",
+        "priority": 65000,
+        "type": "allow",
+        "conditions": {
+          "destinationPortRange": "0-65535",
+          "sourcePortRange": "0-65535",
+          "sourceIP": "10.144.0.0/23,10.194.0.0/15,10.88.0.0/16,10.200.0.0/21,142.0.0.0/8,1.1.2.0/30,10.86.0.0/16,168.63.129.16/32,10.193.160.0/20,10.193.176.0/20",
+          "destinationIP": "10.144.0.0/23,10.194.0.0/15,10.88.0.0/16,10.200.0.0/21,142.0.0.0/8,1.1.2.0/30,10.86.0.0/16,168.63.129.16/32,10.193.160.0/20,10.193.176.0/20"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:30:11.2700000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "DefaultRule_AllowAzureLoadBalancerInBound",
+        "direction": "In",
+        "priority": 65001,
+        "type": "allow",
+        "conditions": {
+          "destinationPortRange": "0-65535",
+          "sourcePortRange": "0-65535",
+          "sourceIP": "168.63.129.16/32",
+          "destinationIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:30:11.2700000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "DefaultInboundDenyAll",
+        "direction": "In",
+        "priority": 65500,
+        "type": "block",
+        "conditions": {
+          "None": ""
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:30:11.2700000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "DefaultRule_DenyAllInBound",
+        "direction": "In",
+        "priority": 65500,
+        "type": "block",
+        "conditions": {
+          "destinationPortRange": "0-65535",
+          "sourcePortRange": "0-65535",
+          "sourceIP": "0.0.0.0/0",
+          "destinationIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:30:11.2700000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "DefaultRule_AllowVnetOutBound",
+        "direction": "Out",
+        "priority": 65000,
+        "type": "allow",
+        "conditions": {
+          "destinationPortRange": "0-65535",
+          "sourcePortRange": "0-65535",
+          "destinationIP": "10.144.0.0/23,10.194.0.0/15,10.88.0.0/16,10.200.0.0/21,142.0.0.0/8,1.1.2.0/30,10.86.0.0/16,168.63.129.16/32,10.193.160.0/20,10.193.176.0/20",
+          "sourceIP": "10.144.0.0/23,10.194.0.0/15,10.88.0.0/16,10.200.0.0/21,142.0.0.0/8,1.1.2.0/30,10.86.0.0/16,168.63.129.16/32,10.193.160.0/20,10.193.176.0/20"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:30:11.2700000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "DefaultRule_AllowInternetOutBound",
+        "direction": "Out",
+        "priority": 65001,
+        "type": "allow",
+        "conditions": {
+          "destinationPortRange": "0-65535",
+          "sourcePortRange": "0-65535",
+          "destinationIP": "32.0.0.0/3,4.0.0.0/6,2.0.0.0/7,1.0.0.0/8,12.0.0.0/6,8.0.0.0/7,11.0.0.0/8,64.0.0.0/3,112.0.0.0/5,120.0.0.0/6,124.0.0.0/7,126.0.0.0/8,128.0.0.0/3,176.0.0.0/4,160.0.0.0/5,170.0.0.0/7,168.0.0.0/8,169.0.0.0/9,169.128.0.0/10,169.192.0.0/11,169.224.0.0/12,169.240.0.0/13,169.248.0.0/14,169.252.0.0/15,169.255.0.0/16,174.0.0.0/7,173.0.0.0/8,172.128.0.0/9,172.64.0.0/10,172.32.0.0/11,172.0.0.0/12,208.0.0.0/4,200.0.0.0/5,194.0.0.0/7,193.0.0.0/8,192.64.0.0/10,192.32.0.0/11,192.16.0.0/12,192.8.0.0/13,192.4.0.0/14,192.2.0.0/15,192.1.0.0/16,192.0.128.0/17,192.0.64.0/18,192.0.32.0/19,192.0.16.0/20,192.0.8.0/21,192.0.4.0/22,192.0.0.0/23,192.0.3.0/24,192.192.0.0/10,192.128.0.0/11,192.176.0.0/12,192.160.0.0/13,192.172.0.0/14,192.170.0.0/15,192.169.0.0/16,196.0.0.0/7,199.0.0.0/8,198.128.0.0/9,198.64.0.0/10,198.32.0.0/11,198.0.0.0/12,198.24.0.0/13,198.20.0.0/14,198.16.0.0/15,104.0.0.0/5,96.0.0.0/6,102.0.0.0/7,101.0.0.0/8,100.128.0.0/9,100.0.0.0/10,16.0.0.0/5,28.0.0.0/6,26.0.0.0/7,24.0.0.0/8",
+          "sourceIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:30:11.2700000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "DefaultOutboundDenyAll",
+        "direction": "Out",
+        "priority": 65500,
+        "type": "block",
+        "conditions": {
+          "None": ""
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:30:11.2700000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "DefaultRule_DenyAllOutBound",
+        "direction": "Out",
+        "priority": 65500,
+        "type": "block",
+        "conditions": {
+          "destinationPortRange": "0-65535",
+          "sourcePortRange": "0-65535",
+          "destinationIP": "0.0.0.0/0",
+          "sourceIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:35:11.2840000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "UserRule_its-vnet-any",
+        "direction": "In",
+        "priority": 120,
+        "type": "allow",
+        "conditions": {
+          "destinationPortRange": "0-65535",
+          "sourcePortRange": "0-65535",
+          "sourceIP": "10.144.0.0/23,10.194.0.0/15,10.88.0.0/16,10.200.0.0/21,142.0.0.0/8,1.1.2.0/30,10.86.0.0/16,168.63.129.16/32,10.193.160.0/20,10.193.176.0/20",
+          "destinationIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:35:11.2840000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "UserRule_IPSEC-500",
+        "direction": "In",
+        "priority": 130,
+        "type": "allow",
+        "conditions": {
+          "protocols": "17",
+          "destinationPortRange": "500-500",
+          "sourcePortRange": "0-65535",
+          "sourceIP": "44.55.66.0/25",
+          "destinationIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:35:11.2840000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "UserRule_IPSEC-1000",
+        "direction": "In",
+        "priority": 200,
+        "type": "allow",
+        "conditions": {
+          "protocols": "17",
+          "destinationPortRange": "4500-4500",
+          "sourcePortRange": "0-65535",
+          "sourceIP": "44.55.66.0/25",
+          "destinationIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:35:11.2840000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "UserRule_SSH",
+        "direction": "In",
+        "priority": 1010,
+        "type": "allow",
+        "conditions": {
+          "protocols": "6",
+          "destinationPortRange": "22-22",
+          "sourcePortRange": "0-65535",
+          "sourceIP": "204.0.0.0/8",
+          "destinationIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:35:11.2840000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "UserRule_SOME-SSH",
+        "direction": "In",
+        "priority": 1020,
+        "type": "allow",
+        "conditions": {
+          "protocols": "6",
+          "destinationPortRange": "22-22",
+          "sourcePortRange": "0-65535",
+          "sourceIP": "10.190.0.0/16",
+          "destinationIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:35:11.2840000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "DefaultRule_AllowVnetInBound",
+        "direction": "In",
+        "priority": 65000,
+        "type": "allow",
+        "conditions": {
+          "destinationPortRange": "0-65535",
+          "sourcePortRange": "0-65535",
+          "sourceIP": "10.144.0.0/23,10.194.0.0/15,10.88.0.0/16,10.200.0.0/21,142.0.0.0/8,1.1.2.0/30,10.86.0.0/16,168.63.129.16/32,10.193.160.0/20,10.193.176.0/20",
+          "destinationIP": "10.144.0.0/23,10.194.0.0/15,10.88.0.0/16,10.200.0.0/21,142.0.0.0/8,1.1.2.0/30,10.86.0.0/16,168.63.129.16/32,10.193.160.0/20,10.193.176.0/20"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:35:11.2840000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "DefaultRule_AllowAzureLoadBalancerInBound",
+        "direction": "In",
+        "priority": 65001,
+        "type": "allow",
+        "conditions": {
+          "destinationPortRange": "0-65535",
+          "sourcePortRange": "0-65535",
+          "sourceIP": "168.63.129.16/32",
+          "destinationIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:35:11.2840000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "DefaultInboundDenyAll",
+        "direction": "In",
+        "priority": 65500,
+        "type": "block",
+        "conditions": {
+          "None": ""
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:35:11.2840000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "DefaultRule_DenyAllInBound",
+        "direction": "In",
+        "priority": 65500,
+        "type": "block",
+        "conditions": {
+          "destinationPortRange": "0-65535",
+          "sourcePortRange": "0-65535",
+          "sourceIP": "0.0.0.0/0",
+          "destinationIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:35:11.2840000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "DefaultRule_AllowVnetOutBound",
+        "direction": "Out",
+        "priority": 65000,
+        "type": "allow",
+        "conditions": {
+          "destinationPortRange": "0-65535",
+          "sourcePortRange": "0-65535",
+          "destinationIP": "10.144.0.0/23,10.194.0.0/15,10.88.0.0/16,10.200.0.0/21,142.0.0.0/8,1.1.2.0/30,10.86.0.0/16,168.63.129.16/32,10.193.160.0/20,10.193.176.0/20",
+          "sourceIP": "10.144.0.0/23,10.194.0.0/15,10.88.0.0/16,10.200.0.0/21,142.0.0.0/8,1.1.2.0/30,10.86.0.0/16,168.63.129.16/32,10.193.160.0/20,10.193.176.0/20"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:35:11.2840000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "DefaultRule_AllowInternetOutBound",
+        "direction": "Out",
+        "priority": 65001,
+        "type": "allow",
+        "conditions": {
+          "destinationPortRange": "0-65535",
+          "sourcePortRange": "0-65535",
+          "destinationIP": "32.0.0.0/3,4.0.0.0/6,2.0.0.0/7,1.0.0.0/8,12.0.0.0/6,8.0.0.0/7,11.0.0.0/8,64.0.0.0/3,112.0.0.0/5,120.0.0.0/6,124.0.0.0/7,126.0.0.0/8,128.0.0.0/3,176.0.0.0/4,160.0.0.0/5,170.0.0.0/7,168.0.0.0/8,169.0.0.0/9,169.128.0.0/10,169.192.0.0/11,169.224.0.0/12,169.240.0.0/13,169.248.0.0/14,169.252.0.0/15,169.255.0.0/16,174.0.0.0/7,173.0.0.0/8,172.128.0.0/9,172.64.0.0/10,172.32.0.0/11,172.0.0.0/12,208.0.0.0/4,200.0.0.0/5,194.0.0.0/7,193.0.0.0/8,192.64.0.0/10,192.32.0.0/11,192.16.0.0/12,192.8.0.0/13,192.4.0.0/14,192.2.0.0/15,192.1.0.0/16,192.0.128.0/17,192.0.64.0/18,192.0.32.0/19,192.0.16.0/20,192.0.8.0/21,192.0.4.0/22,192.0.0.0/23,192.0.3.0/24,192.192.0.0/10,192.128.0.0/11,192.176.0.0/12,192.160.0.0/13,192.172.0.0/14,192.170.0.0/15,192.169.0.0/16,196.0.0.0/7,199.0.0.0/8,198.128.0.0/9,198.64.0.0/10,198.32.0.0/11,198.0.0.0/12,198.24.0.0/13,198.20.0.0/14,198.16.0.0/15,104.0.0.0/5,96.0.0.0/6,102.0.0.0/7,101.0.0.0/8,100.128.0.0/9,100.0.0.0/10,16.0.0.0/5,28.0.0.0/6,26.0.0.0/7,24.0.0.0/8",
+          "sourceIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:35:11.2840000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "DefaultOutboundDenyAll",
+        "direction": "Out",
+        "priority": 65500,
+        "type": "block",
+        "conditions": {
+          "None": ""
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:35:11.2840000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "DefaultRule_DenyAllOutBound",
+        "direction": "Out",
+        "priority": 65500,
+        "type": "block",
+        "conditions": {
+          "destinationPortRange": "0-65535",
+          "sourcePortRange": "0-65535",
+          "destinationIP": "0.0.0.0/0",
+          "sourceIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:40:11.2970000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "UserRule_its-vnet-any",
+        "direction": "In",
+        "priority": 120,
+        "type": "allow",
+        "conditions": {
+          "destinationPortRange": "0-65535",
+          "sourcePortRange": "0-65535",
+          "sourceIP": "10.144.0.0/23,10.194.0.0/15,10.88.0.0/16,10.200.0.0/21,142.0.0.0/8,1.1.2.0/30,10.86.0.0/16,168.63.129.16/32,10.193.160.0/20,10.193.176.0/20",
+          "destinationIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:40:11.2970000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "UserRule_IPSEC-500",
+        "direction": "In",
+        "priority": 130,
+        "type": "allow",
+        "conditions": {
+          "protocols": "17",
+          "destinationPortRange": "500-500",
+          "sourcePortRange": "0-65535",
+          "sourceIP": "44.55.66.0/25",
+          "destinationIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:40:11.2970000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "UserRule_IPSEC-1000",
+        "direction": "In",
+        "priority": 200,
+        "type": "allow",
+        "conditions": {
+          "protocols": "17",
+          "destinationPortRange": "4500-4500",
+          "sourcePortRange": "0-65535",
+          "sourceIP": "44.55.66.0/25",
+          "destinationIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:40:11.2970000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "UserRule_SSH",
+        "direction": "In",
+        "priority": 1010,
+        "type": "allow",
+        "conditions": {
+          "protocols": "6",
+          "destinationPortRange": "22-22",
+          "sourcePortRange": "0-65535",
+          "sourceIP": "204.0.0.0/8",
+          "destinationIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:40:11.2970000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "UserRule_SOME-SSH",
+        "direction": "In",
+        "priority": 1020,
+        "type": "allow",
+        "conditions": {
+          "protocols": "6",
+          "destinationPortRange": "22-22",
+          "sourcePortRange": "0-65535",
+          "sourceIP": "10.190.0.0/16",
+          "destinationIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:40:11.2970000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "DefaultRule_AllowVnetInBound",
+        "direction": "In",
+        "priority": 65000,
+        "type": "allow",
+        "conditions": {
+          "destinationPortRange": "0-65535",
+          "sourcePortRange": "0-65535",
+          "sourceIP": "10.144.0.0/23,10.194.0.0/15,10.88.0.0/16,10.200.0.0/21,142.0.0.0/8,1.1.2.0/30,10.86.0.0/16,168.63.129.16/32,10.193.160.0/20,10.193.176.0/20",
+          "destinationIP": "10.144.0.0/23,10.194.0.0/15,10.88.0.0/16,10.200.0.0/21,142.0.0.0/8,1.1.2.0/30,10.86.0.0/16,168.63.129.16/32,10.193.160.0/20,10.193.176.0/20"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:40:11.2970000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "DefaultRule_AllowAzureLoadBalancerInBound",
+        "direction": "In",
+        "priority": 65001,
+        "type": "allow",
+        "conditions": {
+          "destinationPortRange": "0-65535",
+          "sourcePortRange": "0-65535",
+          "sourceIP": "168.63.129.16/32",
+          "destinationIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:40:11.2970000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "DefaultInboundDenyAll",
+        "direction": "In",
+        "priority": 65500,
+        "type": "block",
+        "conditions": {
+          "None": ""
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:40:11.2970000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "DefaultRule_DenyAllInBound",
+        "direction": "In",
+        "priority": 65500,
+        "type": "block",
+        "conditions": {
+          "destinationPortRange": "0-65535",
+          "sourcePortRange": "0-65535",
+          "sourceIP": "0.0.0.0/0",
+          "destinationIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:40:11.2970000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "DefaultRule_AllowVnetOutBound",
+        "direction": "Out",
+        "priority": 65000,
+        "type": "allow",
+        "conditions": {
+          "destinationPortRange": "0-65535",
+          "sourcePortRange": "0-65535",
+          "destinationIP": "10.144.0.0/23,10.194.0.0/15,10.88.0.0/16,10.200.0.0/21,142.0.0.0/8,1.1.2.0/30,10.86.0.0/16,168.63.129.16/32,10.193.160.0/20,10.193.176.0/20",
+          "sourceIP": "10.144.0.0/23,10.194.0.0/15,10.88.0.0/16,10.200.0.0/21,142.0.0.0/8,1.1.2.0/30,10.86.0.0/16,168.63.129.16/32,10.193.160.0/20,10.193.176.0/20"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:40:11.2970000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "DefaultRule_AllowInternetOutBound",
+        "direction": "Out",
+        "priority": 65001,
+        "type": "allow",
+        "conditions": {
+          "destinationPortRange": "0-65535",
+          "sourcePortRange": "0-65535",
+          "destinationIP": "32.0.0.0/3,4.0.0.0/6,2.0.0.0/7,1.0.0.0/8,12.0.0.0/6,8.0.0.0/7,11.0.0.0/8,64.0.0.0/3,112.0.0.0/5,120.0.0.0/6,124.0.0.0/7,126.0.0.0/8,128.0.0.0/3,176.0.0.0/4,160.0.0.0/5,170.0.0.0/7,168.0.0.0/8,169.0.0.0/9,169.128.0.0/10,169.192.0.0/11,169.224.0.0/12,169.240.0.0/13,169.248.0.0/14,169.252.0.0/15,169.255.0.0/16,174.0.0.0/7,173.0.0.0/8,172.128.0.0/9,172.64.0.0/10,172.32.0.0/11,172.0.0.0/12,208.0.0.0/4,200.0.0.0/5,194.0.0.0/7,193.0.0.0/8,192.64.0.0/10,192.32.0.0/11,192.16.0.0/12,192.8.0.0/13,192.4.0.0/14,192.2.0.0/15,192.1.0.0/16,192.0.128.0/17,192.0.64.0/18,192.0.32.0/19,192.0.16.0/20,192.0.8.0/21,192.0.4.0/22,192.0.0.0/23,192.0.3.0/24,192.192.0.0/10,192.128.0.0/11,192.176.0.0/12,192.160.0.0/13,192.172.0.0/14,192.170.0.0/15,192.169.0.0/16,196.0.0.0/7,199.0.0.0/8,198.128.0.0/9,198.64.0.0/10,198.32.0.0/11,198.0.0.0/12,198.24.0.0/13,198.20.0.0/14,198.16.0.0/15,104.0.0.0/5,96.0.0.0/6,102.0.0.0/7,101.0.0.0/8,100.128.0.0/9,100.0.0.0/10,16.0.0.0/5,28.0.0.0/6,26.0.0.0/7,24.0.0.0/8",
+          "sourceIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:40:11.2970000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "DefaultOutboundDenyAll",
+        "direction": "Out",
+        "priority": 65500,
+        "type": "block",
+        "conditions": {
+          "None": ""
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:40:11.2970000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "DefaultRule_DenyAllOutBound",
+        "direction": "Out",
+        "priority": 65500,
+        "type": "block",
+        "conditions": {
+          "destinationPortRange": "0-65535",
+          "sourcePortRange": "0-65535",
+          "destinationIP": "0.0.0.0/0",
+          "sourceIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:45:11.2970000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "UserRule_its-vnet-any",
+        "direction": "In",
+        "priority": 120,
+        "type": "allow",
+        "conditions": {
+          "destinationPortRange": "0-65535",
+          "sourcePortRange": "0-65535",
+          "sourceIP": "10.144.0.0/23,10.194.0.0/15,10.88.0.0/16,10.200.0.0/21,142.0.0.0/8,1.1.2.0/30,10.86.0.0/16,168.63.129.16/32,10.193.160.0/20,10.193.176.0/20",
+          "destinationIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:45:11.2970000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "UserRule_IPSEC-500",
+        "direction": "In",
+        "priority": 130,
+        "type": "allow",
+        "conditions": {
+          "protocols": "17",
+          "destinationPortRange": "500-500",
+          "sourcePortRange": "0-65535",
+          "sourceIP": "44.55.66.0/25",
+          "destinationIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:45:11.2970000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "UserRule_IPSEC-1000",
+        "direction": "In",
+        "priority": 200,
+        "type": "allow",
+        "conditions": {
+          "protocols": "17",
+          "destinationPortRange": "4500-4500",
+          "sourcePortRange": "0-65535",
+          "sourceIP": "44.55.66.0/25",
+          "destinationIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:45:11.2970000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "UserRule_SSH",
+        "direction": "In",
+        "priority": 1010,
+        "type": "allow",
+        "conditions": {
+          "protocols": "6",
+          "destinationPortRange": "22-22",
+          "sourcePortRange": "0-65535",
+          "sourceIP": "204.0.0.0/8",
+          "destinationIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:45:11.2970000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "UserRule_SOME-SSH",
+        "direction": "In",
+        "priority": 1020,
+        "type": "allow",
+        "conditions": {
+          "protocols": "6",
+          "destinationPortRange": "22-22",
+          "sourcePortRange": "0-65535",
+          "sourceIP": "10.190.0.0/16",
+          "destinationIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:45:11.2970000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "DefaultRule_AllowVnetInBound",
+        "direction": "In",
+        "priority": 65000,
+        "type": "allow",
+        "conditions": {
+          "destinationPortRange": "0-65535",
+          "sourcePortRange": "0-65535",
+          "sourceIP": "10.144.0.0/23,10.194.0.0/15,10.88.0.0/16,10.200.0.0/21,142.0.0.0/8,1.1.2.0/30,10.86.0.0/16,168.63.129.16/32,10.193.160.0/20,10.193.176.0/20",
+          "destinationIP": "10.144.0.0/23,10.194.0.0/15,10.88.0.0/16,10.200.0.0/21,142.0.0.0/8,1.1.2.0/30,10.86.0.0/16,168.63.129.16/32,10.193.160.0/20,10.193.176.0/20"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:45:11.2970000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "DefaultRule_AllowAzureLoadBalancerInBound",
+        "direction": "In",
+        "priority": 65001,
+        "type": "allow",
+        "conditions": {
+          "destinationPortRange": "0-65535",
+          "sourcePortRange": "0-65535",
+          "sourceIP": "168.63.129.16/32",
+          "destinationIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:45:11.2970000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "DefaultInboundDenyAll",
+        "direction": "In",
+        "priority": 65500,
+        "type": "block",
+        "conditions": {
+          "None": ""
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:45:11.2970000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "DefaultRule_DenyAllInBound",
+        "direction": "In",
+        "priority": 65500,
+        "type": "block",
+        "conditions": {
+          "destinationPortRange": "0-65535",
+          "sourcePortRange": "0-65535",
+          "sourceIP": "0.0.0.0/0",
+          "destinationIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:45:11.2970000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "DefaultRule_AllowVnetOutBound",
+        "direction": "Out",
+        "priority": 65000,
+        "type": "allow",
+        "conditions": {
+          "destinationPortRange": "0-65535",
+          "sourcePortRange": "0-65535",
+          "destinationIP": "10.144.0.0/23,10.194.0.0/15,10.88.0.0/16,10.200.0.0/21,142.0.0.0/8,1.1.2.0/30,10.86.0.0/16,168.63.129.16/32,10.193.160.0/20,10.193.176.0/20",
+          "sourceIP": "10.144.0.0/23,10.194.0.0/15,10.88.0.0/16,10.200.0.0/21,142.0.0.0/8,1.1.2.0/30,10.86.0.0/16,168.63.129.16/32,10.193.160.0/20,10.193.176.0/20"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:45:11.2970000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "DefaultRule_AllowInternetOutBound",
+        "direction": "Out",
+        "priority": 65001,
+        "type": "allow",
+        "conditions": {
+          "destinationPortRange": "0-65535",
+          "sourcePortRange": "0-65535",
+          "destinationIP": "32.0.0.0/3,4.0.0.0/6,2.0.0.0/7,1.0.0.0/8,12.0.0.0/6,8.0.0.0/7,11.0.0.0/8,64.0.0.0/3,112.0.0.0/5,120.0.0.0/6,124.0.0.0/7,126.0.0.0/8,128.0.0.0/3,176.0.0.0/4,160.0.0.0/5,170.0.0.0/7,168.0.0.0/8,169.0.0.0/9,169.128.0.0/10,169.192.0.0/11,169.224.0.0/12,169.240.0.0/13,169.248.0.0/14,169.252.0.0/15,169.255.0.0/16,174.0.0.0/7,173.0.0.0/8,172.128.0.0/9,172.64.0.0/10,172.32.0.0/11,172.0.0.0/12,208.0.0.0/4,200.0.0.0/5,194.0.0.0/7,193.0.0.0/8,192.64.0.0/10,192.32.0.0/11,192.16.0.0/12,192.8.0.0/13,192.4.0.0/14,192.2.0.0/15,192.1.0.0/16,192.0.128.0/17,192.0.64.0/18,192.0.32.0/19,192.0.16.0/20,192.0.8.0/21,192.0.4.0/22,192.0.0.0/23,192.0.3.0/24,192.192.0.0/10,192.128.0.0/11,192.176.0.0/12,192.160.0.0/13,192.172.0.0/14,192.170.0.0/15,192.169.0.0/16,196.0.0.0/7,199.0.0.0/8,198.128.0.0/9,198.64.0.0/10,198.32.0.0/11,198.0.0.0/12,198.24.0.0/13,198.20.0.0/14,198.16.0.0/15,104.0.0.0/5,96.0.0.0/6,102.0.0.0/7,101.0.0.0/8,100.128.0.0/9,100.0.0.0/10,16.0.0.0/5,28.0.0.0/6,26.0.0.0/7,24.0.0.0/8",
+          "sourceIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:45:11.2970000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "DefaultOutboundDenyAll",
+        "direction": "Out",
+        "priority": 65500,
+        "type": "block",
+        "conditions": {
+          "None": ""
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:45:11.2970000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "DefaultRule_DenyAllOutBound",
+        "direction": "Out",
+        "priority": 65500,
+        "type": "block",
+        "conditions": {
+          "destinationPortRange": "0-65535",
+          "sourcePortRange": "0-65535",
+          "destinationIP": "0.0.0.0/0",
+          "sourceIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:50:11.3110000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "UserRule_its-vnet-any",
+        "direction": "In",
+        "priority": 120,
+        "type": "allow",
+        "conditions": {
+          "destinationPortRange": "0-65535",
+          "sourcePortRange": "0-65535",
+          "sourceIP": "10.144.0.0/23,10.194.0.0/15,10.88.0.0/16,10.200.0.0/21,142.0.0.0/8,1.1.2.0/30,10.86.0.0/16,168.63.129.16/32,10.193.160.0/20,10.193.176.0/20",
+          "destinationIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:50:11.3110000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "UserRule_IPSEC-500",
+        "direction": "In",
+        "priority": 130,
+        "type": "allow",
+        "conditions": {
+          "protocols": "17",
+          "destinationPortRange": "500-500",
+          "sourcePortRange": "0-65535",
+          "sourceIP": "44.55.66.0/25",
+          "destinationIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:50:11.3110000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "UserRule_IPSEC-1000",
+        "direction": "In",
+        "priority": 200,
+        "type": "allow",
+        "conditions": {
+          "protocols": "17",
+          "destinationPortRange": "4500-4500",
+          "sourcePortRange": "0-65535",
+          "sourceIP": "44.55.66.0/25",
+          "destinationIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:50:11.3110000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "UserRule_SSH",
+        "direction": "In",
+        "priority": 1010,
+        "type": "allow",
+        "conditions": {
+          "protocols": "6",
+          "destinationPortRange": "22-22",
+          "sourcePortRange": "0-65535",
+          "sourceIP": "204.0.0.0/8",
+          "destinationIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:50:11.3110000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "UserRule_SOME-SSH",
+        "direction": "In",
+        "priority": 1020,
+        "type": "allow",
+        "conditions": {
+          "protocols": "6",
+          "destinationPortRange": "22-22",
+          "sourcePortRange": "0-65535",
+          "sourceIP": "10.190.0.0/16",
+          "destinationIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:50:11.3110000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "DefaultRule_AllowVnetInBound",
+        "direction": "In",
+        "priority": 65000,
+        "type": "allow",
+        "conditions": {
+          "destinationPortRange": "0-65535",
+          "sourcePortRange": "0-65535",
+          "sourceIP": "10.144.0.0/23,10.194.0.0/15,10.88.0.0/16,10.200.0.0/21,142.0.0.0/8,1.1.2.0/30,10.86.0.0/16,168.63.129.16/32,10.193.160.0/20,10.193.176.0/20",
+          "destinationIP": "10.144.0.0/23,10.194.0.0/15,10.88.0.0/16,10.200.0.0/21,142.0.0.0/8,1.1.2.0/30,10.86.0.0/16,168.63.129.16/32,10.193.160.0/20,10.193.176.0/20"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:50:11.3110000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "DefaultRule_AllowAzureLoadBalancerInBound",
+        "direction": "In",
+        "priority": 65001,
+        "type": "allow",
+        "conditions": {
+          "destinationPortRange": "0-65535",
+          "sourcePortRange": "0-65535",
+          "sourceIP": "168.63.129.16/32",
+          "destinationIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:50:11.3110000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "DefaultInboundDenyAll",
+        "direction": "In",
+        "priority": 65500,
+        "type": "block",
+        "conditions": {
+          "None": ""
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:50:11.3110000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "DefaultRule_DenyAllInBound",
+        "direction": "In",
+        "priority": 65500,
+        "type": "block",
+        "conditions": {
+          "destinationPortRange": "0-65535",
+          "sourcePortRange": "0-65535",
+          "sourceIP": "0.0.0.0/0",
+          "destinationIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:50:11.3110000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "DefaultRule_AllowVnetOutBound",
+        "direction": "Out",
+        "priority": 65000,
+        "type": "allow",
+        "conditions": {
+          "destinationPortRange": "0-65535",
+          "sourcePortRange": "0-65535",
+          "destinationIP": "10.144.0.0/23,10.194.0.0/15,10.88.0.0/16,10.200.0.0/21,142.0.0.0/8,1.1.2.0/30,10.86.0.0/16,168.63.129.16/32,10.193.160.0/20,10.193.176.0/20",
+          "sourceIP": "10.144.0.0/23,10.194.0.0/15,10.88.0.0/16,10.200.0.0/21,142.0.0.0/8,1.1.2.0/30,10.86.0.0/16,168.63.129.16/32,10.193.160.0/20,10.193.176.0/20"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:50:11.3110000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "DefaultRule_AllowInternetOutBound",
+        "direction": "Out",
+        "priority": 65001,
+        "type": "allow",
+        "conditions": {
+          "destinationPortRange": "0-65535",
+          "sourcePortRange": "0-65535",
+          "destinationIP": "32.0.0.0/3,4.0.0.0/6,2.0.0.0/7,1.0.0.0/8,12.0.0.0/6,8.0.0.0/7,11.0.0.0/8,64.0.0.0/3,112.0.0.0/5,120.0.0.0/6,124.0.0.0/7,126.0.0.0/8,128.0.0.0/3,176.0.0.0/4,160.0.0.0/5,170.0.0.0/7,168.0.0.0/8,169.0.0.0/9,169.128.0.0/10,169.192.0.0/11,169.224.0.0/12,169.240.0.0/13,169.248.0.0/14,169.252.0.0/15,169.255.0.0/16,174.0.0.0/7,173.0.0.0/8,172.128.0.0/9,172.64.0.0/10,172.32.0.0/11,172.0.0.0/12,208.0.0.0/4,200.0.0.0/5,194.0.0.0/7,193.0.0.0/8,192.64.0.0/10,192.32.0.0/11,192.16.0.0/12,192.8.0.0/13,192.4.0.0/14,192.2.0.0/15,192.1.0.0/16,192.0.128.0/17,192.0.64.0/18,192.0.32.0/19,192.0.16.0/20,192.0.8.0/21,192.0.4.0/22,192.0.0.0/23,192.0.3.0/24,192.192.0.0/10,192.128.0.0/11,192.176.0.0/12,192.160.0.0/13,192.172.0.0/14,192.170.0.0/15,192.169.0.0/16,196.0.0.0/7,199.0.0.0/8,198.128.0.0/9,198.64.0.0/10,198.32.0.0/11,198.0.0.0/12,198.24.0.0/13,198.20.0.0/14,198.16.0.0/15,104.0.0.0/5,96.0.0.0/6,102.0.0.0/7,101.0.0.0/8,100.128.0.0/9,100.0.0.0/10,16.0.0.0/5,28.0.0.0/6,26.0.0.0/7,24.0.0.0/8",
+          "sourceIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:50:11.3110000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "DefaultOutboundDenyAll",
+        "direction": "Out",
+        "priority": 65500,
+        "type": "block",
+        "conditions": {
+          "None": ""
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:50:11.3110000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "DefaultRule_DenyAllOutBound",
+        "direction": "Out",
+        "priority": 65500,
+        "type": "block",
+        "conditions": {
+          "destinationPortRange": "0-65535",
+          "sourcePortRange": "0-65535",
+          "destinationIP": "0.0.0.0/0",
+          "sourceIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:55:11.3230000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "UserRule_its-vnet-any",
+        "direction": "In",
+        "priority": 120,
+        "type": "allow",
+        "conditions": {
+          "destinationPortRange": "0-65535",
+          "sourcePortRange": "0-65535",
+          "sourceIP": "10.144.0.0/23,10.194.0.0/15,10.88.0.0/16,10.200.0.0/21,142.0.0.0/8,1.1.2.0/30,10.86.0.0/16,168.63.129.16/32,10.193.160.0/20,10.193.176.0/20",
+          "destinationIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:55:11.3230000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "UserRule_IPSEC-500",
+        "direction": "In",
+        "priority": 130,
+        "type": "allow",
+        "conditions": {
+          "protocols": "17",
+          "destinationPortRange": "500-500",
+          "sourcePortRange": "0-65535",
+          "sourceIP": "44.55.66.0/25",
+          "destinationIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:55:11.3230000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "UserRule_IPSEC-1000",
+        "direction": "In",
+        "priority": 200,
+        "type": "allow",
+        "conditions": {
+          "protocols": "17",
+          "destinationPortRange": "4500-4500",
+          "sourcePortRange": "0-65535",
+          "sourceIP": "44.55.66.0/25",
+          "destinationIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:55:11.3230000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "UserRule_SSH",
+        "direction": "In",
+        "priority": 1010,
+        "type": "allow",
+        "conditions": {
+          "protocols": "6",
+          "destinationPortRange": "22-22",
+          "sourcePortRange": "0-65535",
+          "sourceIP": "204.0.0.0/8",
+          "destinationIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:55:11.3230000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "UserRule_SOME-SSH",
+        "direction": "In",
+        "priority": 1020,
+        "type": "allow",
+        "conditions": {
+          "protocols": "6",
+          "destinationPortRange": "22-22",
+          "sourcePortRange": "0-65535",
+          "sourceIP": "10.190.0.0/16",
+          "destinationIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:55:11.3230000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "DefaultRule_AllowVnetInBound",
+        "direction": "In",
+        "priority": 65000,
+        "type": "allow",
+        "conditions": {
+          "destinationPortRange": "0-65535",
+          "sourcePortRange": "0-65535",
+          "sourceIP": "10.144.0.0/23,10.194.0.0/15,10.88.0.0/16,10.200.0.0/21,142.0.0.0/8,1.1.2.0/30,10.86.0.0/16,168.63.129.16/32,10.193.160.0/20,10.193.176.0/20",
+          "destinationIP": "10.144.0.0/23,10.194.0.0/15,10.88.0.0/16,10.200.0.0/21,142.0.0.0/8,1.1.2.0/30,10.86.0.0/16,168.63.129.16/32,10.193.160.0/20,10.193.176.0/20"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:55:11.3230000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "DefaultRule_AllowAzureLoadBalancerInBound",
+        "direction": "In",
+        "priority": 65001,
+        "type": "allow",
+        "conditions": {
+          "destinationPortRange": "0-65535",
+          "sourcePortRange": "0-65535",
+          "sourceIP": "168.63.129.16/32",
+          "destinationIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:55:11.3230000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "DefaultInboundDenyAll",
+        "direction": "In",
+        "priority": 65500,
+        "type": "block",
+        "conditions": {
+          "None": ""
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:55:11.3230000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "DefaultRule_DenyAllInBound",
+        "direction": "In",
+        "priority": 65500,
+        "type": "block",
+        "conditions": {
+          "destinationPortRange": "0-65535",
+          "sourcePortRange": "0-65535",
+          "sourceIP": "0.0.0.0/0",
+          "destinationIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:55:11.3230000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "DefaultRule_AllowVnetOutBound",
+        "direction": "Out",
+        "priority": 65000,
+        "type": "allow",
+        "conditions": {
+          "destinationPortRange": "0-65535",
+          "sourcePortRange": "0-65535",
+          "destinationIP": "10.144.0.0/23,10.194.0.0/15,10.88.0.0/16,10.200.0.0/21,142.0.0.0/8,1.1.2.0/30,10.86.0.0/16,168.63.129.16/32,10.193.160.0/20,10.193.176.0/20",
+          "sourceIP": "10.144.0.0/23,10.194.0.0/15,10.88.0.0/16,10.200.0.0/21,142.0.0.0/8,1.1.2.0/30,10.86.0.0/16,168.63.129.16/32,10.193.160.0/20,10.193.176.0/20"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:55:11.3230000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "DefaultRule_AllowInternetOutBound",
+        "direction": "Out",
+        "priority": 65001,
+        "type": "allow",
+        "conditions": {
+          "destinationPortRange": "0-65535",
+          "sourcePortRange": "0-65535",
+          "destinationIP": "32.0.0.0/3,4.0.0.0/6,2.0.0.0/7,1.0.0.0/8,12.0.0.0/6,8.0.0.0/7,11.0.0.0/8,64.0.0.0/3,112.0.0.0/5,120.0.0.0/6,124.0.0.0/7,126.0.0.0/8,128.0.0.0/3,176.0.0.0/4,160.0.0.0/5,170.0.0.0/7,168.0.0.0/8,169.0.0.0/9,169.128.0.0/10,169.192.0.0/11,169.224.0.0/12,169.240.0.0/13,169.248.0.0/14,169.252.0.0/15,169.255.0.0/16,174.0.0.0/7,173.0.0.0/8,172.128.0.0/9,172.64.0.0/10,172.32.0.0/11,172.0.0.0/12,208.0.0.0/4,200.0.0.0/5,194.0.0.0/7,193.0.0.0/8,192.64.0.0/10,192.32.0.0/11,192.16.0.0/12,192.8.0.0/13,192.4.0.0/14,192.2.0.0/15,192.1.0.0/16,192.0.128.0/17,192.0.64.0/18,192.0.32.0/19,192.0.16.0/20,192.0.8.0/21,192.0.4.0/22,192.0.0.0/23,192.0.3.0/24,192.192.0.0/10,192.128.0.0/11,192.176.0.0/12,192.160.0.0/13,192.172.0.0/14,192.170.0.0/15,192.169.0.0/16,196.0.0.0/7,199.0.0.0/8,198.128.0.0/9,198.64.0.0/10,198.32.0.0/11,198.0.0.0/12,198.24.0.0/13,198.20.0.0/14,198.16.0.0/15,104.0.0.0/5,96.0.0.0/6,102.0.0.0/7,101.0.0.0/8,100.128.0.0/9,100.0.0.0/10,16.0.0.0/5,28.0.0.0/6,26.0.0.0/7,24.0.0.0/8",
+          "sourceIP": "0.0.0.0/0"
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:55:11.3230000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "DefaultOutboundDenyAll",
+        "direction": "Out",
+        "priority": 65500,
+        "type": "block",
+        "conditions": {
+          "None": ""
+        }
+      }
+    },
+    {
+      "time": "2017-06-22T00:55:11.3230000Z",
+      "systemId": "a2219061-ffb8-98aa-885b-6ade63582f05",
+      "category": "NetworkSecurityGroupEvent",
+      "resourceId": "/SUBSCRIPTIONS/SUBID/RESOURCEGROUPS/RGNAME/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGNAME-NSG",
+      "operationName": "NetworkSecurityGroupEvents",
+      "properties": {
+        "vnetResourceGuid": "{518F41E6-E16C-4D52-A628-ECC84BEC5E35}",
+        "subnetPrefix": "10.144.0.32/28",
+        "macAddress": "00-0D-3A-A3-17-17",
+        "primaryIPv4Address": "10.144.0.37",
+        "ruleName": "DefaultRule_DenyAllOutBound",
+        "direction": "Out",
+        "priority": 65500,
+        "type": "block",
+        "conditions": {
+          "destinationPortRange": "0-65535",
+          "sourcePortRange": "0-65535",
+          "destinationIP": "0.0.0.0/0",
+          "sourceIP": "0.0.0.0/0"
+        }
+      }
+    }
+  ]
+}
