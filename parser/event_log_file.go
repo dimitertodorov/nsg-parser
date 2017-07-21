@@ -32,11 +32,42 @@ type AzureNsgLogFile struct {
 	NsgName                string            `json:"nsg_name"`
 }
 
+func (logFile *AzureNsgLogFile) SetLastProcessed(LastProcessed time.Time) {
+	logFile.LastProcessed = LastProcessed
+}
+
+func (logFile *AzureNsgLogFile) SetLastRecordCount(LastRecordCount int) {
+	logFile.LastRecordCount = LastRecordCount
+}
+
+func (logFile *AzureNsgLogFile) SetLastProcessedRecord(LastProcessedRecord time.Time) {
+	logFile.LastProcessedRecord = LastProcessedRecord
+}
+
+func (logFile *AzureNsgLogFile) SetLastProcessedRange(LastProcessedRange storage.BlobRange) {
+	logFile.LastProcessedRange  = LastProcessedRange
+}
+
+func (logFile *AzureNsgLogFile) SetLastProcessedTimeStamp(LastProcessedTimeStamp int64) {
+	logFile.LastProcessedTimeStamp = LastProcessedTimeStamp
+}
+
 // ProcessStatus is a simple map meant to store status for AzureNsgLogFile
-type ProcessStatus map[string]*AzureNsgLogFile
+type ProcessStatus map[string]AzureLogFile
 
 type AzureNsgEventLog struct {
 	Records AzureNsgEventRecords `json:"records"`
+	azureEventRecords []AzureEventRecord
+}
+
+func (log *AzureNsgEventLog) GetRecords() []AzureEventRecord {
+	if log.azureEventRecords == nil {
+		log.azureEventRecords = make([]AzureEventRecord, len(log.Records))
+		for i, v := range log.Records {
+			log.azureEventRecords[i] = &v
+		}
+	}
+	return log.azureEventRecords
 }
 
 func NewAzureNsgLogFile(blob storage.Blob) (AzureNsgLogFile, error) {
@@ -58,21 +89,21 @@ func NewAzureNsgLogFile(blob storage.Blob) (AzureNsgLogFile, error) {
 func NewAzureNsgLogFileFromEventLog(eventLog *AzureNsgEventLog) (AzureNsgLogFile, error) {
 	nsgLogFile := AzureNsgLogFile{}
 	nsgLogFile.AzureNsgEventLog = eventLog
-	if len(eventLog.Records) == 0 {
+	if len(eventLog.GetRecords()) == 0 {
 		return AzureNsgLogFile{}, nil
 	}
-	record := eventLog.Records[0]
-	if !record.initialized {
+	record := eventLog.GetRecords()[0]
+	if !record.IsInitialized() {
 		record.InitRecord()
 	}
 
 	nsgLogFile.Name = record.getSourceFileName()
-	nsgLogFile.LastModified = time.Time(record.Time)
+	nsgLogFile.LastModified = time.Time(record.GetTime())
 
 	logTime, err := getLogTimeFromName(nsgLogFile.Name)
 	nsgLogFile.LogTime = logTime
 
-	nsgLogFile.NsgName = record.nsgName
+	nsgLogFile.NsgName = record.GetLogSourceName()
 
 	return nsgLogFile, err
 }
@@ -80,6 +111,38 @@ func NewAzureNsgLogFileFromEventLog(eventLog *AzureNsgEventLog) (AzureNsgLogFile
 func (logFile *AzureNsgLogFile) ShortName() string {
 	logTime := logFile.LogTime.Format("2006-01-02-15")
 	return fmt.Sprintf("%s-%s", logFile.NsgName, logTime)
+}
+
+func (logFile *AzureNsgLogFile) GetName() string {
+	return logFile.Name
+}
+
+func (logFile *AzureNsgLogFile) GetAzureEventLog() AzureEventLog {
+	return logFile.AzureNsgEventLog
+}
+
+func (logFile *AzureNsgLogFile) GetLastProcessedRecord() time.Time {
+	return logFile.LastProcessedRecord
+}
+
+func (logFile *AzureNsgLogFile) GetLastProcessedTimeStamp() int64 {
+	return logFile.LastProcessedTimeStamp
+}
+
+func (logFile *AzureNsgLogFile) GetLastRecordCount() int {
+	return logFile.LastRecordCount
+}
+
+func (logFile *AzureNsgLogFile) GetLastModified() time.Time {
+	return logFile.LastModified
+}
+
+func (logFile *AzureNsgLogFile) GetLastProcessedRange() storage.BlobRange {
+	return logFile.LastProcessedRange
+}
+
+func (logFile *AzureNsgLogFile) GetBlob() storage.Blob {
+	return logFile.Blob
 }
 
 func (logFile *AzureNsgLogFile) LoadBlob() error {
@@ -159,4 +222,15 @@ func getLogTimeFromName(name string) (time.Time, error) {
 	timeString := fmt.Sprintf("%s/%s %s:%s:00 GMT %s", month, day, hour, minute, year)
 
 	return time.Parse(timeLayout, timeString)
+}
+
+
+func (logFile *AzureNsgLogFile) getUnprocessedBlobRange() storage.BlobRange {
+	var blobRange storage.BlobRange
+	if logFile.LastProcessedRange.End != 0 {
+		blobRange = storage.BlobRange{Start: logFile.LastProcessedRange.End, End: uint64(logFile.Blob.Properties.ContentLength)}
+	} else {
+		blobRange = storage.BlobRange{Start: 0, End: uint64(logFile.Blob.Properties.ContentLength)}
+	}
+	return blobRange
 }

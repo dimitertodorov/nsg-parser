@@ -101,13 +101,3 @@ func (client *AzureClient) RunJob(jobName string) error {
 		return nil
 	}
 }
-
-func (logFile *AzureNsgLogFile) getUnprocessedBlobRange() storage.BlobRange {
-	var blobRange storage.BlobRange
-	if logFile.LastProcessedRange.End != 0 {
-		blobRange = storage.BlobRange{Start: logFile.LastProcessedRange.End, End: uint64(logFile.Blob.Properties.ContentLength)}
-	} else {
-		blobRange = storage.BlobRange{Start: 0, End: uint64(logFile.Blob.Properties.ContentLength)}
-	}
-	return blobRange
-}

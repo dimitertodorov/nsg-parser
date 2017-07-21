@@ -34,6 +34,19 @@ type AzureNsgEventRecord struct {
 	Properties     map[string]interface{} `json:"properties"`
 }
 
+func (record *AzureNsgEventRecord) GetLogSourceName() string {
+	return record.nsgName
+}
+
+func (record *AzureNsgEventRecord) GetTime() time.Time {
+	return record.Time
+}
+
+func (record *AzureNsgEventRecord) IsInitialized() bool {
+	return record.initialized
+}
+
+
 func (record *AzureNsgEventRecord) InitRecord() {
 	nameTokens := RecordRegExp.FindStringSubmatch(record.ResourceID)
 	if len(nameTokens) != 4 {
@@ -48,7 +61,7 @@ func (record *AzureNsgEventRecord) InitRecord() {
 
 // Create a CEF Event Skeleton
 func (record *AzureNsgEventRecord) NewCEFEvent() CEFEvent {
-	event := NewNsgCEFEvent()
+	event := NewAzureCEFEvent()
 	event.Name = record.Category
 	event.DeviceEventClassId = record.OperationName
 	event.Extension["deviceExternalId"] = record.SystemID

@@ -51,7 +51,7 @@ var testEvents = []struct {
 }
 
 func createTestEvent(extensions map[string]string) CEFEvent {
-	event := NewNsgCEFEvent()
+	event := NewAzureCEFEvent()
 	event.Time = time.Now()
 	event.Name = EventClassIdFlow
 	event.DeviceEventClassId = EventClassIdFlow

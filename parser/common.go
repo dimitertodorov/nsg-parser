@@ -3,10 +3,47 @@ package parser
 import (
 	"bytes"
 	log "github.com/sirupsen/logrus"
+	"time"
+	"github.com/Azure/azure-sdk-for-go/storage"
 )
 
+type AzureEventRecord interface {
+	IsInitialized() bool
+	InitRecord()
+	getSourceFileName() string
+	GetTime() time.Time
+	GetLogSourceName() string
+	NewCEFEvent() CEFEvent
+	GetCEFList(options GetCEFEventListOptions) ([]*CEFEvent, []error)
+}
+
+type AzureEventLog interface {
+	GetRecords() []AzureEventRecord
+}
+
+type AzureLogFile interface {
+	ShortName() string
+	GetName() string
+	GetAzureEventLog() AzureEventLog
+	LoadBlob() error
+	LoadBlobRange(blobRange storage.BlobRange) error
+	getUnprocessedBlobRange() storage.BlobRange
+	GetLastProcessedRecord() time.Time
+	GetLastProcessedTimeStamp() int64
+	GetLastRecordCount() int
+	GetLastModified() time.Time
+	GetLastProcessedRange() storage.BlobRange
+	SetLastProcessed(LastProcessed time.Time)
+	SetLastProcessedTimeStamp(LastProcessedTimeStamp int64)
+	SetLastRecordCount(LastRecordCount int)
+	SetLastProcessedRecord(LastProcessedRecord time.Time)
+	SetLastProcessedRange(LastProcessedRange storage.BlobRange)
+	Logger() *log.Entry
+	GetBlob() storage.Blob
+}
+
 type NsgParserClient interface {
-	ProcessNsgLogFile(*AzureNsgLogFile, chan AzureNsgLogFile) error
+	ProcessNsgLogFile(AzureLogFile, chan AzureLogFile) error
 }
 
 // Parses Blob.Name (Path) or Resource ID for NSG Name

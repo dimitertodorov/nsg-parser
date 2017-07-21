@@ -3,7 +3,7 @@ package cmd
 import (
 	"fmt"
 	"github.com/Azure/azure-sdk-for-go/storage"
-	"github.com/dimitertodorov/nsg-parser/parser"
+	"github.com/romicgd/nsg-parser/parser"
 	log "github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
