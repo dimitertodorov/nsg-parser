@@ -41,7 +41,8 @@ func TestAppGwJobRun(t *testing.T) {
 				t.Fatalf("got error creating job %s", err)
 			}
 			job.LogFiles = append(job.LogFiles, logFile)
-			//			job.sideLoadLogFiles()			job.LoadTasks()
+			//			job.sideLoadLogFiles()
+			job.LoadTasks()
 			job.Run()
 			assert.Equal(t, tt.expectedCount, job.ProcessStatus[fileName].LastRecordCount, "filename did not match")
 		})
