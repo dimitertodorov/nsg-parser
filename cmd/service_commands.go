@@ -5,6 +5,7 @@ import (
 	log "github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 	"time"
+	"github.com/spf13/viper"
 )
 
 var (
@@ -60,7 +61,6 @@ var installServiceCmd = &cobra.Command{
 				Info("installing service with config")
 			serviceConfig.Arguments = []string{"process", "service", "run", "--config", cfgFile}
 		}
-
 		prog := &nsgParserService{}
 		prog.cmd = cmd
 		s, err := service.New(prog, serviceConfig)
@@ -135,6 +135,9 @@ func init() {
 }
 
 func initServiceParams() {
+	serviceName = viper.GetString("service_name")
+	serviceDescription = viper.GetString("service_description")
+	stdoutLog.Infof("configuring service [%s]", serviceName)
 	serviceConfig = &service.Config{
 		Name:        serviceName,
 		DisplayName: serviceName,

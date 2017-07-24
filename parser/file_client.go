@@ -13,7 +13,7 @@ type FileClient struct {
 	DataPath string
 }
 
-func (client FileClient) ProcessNsgLogFile(logFile AzureLogFile, resultsChan chan AzureLogFile) error {
+func (client FileClient) ProcessAzureLogFile(logFile AzureLogFile, resultsChan chan AzureLogFile) error {
 	var fileName string
 	blobRange := logFile.getUnprocessedBlobRange()
 	err := logFile.LoadBlobRange(blobRange)
@@ -35,7 +35,7 @@ func (client FileClient) ProcessNsgLogFile(logFile AzureLogFile, resultsChan cha
 	}
 	startTimeStamp := events[0].Time.Unix()
 	endTimeStamp := events[logCount-1].Time.Unix()
-	bm := NsgFileRegExp.FindStringSubmatch(logFile.GetBlob().Name)
+	bm := LoggedResourceFileRegExp.FindStringSubmatch(logFile.GetBlob().Name)
 	if len(bm) == 7 {
 		fileName = fmt.Sprintf("nsgLog-%s-%s%s%s%s%s", bm[1], bm[2], bm[3], bm[4], bm[5], bm[6])
 	} else {

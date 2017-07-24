@@ -52,8 +52,14 @@ func NewJob(options *JobOptions, processStatus ProcessStatus, azureClient *Azure
 }
 
 func CrreateAzureLogFile(blob storage.Blob) (AzureLogFile,error) {
-	azureNgsLogFile, error := NewAzureNsgLogFile(blob)
-	return &azureNgsLogFile, error
+	var azureNgsLogFile AzureLogFile
+	var error error
+	if blob.Container.Name == "insights-logs-applicationgatewayaccesslog" {
+		azureNgsLogFile, error = NewAzureAppGwLogFile(blob)
+	} else {
+		azureNgsLogFile, error = NewAzureNsgLogFile(blob)
+	}
+	return azureNgsLogFile, error
 }
 
 func (job *Job) LoadUnprocessedLogFiles() error {
@@ -62,26 +68,26 @@ func (job *Job) LoadUnprocessedLogFiles() error {
 		return err
 	}
 	for _, blob := range matchingBlobs {
-		logFile, err := NewAzureNsgLogFile(blob)
+		logFile, err := CrreateAzureLogFile(blob)
 		if err != nil {
 			return err
 		}
-		if logFile.LogTime.After(job.Options.StartRecordTime) {
-			lastProcessedFile, ok := job.ProcessStatus[logFile.Blob.Name]
+		if logFile.GetLogTime().After(job.Options.StartRecordTime) {
+			lastProcessedFile, ok := job.ProcessStatus[logFile.GetBlob().Name]
 			if ok {
-				if logFile.LastModified.After(lastProcessedFile.GetLastModified()) {
-					logFile.SetLastProcessedTimeStamp(lastProcessedFile.GetLastProcessedTimeStamp())
-					logFile.SetLastProcessedRecord(lastProcessedFile.GetLastProcessedRecord())
-					logFile.SetLastProcessedRange(lastProcessedFile.GetLastProcessedRange())
+				if logFile.GetLastModified().After(lastProcessedFile.LastModified) {
+					logFile.SetLastProcessedTimeStamp(lastProcessedFile.LastProcessedTimeStamp)
+					logFile.SetLastProcessedRecord(lastProcessedFile.LastProcessedRecord)
+					logFile.SetLastProcessedRange(lastProcessedFile.LastProcessedRange)
 					logFile.Logger().Info("processing modified blob")
-					job.LogFiles = append(job.LogFiles, &logFile)
+					job.LogFiles = append(job.LogFiles, logFile)
 				} else {
-					lastProcessedFile.Logger().Debug("skipping unmodified blob")
+					logFile.Logger().Debug("skipping unmodified blob")
 					continue
 				}
 			} else {
 				logFile.Logger().Info("processing new blob")
-				job.LogFiles = append(job.LogFiles, &logFile)
+				job.LogFiles = append(job.LogFiles, logFile)
 			}
 		}
 	}
@@ -93,7 +99,7 @@ func (job *Job) LoadTasks() {
 		logFile := logFile
 		fileTask := pool.NewTask(func() error {
 			logFile.Logger().WithField("type", fmt.Sprintf("%T", job.ParserClient)).Info("romicgd forked processing started")
-			return job.ParserClient.ProcessNsgLogFile(logFile, job.ResultsChan)
+			return job.ParserClient.ProcessAzureLogFile(logFile, job.ResultsChan)
 		})
 		job.Tasks = append(job.Tasks, fileTask)
 	}
@@ -165,7 +171,7 @@ func (job *Job) logFileSink() {
 		processedFile, more := <-job.ResultsChan
 		if more {
 			processedFile.Logger().Info("processing completed")
-			job.ProcessStatus[processedFile.GetName()] = processedFile
+			job.ProcessStatus[processedFile.GetName()] = createProcessStatusFromLogfile(processedFile)
 		} else {
 			job.DoneChan <- true
 			return

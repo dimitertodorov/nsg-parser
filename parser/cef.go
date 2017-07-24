@@ -193,7 +193,7 @@ func (client *CEFSyslogClient) SendEvent(event CEFEvent) error {
 	return nil
 }
 
-func (client CEFSyslogClient) ProcessNsgLogFile(logFile AzureLogFile, resultsChan chan AzureLogFile) error {
+func (client CEFSyslogClient) ProcessAzureLogFile(logFile AzureLogFile, resultsChan chan AzureLogFile) error {
 	blobRange := logFile.getUnprocessedBlobRange()
 	err := logFile.LoadBlobRange(blobRange)
 	if err != nil {
@@ -208,7 +208,13 @@ func (client CEFSyslogClient) ProcessNsgLogFile(logFile AzureLogFile, resultsCha
 	}
 
 	logCount := len(events)
-	endTimeStamp := events[logCount-1].Time.Unix()
+	lastRecord := logFile.GetAzureEventLog().GetRecords()[len(logFile.GetAzureEventLog().GetRecords())-1]
+	endTimeStamp := lastRecord.GetTime().Unix()
+	// Note: some deny-all records come with empty flows - so no events will be extracted
+	// TBD to complete but for now make sure we do not try to fail on "index is out of bounds"(-1)
+	if logCount > 0 {
+		endTimeStamp = events[logCount-1].Time.Unix()
+	}
 	logFile.SetLastProcessedTimeStamp(endTimeStamp)
 	for _, nsgEvent := range events {
 		client.SendEvent(*nsgEvent)
@@ -217,7 +223,6 @@ func (client CEFSyslogClient) ProcessNsgLogFile(logFile AzureLogFile, resultsCha
 	logFile.SetLastProcessed (time.Now())
 	logFile.SetLastRecordCount (len(logFile.GetAzureEventLog().GetRecords()))
 	logFile.SetLastProcessedRecord (logFile.GetAzureEventLog().GetRecords()[logFile.GetLastRecordCount()-1].GetTime())
-	logFile.SetLastProcessedRange (blobRange)
 	logFile.SetLastProcessedRange (blobRange)
 
 	processedFlowCount.Inc(int64(logCount))

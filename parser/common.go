@@ -28,6 +28,7 @@ type AzureLogFile interface {
 	LoadBlob() error
 	LoadBlobRange(blobRange storage.BlobRange) error
 	getUnprocessedBlobRange() storage.BlobRange
+	GetLastProcessed() time.Time
 	GetLastProcessedRecord() time.Time
 	GetLastProcessedTimeStamp() int64
 	GetLastRecordCount() int
@@ -40,15 +41,50 @@ type AzureLogFile interface {
 	SetLastProcessedRange(LastProcessedRange storage.BlobRange)
 	Logger() *log.Entry
 	GetBlob() storage.Blob
+	GetLogTime() time.Time
+	GetNsgName() string
+	GetEtag() string
 }
 
+func createProcessStatusFromLogfile(logfile AzureLogFile) LogFileProcessStatus {
+	logFileProcessStatus := LogFileProcessStatus{}
+	logFileProcessStatus.Name = logfile.GetName()
+	logFileProcessStatus.Etag = logfile.GetEtag()
+	logFileProcessStatus.LastModified = logfile.GetLastModified()
+	logFileProcessStatus.LastProcessed = logfile.GetLastProcessed()
+	logFileProcessStatus.LastProcessedRecord = logfile.GetLastProcessedRecord()
+	logFileProcessStatus.LastProcessedTimeStamp = logfile.GetLastProcessedTimeStamp()
+	logFileProcessStatus.LastRecordCount = logfile.GetLastRecordCount()
+	logFileProcessStatus.LastProcessedRange = logfile.GetLastProcessedRange()
+	logFileProcessStatus.LogTime = logfile.GetLogTime()
+	logFileProcessStatus.NsgName = logfile.GetNsgName()
+	return logFileProcessStatus
+}
+
+type LogFileProcessStatus struct {
+	Name                   string            `json:"name"`
+	Etag                   string            `json:"etag"`
+	LastModified           time.Time         `json:"last_modified"`
+	LastProcessed          time.Time         `json:"last_processed"`
+	LastProcessedRecord    time.Time         `json:"last_processed_record"`
+	LastProcessedTimeStamp int64             `json:"last_processed_timestamp"`
+	LastRecordCount        int               `json:"last_count"`
+	LastProcessedRange     storage.BlobRange `json:"last_processed_range"`
+	LogTime                time.Time         `json:"log_time"`
+	NsgName                string            `json:"nsg_name"`
+}
+
+
+// ProcessStatus is a simple map meant to store status for AzureLogFile
+type ProcessStatus map[string]LogFileProcessStatus
+
 type NsgParserClient interface {
-	ProcessNsgLogFile(AzureLogFile, chan AzureLogFile) error
+	ProcessAzureLogFile(AzureLogFile, chan AzureLogFile) error
 }
 
 // Parses Blob.Name (Path) or Resource ID for NSG Name
-func getNsgName(name string) (string, error) {
-	nameTokens := NsgFileRegExp.FindStringSubmatch(name)
+func getLoggedResourceName(name string) (string, error) {
+	nameTokens := LoggedResourceFileRegExp.FindStringSubmatch(name)
 
 	if len(nameTokens) != 7 {
 		log.Errorf("%d %s", len(nameTokens), name)
