@@ -95,6 +95,8 @@ func (record *AzureAppGwEventRecord) convertApplicationGatewayEventsToCEF(option
 		event.Extension["src"] = record.Properties["clientIP"].(string)
 		event.Extension["spt"] = strconv.Itoa(int(record.Properties["clientPort"].(float64)))
 		event.Extension["request"] = record.Properties["requestUri"].(string)
+		event.Extension["cs1"] = record.Properties["requestUri"].(string)
+		event.Extension["cs1label"] = "requestUri"
 		event.Extension["requestMethod"] = record.Properties["httpMethod"].(string)
 		event.Extension["act"] = record.Properties["httpMethod"].(string)
 		// include all properties into CEF message

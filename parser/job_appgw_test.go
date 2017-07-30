@@ -49,9 +49,3 @@ func TestAppGwJobRun(t *testing.T) {
 	}
 }
 
-/*func (job *Job) sideLoadLogFiles() {
-	for _, logFile := range job.ProcessStatus {
-		job.LogFiles = append(job.LogFiles, logFile)
-	}
-}
-*/

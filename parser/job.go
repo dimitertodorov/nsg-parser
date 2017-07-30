@@ -56,6 +56,8 @@ func CrreateAzureLogFile(blob storage.Blob) (AzureLogFile,error) {
 	var error error
 	if blob.Container.Name == "insights-logs-applicationgatewayaccesslog" {
 		azureNgsLogFile, error = NewAzureAppGwLogFile(blob)
+	} else if blob.Container.Name == "insights-logs-applicationgatewayfirewalllog" {
+		azureNgsLogFile, error = NewAzureAppGwFirewallLogFile(blob)
 	} else {
 		azureNgsLogFile, error = NewAzureNsgLogFile(blob)
 	}
