@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"encoding/json"
-	"github.com/romicgd/nsg-parser/parser"
+	"github.com/dimitertodorov/nsg-parser/parser"
 	log "github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 	"time"

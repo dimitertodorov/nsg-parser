@@ -3,7 +3,7 @@ package parser
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/romicgd/nsg-parser/pool"
+	"github.com/dimitertodorov/nsg-parser/pool"
 	"github.com/Azure/azure-sdk-for-go/storage"
 	log "github.com/sirupsen/logrus"
 	"io/ioutil"
