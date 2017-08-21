@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/dimitertodorov/nsg-parser/pool"
+	"github.com/Azure/azure-sdk-for-go/storage"
 	log "github.com/sirupsen/logrus"
 	"io/ioutil"
 	"path/filepath"
@@ -18,9 +19,9 @@ type Job struct {
 	ProcessStatus ProcessStatus
 	AzureClient   *AzureClient         `json:"-"`
 	ParserClient  NsgParserClient      `json:"-"`
-	ResultsChan   chan AzureNsgLogFile `json:"-"`
+	ResultsChan   chan AzureLogFile `json:"-"`
 	DoneChan      chan bool            `json:"-"`
-	LogFiles      []*AzureNsgLogFile   `json:"-"`
+	LogFiles      []AzureLogFile   `json:"-"`
 	Tasks         []*pool.Task         `json:"-"`
 	TaskPool      pool.Pool            `json:"-"`
 	StartTime     time.Time
@@ -45,9 +46,22 @@ func NewJob(options *JobOptions, processStatus ProcessStatus, azureClient *Azure
 		ParserClient:  parserClient,
 		processMutex:  &sync.Mutex{},
 	}
-	job.ResultsChan = make(chan AzureNsgLogFile)
+	job.ResultsChan = make(chan AzureLogFile)
 	job.DoneChan = make(chan bool)
 	return &job, nil
+}
+
+func CrreateAzureLogFile(blob storage.Blob) (AzureLogFile,error) {
+	var azureNgsLogFile AzureLogFile
+	var error error
+	if blob.Container.Name == "insights-logs-applicationgatewayaccesslog" {
+		azureNgsLogFile, error = NewAzureAppGwLogFile(blob)
+	} else if blob.Container.Name == "insights-logs-applicationgatewayfirewalllog" {
+		azureNgsLogFile, error = NewAzureAppGwFirewallLogFile(blob)
+	} else {
+		azureNgsLogFile, error = NewAzureNsgLogFile(blob)
+	}
+	return azureNgsLogFile, error
 }
 
 func (job *Job) LoadUnprocessedLogFiles() error {
@@ -56,26 +70,26 @@ func (job *Job) LoadUnprocessedLogFiles() error {
 		return err
 	}
 	for _, blob := range matchingBlobs {
-		logFile, err := NewAzureNsgLogFile(blob)
+		logFile, err := CrreateAzureLogFile(blob)
 		if err != nil {
 			return err
 		}
-		if logFile.LogTime.After(job.Options.StartRecordTime) {
-			lastProcessedFile, ok := job.ProcessStatus[logFile.Blob.Name]
+		if logFile.GetLogTime().After(job.Options.StartRecordTime) {
+			lastProcessedFile, ok := job.ProcessStatus[logFile.GetBlob().Name]
 			if ok {
-				if logFile.LastModified.After(lastProcessedFile.LastModified) {
-					logFile.LastProcessedTimeStamp = lastProcessedFile.LastProcessedTimeStamp
-					logFile.LastProcessedRecord = lastProcessedFile.LastProcessedRecord
-					logFile.LastProcessedRange = lastProcessedFile.LastProcessedRange
+				if logFile.GetLastModified().After(lastProcessedFile.LastModified) {
+					logFile.SetLastProcessedTimeStamp(lastProcessedFile.LastProcessedTimeStamp)
+					logFile.SetLastProcessedRecord(lastProcessedFile.LastProcessedRecord)
+					logFile.SetLastProcessedRange(lastProcessedFile.LastProcessedRange)
 					logFile.Logger().Info("processing modified blob")
-					job.LogFiles = append(job.LogFiles, &logFile)
+					job.LogFiles = append(job.LogFiles, logFile)
 				} else {
-					lastProcessedFile.Logger().Debug("skipping unmodified blob")
+					logFile.Logger().Debug("skipping unmodified blob")
 					continue
 				}
 			} else {
 				logFile.Logger().Info("processing new blob")
-				job.LogFiles = append(job.LogFiles, &logFile)
+				job.LogFiles = append(job.LogFiles, logFile)
 			}
 		}
 	}
@@ -86,8 +100,8 @@ func (job *Job) LoadTasks() {
 	for _, logFile := range job.LogFiles {
 		logFile := logFile
 		fileTask := pool.NewTask(func() error {
-			logFile.Logger().WithField("type", fmt.Sprintf("%T", job.ParserClient)).Info("processing started")
-			return job.ParserClient.ProcessNsgLogFile(logFile, job.ResultsChan)
+			logFile.Logger().WithField("type", fmt.Sprintf("%T", job.ParserClient)).Info("romicgd forked processing started")
+			return job.ParserClient.ProcessAzureLogFile(logFile, job.ResultsChan)
 		})
 		job.Tasks = append(job.Tasks, fileTask)
 	}
@@ -124,10 +138,10 @@ func (job *Job) Logger() *log.Entry {
 
 func (job *Job)	Complete() {
 	job.EndTime = time.Now()
-	job.Logger().Infof("job run took %s ", time.Since(job.StartTime))
+	job.Logger().Infof("romicgd job run took %s ", time.Since(job.StartTime))
 	job.SaveProcessStatus()
 	job.LoadProcessStatus()
-	job.LogFiles = []*AzureNsgLogFile{}
+	job.LogFiles = []AzureLogFile{}
 	job.Status = "COMPLETE"
 }
 
@@ -159,7 +173,7 @@ func (job *Job) logFileSink() {
 		processedFile, more := <-job.ResultsChan
 		if more {
 			processedFile.Logger().Info("processing completed")
-			job.ProcessStatus[processedFile.Name] = &processedFile
+			job.ProcessStatus[processedFile.GetName()] = createProcessStatusFromLogfile(processedFile)
 		} else {
 			job.DoneChan <- true
 			return

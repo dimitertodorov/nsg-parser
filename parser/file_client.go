@@ -13,7 +13,7 @@ type FileClient struct {
 	DataPath string
 }
 
-func (client FileClient) ProcessNsgLogFile(logFile *AzureNsgLogFile, resultsChan chan AzureNsgLogFile) error {
+func (client FileClient) ProcessAzureLogFile(logFile AzureLogFile, resultsChan chan AzureLogFile) error {
 	var fileName string
 	blobRange := logFile.getUnprocessedBlobRange()
 	err := logFile.LoadBlobRange(blobRange)
@@ -23,8 +23,8 @@ func (client FileClient) ProcessNsgLogFile(logFile *AzureNsgLogFile, resultsChan
 	}
 
 	events := []*CEFEvent{}
-	for _, record := range logFile.AzureNsgEventLog.Records {
-		cefEvents, _ := record.GetCEFList(GetCEFEventListOptions{StartTime: logFile.LastProcessedRecord})
+	for _, record := range logFile.GetAzureEventLog().GetRecords() {
+		cefEvents, _ := record.GetCEFList(GetCEFEventListOptions{StartTime: logFile.GetLastProcessedRecord()})
 		events = append(events, cefEvents...)
 	}
 
@@ -35,11 +35,11 @@ func (client FileClient) ProcessNsgLogFile(logFile *AzureNsgLogFile, resultsChan
 	}
 	startTimeStamp := events[0].Time.Unix()
 	endTimeStamp := events[logCount-1].Time.Unix()
-	bm := NsgFileRegExp.FindStringSubmatch(logFile.Blob.Name)
+	bm := LoggedResourceFileRegExp.FindStringSubmatch(logFile.GetBlob().Name)
 	if len(bm) == 7 {
 		fileName = fmt.Sprintf("nsgLog-%s-%s%s%s%s%s", bm[1], bm[2], bm[3], bm[4], bm[5], bm[6])
 	} else {
-		return fmt.Errorf("error in Blob.Name, expected 7 tokens. Got %d. Name: %s", len(bm), logFile.Blob.Name)
+		return fmt.Errorf("error in Blob.Name, expected 7 tokens. Got %d. Name: %s", len(bm), logFile.GetBlob().Name)
 	}
 	fileName = fmt.Sprintf("%s-%d-%d.json", fileName, startTimeStamp, endTimeStamp)
 	outJson, err := json.Marshal(events)
@@ -49,12 +49,11 @@ func (client FileClient) ProcessNsgLogFile(logFile *AzureNsgLogFile, resultsChan
 	path := filepath.Join(client.DataPath, fileName)
 	err = ioutil.WriteFile(path, outJson, 0666)
 
-	logFile.LastProcessed = time.Now()
-	logFile.LastRecordCount = len(logFile.AzureNsgEventLog.Records)
-	logFile.LastProcessedRecord = logFile.AzureNsgEventLog.Records[logFile.LastRecordCount-1].Time
-	logFile.LastProcessedRange = blobRange
-	logFile.LastProcessedTimeStamp = endTimeStamp
+	logFile.SetLastProcessed(time.Now())
+	logFile.SetLastRecordCount(len(logFile.GetAzureEventLog().GetRecords()))
+	logFile.SetLastProcessedRecord(logFile.GetAzureEventLog().GetRecords()[logFile.GetLastRecordCount()-1].GetTime())
+	logFile.SetLastProcessedRange(blobRange)
 
-	resultsChan <- *logFile
+	resultsChan <- logFile
 	return nil
 }

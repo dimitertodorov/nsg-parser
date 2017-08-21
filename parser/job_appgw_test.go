@@ -1,14 +1,14 @@
 package parser
 
 import (
-	"github.com/stretchr/testify/assert"
 	"testing"
 	"fmt"
+	"github.com/stretchr/testify/assert"
 )
 
-type MockClient struct{}
+type AppGwMockClient struct{}
 
-func (client MockClient) ProcessAzureLogFile(logFile AzureLogFile, resultsChan chan AzureLogFile) error {
+func (client AppGwMockClient) ProcessAzureLogFile(logFile AzureLogFile, resultsChan chan AzureLogFile) error {
 	events := []*CEFEvent{}
 	for _, record := range logFile.GetAzureEventLog().GetRecords() {
 		cefEvents, _ := record.GetCEFList(GetCEFEventListOptions{})
@@ -22,18 +22,18 @@ func (client MockClient) ProcessAzureLogFile(logFile AzureLogFile, resultsChan c
 	return nil
 }
 
-func TestNewJob(t *testing.T) {
-	_, err := NewJob(&JobOptions{}, ProcessStatus{}, &AzureClient{}, MockClient{})
+func AppGwTestNewJob(t *testing.T) {
+	_, err := NewJob(&JobOptions{}, ProcessStatus{}, &AzureClient{}, AppGwMockClient{})
 	if err != nil {
 		t.Fatalf("got error creating job %s", err)
 	}
 }
 
-func TestJobRun(t *testing.T) {
-	for testKey, tt := range fileTests {
+func TestAppGwJobRun(t *testing.T) {
+	for testKey, tt := range fileAppGwTests {
 		t.Run(fmt.Sprintf("%s", testKey), func(t *testing.T) {
-			client := MockClient{}
-			logFile := loadTestLogFile(tt.testFile, t)
+			client := AppGwMockClient{}
+			logFile := loadTestAppGwLogFile(tt.testFile, t)
 			fileName := logFile.GetAzureEventLog().GetRecords()[0].getSourceFileName()
 			processStatus := ProcessStatus{fileName: createProcessStatusFromLogfile(logFile)}
 			job, err := NewJob(&JobOptions{}, processStatus, &AzureClient{}, client)
@@ -41,20 +41,11 @@ func TestJobRun(t *testing.T) {
 				t.Fatalf("got error creating job %s", err)
 			}
 			job.LogFiles = append(job.LogFiles, logFile)
-//			job.sideLoadLogFiles()
+			//			job.sideLoadLogFiles()
 			job.LoadTasks()
 			job.Run()
 			assert.Equal(t, tt.expectedCount, job.ProcessStatus[fileName].LastRecordCount, "filename did not match")
 		})
-	}
-}
-
-func TestLoadStatus(t *testing.T) {
-	job, err := NewJob(&JobOptions{}, ProcessStatus{}, &AzureClient{}, MockClient{})
-	processStatus, err := ReadProcessStatus("C:\\Sites\\go\\src\\github.com\\romicgd\\nsg-parser\\data", "nsg-parser-status-syslog.json")
-	job.ProcessStatus = processStatus
-	if err != nil {
-		t.Fatalf("got error loading status %s", err)
 	}
 }
 

@@ -7,17 +7,16 @@ import (
 	"github.com/Azure/azure-sdk-for-go/storage"
 	log "github.com/sirupsen/logrus"
 	"io/ioutil"
-	"path/filepath"
 	"regexp"
 	"time"
 )
 
 var (
-	LoggedResourceFileRegExp = regexp.MustCompile(`.*\/(.*)\/y=([0-9]{4})\/m=([0-9]{2})\/d=([0-9]{2})\/h=([0-9]{2})\/m=([0-9]{2}).*`)
+	AppGwFirewallFileRegExp = regexp.MustCompile(`.*\/(.*)\/y=([0-9]{4})\/m=([0-9]{2})\/d=([0-9]{2})\/h=([0-9]{2})\/m=([0-9]{2}).*`)
 )
 
-// AzureNsgLogFile represents individual .json Log files in azure
-type AzureNsgLogFile struct {
+// AzureAppGwFirewallLogFile represents individual .json Log files in azure
+type AzureAppGwFirewallLogFile struct {
 	Name                   string            `json:"name"`
 	Etag                   string            `json:"etag"`
 	LastModified           time.Time         `json:"last_modified"`
@@ -28,72 +27,70 @@ type AzureNsgLogFile struct {
 	LastProcessedRange     storage.BlobRange `json:"last_processed_range"`
 	LogTime                time.Time         `json:"log_time"`
 	Blob                   storage.Blob      `json:"-"`
-	AzureNsgEventLog       *AzureNsgEventLog `json:"-"`
-	NsgName                string            `json:"nsg_name"`
+	AzureAppGwFirewallAccessLog    *AzureAppGwFirewallAccessLog `json:"-"`
+	LoggedResourceName     string            `json:"nsg_name"`
 }
 
-func (logFile *AzureNsgLogFile) SetLastProcessed(LastProcessed time.Time) {
-	logFile.LastProcessed = LastProcessed
-}
-
-func (logFile *AzureNsgLogFile) GetLastProcessed() time.Time {
+func (logFile *AzureAppGwFirewallLogFile) GetLastProcessed() time.Time {
 	return logFile.LastProcessed
 }
 
-func (logFile *AzureNsgLogFile) SetLastRecordCount(LastRecordCount int) {
+func (logFile *AzureAppGwFirewallLogFile) SetLastProcessed(LastProcessed time.Time) {
+	logFile.LastProcessed = LastProcessed
+}
+
+func (logFile *AzureAppGwFirewallLogFile) SetLastRecordCount(LastRecordCount int) {
 	logFile.LastRecordCount = LastRecordCount
 }
 
-func (logFile *AzureNsgLogFile) SetLastProcessedRecord(LastProcessedRecord time.Time) {
+func (logFile *AzureAppGwFirewallLogFile) SetLastProcessedRecord(LastProcessedRecord time.Time) {
 	logFile.LastProcessedRecord = LastProcessedRecord
 }
 
-func (logFile *AzureNsgLogFile) SetLastProcessedRange(LastProcessedRange storage.BlobRange) {
+func (logFile *AzureAppGwFirewallLogFile) SetLastProcessedRange(LastProcessedRange storage.BlobRange) {
 	logFile.LastProcessedRange  = LastProcessedRange
 }
 
-func (logFile *AzureNsgLogFile) SetLastProcessedTimeStamp(LastProcessedTimeStamp int64) {
+func (logFile *AzureAppGwFirewallLogFile) SetLastProcessedTimeStamp(LastProcessedTimeStamp int64) {
 	logFile.LastProcessedTimeStamp = LastProcessedTimeStamp
 }
 
-
-
-type AzureNsgEventLog struct {
-	Records AzureNsgEventRecords `json:"records"`
-	azureEventRecords []AzureEventRecord
+type AzureAppGwFirewallAccessLog struct {
+	Records AzureAppGwFirewallEventRecords `json:"records"`
+	AzureEventRecords []AzureEventRecord
 }
 
-func (log *AzureNsgEventLog) GetRecords() []AzureEventRecord {
-	if log.azureEventRecords == nil {
-		log.azureEventRecords = make([]AzureEventRecord, len(log.Records))
+func (log *AzureAppGwFirewallAccessLog) GetRecords() []AzureEventRecord {
+	if log.AzureEventRecords == nil {
+		log.AzureEventRecords = make([]AzureEventRecord, len(log.Records))
 		for i, v := range log.Records {
-			log.azureEventRecords[i] = &v
+			log.AzureEventRecords[i] = &v
 		}
 	}
-	return log.azureEventRecords
+	return log.AzureEventRecords
 }
 
-func NewAzureNsgLogFile(blob storage.Blob) (AzureLogFile, error) {
-	nsgLogFile := AzureNsgLogFile{}
+func NewAzureAppGwFirewallLogFile(blob storage.Blob) (AzureLogFile, error) {
+	nsgLogFile := AzureAppGwFirewallLogFile{}
 	nsgLogFile.Blob = blob
 	nsgLogFile.Name = blob.Name
 	nsgLogFile.Etag = blob.Properties.Etag
 	nsgLogFile.LastModified = time.Time(blob.Properties.LastModified)
 
-	logTime, err := getLogTimeFromName(blob.Name)
+	logTime, err := getAppGwFirewallLogTimeFromName(blob.Name)
 	nsgLogFile.LogTime = logTime
 
 	nsgName, err := getLoggedResourceName(blob.Name)
-	nsgLogFile.NsgName = nsgName
+	nsgLogFile.LoggedResourceName = nsgName
 
 	return &nsgLogFile, err
 }
 
-func NewAzureNsgLogFileFromEventLog(eventLog *AzureNsgEventLog) (AzureNsgLogFile, error) {
-	nsgLogFile := AzureNsgLogFile{}
-	nsgLogFile.AzureNsgEventLog = eventLog
+func NewAzureAppGwFirewallLogFileFromEventLog(eventLog *AzureAppGwFirewallAccessLog) (AzureAppGwFirewallLogFile, error) {
+	nsgLogFile := AzureAppGwFirewallLogFile{}
+	nsgLogFile.AzureAppGwFirewallAccessLog = eventLog
 	if len(eventLog.GetRecords()) == 0 {
-		return AzureNsgLogFile{}, nil
+		return AzureAppGwFirewallLogFile{}, nil
 	}
 	record := eventLog.GetRecords()[0]
 	if !record.IsInitialized() {
@@ -103,72 +100,73 @@ func NewAzureNsgLogFileFromEventLog(eventLog *AzureNsgEventLog) (AzureNsgLogFile
 	nsgLogFile.Name = record.getSourceFileName()
 	nsgLogFile.LastModified = time.Time(record.GetTime())
 
-	logTime, err := getLogTimeFromName(nsgLogFile.Name)
+	nsgLogFile.Logger().Info("**********The name", nsgLogFile.Name)
+	logTime, err := getAppGwFirewallLogTimeFromName(nsgLogFile.Name)
+
 	nsgLogFile.LogTime = logTime
 
-	nsgLogFile.NsgName = record.GetLogSourceName()
+	nsgLogFile.LoggedResourceName = record.GetLogSourceName()
 
 	return nsgLogFile, err
 }
 
-func (logFile *AzureNsgLogFile) ShortName() string {
+func (logFile *AzureAppGwFirewallLogFile) ShortName() string {
 	logTime := logFile.LogTime.Format("2006-01-02-15")
-	return fmt.Sprintf("%s-%s", logFile.NsgName, logTime)
+	return fmt.Sprintf("%s-%s", logFile.LoggedResourceName, logTime)
 }
 
-func (logFile *AzureNsgLogFile) GetName() string {
+func (logFile *AzureAppGwFirewallLogFile) GetName() string {
 	return logFile.Name
 }
 
-func (logFile *AzureNsgLogFile) GetNsgName() string {
-	return logFile.NsgName
+func (logFile *AzureAppGwFirewallLogFile) GetNsgName() string {
+	return logFile.LoggedResourceName
 }
 
-func (logFile *AzureNsgLogFile) GetEtag() string {
+func (logFile *AzureAppGwFirewallLogFile) GetEtag() string {
 	return logFile.Etag
 }
 
-func (logFile *AzureNsgLogFile) GetAzureEventLog() AzureEventLog {
-	return logFile.AzureNsgEventLog
+func (logFile *AzureAppGwFirewallLogFile) GetLogTime() time.Time {
+	return logFile.LogTime
 }
 
-func (logFile *AzureNsgLogFile) GetLastProcessedRecord() time.Time {
+func (logFile *AzureAppGwFirewallLogFile) GetAzureEventLog() AzureEventLog {
+	return logFile.AzureAppGwFirewallAccessLog
+}
+
+func (logFile *AzureAppGwFirewallLogFile) GetLastProcessedRecord() time.Time {
 	return logFile.LastProcessedRecord
 }
 
-func (logFile *AzureNsgLogFile) GetLastProcessedTimeStamp() int64 {
+func (logFile *AzureAppGwFirewallLogFile) GetLastProcessedTimeStamp() int64 {
 	return logFile.LastProcessedTimeStamp
 }
 
-func (logFile *AzureNsgLogFile) GetLastRecordCount() int {
+func (logFile *AzureAppGwFirewallLogFile) GetLastRecordCount() int {
 	return logFile.LastRecordCount
 }
 
-func (logFile *AzureNsgLogFile) GetLastModified() time.Time {
+func (logFile *AzureAppGwFirewallLogFile) GetLastModified() time.Time {
 	return logFile.LastModified
 }
 
-func (logFile *AzureNsgLogFile) GetLastProcessedRange() storage.BlobRange {
+func (logFile *AzureAppGwFirewallLogFile) GetLastProcessedRange() storage.BlobRange {
 	return logFile.LastProcessedRange
 }
 
-func (logFile *AzureNsgLogFile) GetBlob() storage.Blob {
+func (logFile *AzureAppGwFirewallLogFile) GetBlob() storage.Blob {
 	return logFile.Blob
 }
 
-func (logFile *AzureNsgLogFile) LoadBlob() error {
+func (logFile *AzureAppGwFirewallLogFile) LoadBlob() error {
 	blobRange := storage.BlobRange{Start: 0, End: uint64(logFile.Blob.Properties.ContentLength)}
 	return logFile.LoadBlobRange(blobRange)
 }
 
-func (logFile *AzureNsgLogFile) GetLogTime() time.Time {
-	return logFile.LogTime
-}
-
-
 // Primary function for loading the storage.Blob object into an NsgLog
 // Range is a set of byte offsets for reading the contents.
-func (logFile *AzureNsgLogFile) LoadBlobRange(blobRange storage.BlobRange) error {
+func (logFile *AzureAppGwFirewallLogFile) LoadBlobRange(blobRange storage.BlobRange) error {
 	bOptions := storage.GetBlobRangeOptions{
 		Range: &blobRange,
 	}
@@ -190,39 +188,23 @@ func (logFile *AzureNsgLogFile) LoadBlobRange(blobRange storage.BlobRange) error
 }
 
 // Ability to load JSON files from sources other than an Azure Blob.
-func (logFile *AzureNsgLogFile) LoadAzureNsgEventRecords(payload []byte) error {
-	err := json.Unmarshal(payload, &logFile.AzureNsgEventLog)
+func (logFile *AzureAppGwFirewallLogFile) LoadAzureNsgEventRecords(payload []byte) error {
+	err := json.Unmarshal(payload, &logFile.AzureAppGwFirewallAccessLog)
 	return err
 }
 
 // Provides a github.com/sirupsen/logrus template .
-func (logFile *AzureNsgLogFile) Logger() *log.Entry {
+func (logFile *AzureAppGwFirewallLogFile) Logger() *log.Entry {
 	return log.WithFields(log.Fields{
 		"ShortName":           logFile.ShortName(),
 		"LastProcessedRecord": logFile.LastProcessedRecord,
 		"LastModified":        logFile.LastModified,
-		"Nsg":                 logFile.NsgName,
+		"Nsg":                 logFile.LoggedResourceName,
 	})
 }
 
-func ReadProcessStatus(path, fileName string) (ProcessStatus, error) {
-	processStatus := make(ProcessStatus)
-	filePath := filepath.Join(path, fileName)
-
-	file, err := ioutil.ReadFile(filePath)
-	if err != nil {
-		return processStatus, nil
-	}
-
-	err = json.Unmarshal(file, &processStatus)
-	if err != nil {
-		return processStatus, fmt.Errorf("unmarshal error: %v\n", err)
-	}
-	return processStatus, nil
-}
-
-func getLogTimeFromName(name string) (time.Time, error) {
-	nameTokens := LoggedResourceFileRegExp.FindStringSubmatch(name)
+func getAppGwFirewallLogTimeFromName(name string) (time.Time, error) {
+	nameTokens := AppGwFirewallFileRegExp.FindStringSubmatch(name)
 
 	if len(nameTokens) != 7 {
 		return time.Time{}, errResourceIdName
@@ -241,7 +223,7 @@ func getLogTimeFromName(name string) (time.Time, error) {
 }
 
 
-func (logFile *AzureNsgLogFile) getUnprocessedBlobRange() storage.BlobRange {
+func (logFile *AzureAppGwFirewallLogFile) getUnprocessedBlobRange() storage.BlobRange {
 	var blobRange storage.BlobRange
 	if logFile.LastProcessedRange.End != 0 {
 		blobRange = storage.BlobRange{Start: logFile.LastProcessedRange.End, End: uint64(logFile.Blob.Properties.ContentLength)}

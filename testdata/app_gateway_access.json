@@ -1,0 +1,718 @@
+{
+	"records":
+	[
+
+		{
+			"resourceId": "/SUBSCRIPTIONS/C10F1FB1-D7ED-40CD-91A8-0D3A82A55F8D/RESOURCEGROUPS/SDCCDEV01RGP03/PROVIDERS/MICROSOFT.NETWORK/APPLICATIONGATEWAYS/SDCTS1WAF001",
+			"operationName": "ApplicationGatewayAccess",
+			"time": "2017-07-21T15:12:23Z",
+			"category": "ApplicationGatewayAccessLog",
+			"properties": {"instanceId":"ApplicationGatewayRole_IN_1","clientIP":"52.237.25.113","clientPort":1709,"httpMethod":"GET","requestUri":"/","requestQuery":"X-AzureApplicationGateway-CACHE-HIT=0&SERVER-ROUTED=SDCTS1IVMWEB001.CIHS.AD.GOV.ON.CA&X-AzureApplicationGateway-LOG-ID=29841dd1-2b8c-454a-9790-820f6571dbc0&SERVER-STATUS=200","userAgent":"Mozilla/5.0+(Windows+NT+10.0;+WOW64;+Trident/7.0;+rv:11.0)+like+Gecko","httpStatus":200,"httpVersion":"HTTP/2.0","receivedBytes":258,"sentBytes":1216,"timeTaken":77,"sslEnabled":"on"}
+		}
+	,
+		{
+			"resourceId": "/SUBSCRIPTIONS/C10F1FB1-D7ED-40CD-91A8-0D3A82A55F8D/RESOURCEGROUPS/SDCCDEV01RGP03/PROVIDERS/MICROSOFT.NETWORK/APPLICATIONGATEWAYS/SDCTS1WAF001",
+			"operationName": "ApplicationGatewayAccess",
+			"time": "2017-07-21T15:12:26Z",
+			"category": "ApplicationGatewayAccessLog",
+			"properties": {"instanceId":"ApplicationGatewayRole_IN_1","clientIP":"52.237.25.113","clientPort":1709,"httpMethod":"GET","requestUri":"/","requestQuery":"X-AzureApplicationGateway-CACHE-HIT=0&SERVER-ROUTED=SDCTS1IVMWEB001.CIHS.AD.GOV.ON.CA&X-AzureApplicationGateway-LOG-ID=b796daca-7af6-4d3c-beae-f9b4f75b8bcf&SERVER-STATUS=200","userAgent":"Mozilla/5.0+(Windows+NT+10.0;+WOW64;+Trident/7.0;+rv:11.0)+like+Gecko","httpStatus":200,"httpVersion":"HTTP/2.0","receivedBytes":258,"sentBytes":1217,"timeTaken":0,"sslEnabled":"on"}
+		}
+	,
+		{
+			"resourceId": "/SUBSCRIPTIONS/C10F1FB1-D7ED-40CD-91A8-0D3A82A55F8D/RESOURCEGROUPS/SDCCDEV01RGP03/PROVIDERS/MICROSOFT.NETWORK/APPLICATIONGATEWAYS/SDCTS1WAF001",
+			"operationName": "ApplicationGatewayAccess",
+			"time": "2017-07-21T15:12:26Z",
+			"category": "ApplicationGatewayAccessLog",
+			"properties": {"instanceId":"ApplicationGatewayRole_IN_1","clientIP":"52.237.25.113","clientPort":1709,"httpMethod":"GET","requestUri":"/","requestQuery":"X-AzureApplicationGateway-CACHE-HIT=0&SERVER-ROUTED=SDCTS1IVMWEB002.CIHS.AD.GOV.ON.CA&X-AzureApplicationGateway-LOG-ID=eb0f4dd7-253c-4440-a5e0-8b33fb3835cc&SERVER-STATUS=200","userAgent":"Mozilla/5.0+(Windows+NT+10.0;+WOW64;+Trident/7.0;+rv:11.0)+like+Gecko","httpStatus":0,"httpVersion":"HTTP/2.0","receivedBytes":258,"sentBytes":0,"timeTaken":2653,"sslEnabled":"on"}
+		}
+	,
+		{
+			"resourceId": "/SUBSCRIPTIONS/C10F1FB1-D7ED-40CD-91A8-0D3A82A55F8D/RESOURCEGROUPS/SDCCDEV01RGP03/PROVIDERS/MICROSOFT.NETWORK/APPLICATIONGATEWAYS/SDCTS1WAF001",
+			"operationName": "ApplicationGatewayAccess",
+			"time": "2017-07-21T15:12:26Z",
+			"category": "ApplicationGatewayAccessLog",
+			"properties": {"instanceId":"ApplicationGatewayRole_IN_1","clientIP":"52.237.25.113","clientPort":1709,"httpMethod":"GET","requestUri":"/","requestQuery":"X-AzureApplicationGateway-CACHE-HIT=0&SERVER-ROUTED=SDCTS1IVMWEB002.CIHS.AD.GOV.ON.CA&X-AzureApplicationGateway-LOG-ID=30711198-da74-489b-98c5-ee55e0362554&SERVER-STATUS=200","userAgent":"Mozilla/5.0+(Windows+NT+10.0;+WOW64;+Trident/7.0;+rv:11.0)+like+Gecko","httpStatus":200,"httpVersion":"HTTP/2.0","receivedBytes":258,"sentBytes":1220,"timeTaken":0,"sslEnabled":"on"}
+		}
+	,
+		{
+			"resourceId": "/SUBSCRIPTIONS/C10F1FB1-D7ED-40CD-91A8-0D3A82A55F8D/RESOURCEGROUPS/SDCCDEV01RGP03/PROVIDERS/MICROSOFT.NETWORK/APPLICATIONGATEWAYS/SDCTS1WAF001",
+			"operationName": "ApplicationGatewayAccess",
+			"time": "2017-07-21T15:12:28Z",
+			"category": "ApplicationGatewayAccessLog",
+			"properties": {"instanceId":"ApplicationGatewayRole_IN_1","clientIP":"52.237.25.113","clientPort":1709,"httpMethod":"GET","requestUri":"/","requestQuery":"X-AzureApplicationGateway-CACHE-HIT=0&SERVER-ROUTED=SDCTS1IVMWEB001.CIHS.AD.GOV.ON.CA&X-AzureApplicationGateway-LOG-ID=5eca59b1-94de-4b45-9aed-7505e77d4a89&SERVER-STATUS=200","userAgent":"Mozilla/5.0+(Windows+NT+10.0;+WOW64;+Trident/7.0;+rv:11.0)+like+Gecko","httpStatus":200,"httpVersion":"HTTP/2.0","receivedBytes":258,"sentBytes":1217,"timeTaken":2,"sslEnabled":"on"}
+		}
+	,
+		{
+			"resourceId": "/SUBSCRIPTIONS/C10F1FB1-D7ED-40CD-91A8-0D3A82A55F8D/RESOURCEGROUPS/SDCCDEV01RGP03/PROVIDERS/MICROSOFT.NETWORK/APPLICATIONGATEWAYS/SDCTS1WAF001",
+			"operationName": "ApplicationGatewayAccess",
+			"time": "2017-07-21T15:12:28Z",
+			"category": "ApplicationGatewayAccessLog",
+			"properties": {"instanceId":"ApplicationGatewayRole_IN_1","clientIP":"52.237.25.113","clientPort":1709,"httpMethod":"GET","requestUri":"/","requestQuery":"X-AzureApplicationGateway-CACHE-HIT=0&SERVER-ROUTED=SDCTS1IVMWEB002.CIHS.AD.GOV.ON.CA&X-AzureApplicationGateway-LOG-ID=33b1eee5-56c6-45df-8ed5-840c28950dcd&SERVER-STATUS=200","userAgent":"Mozilla/5.0+(Windows+NT+10.0;+WOW64;+Trident/7.0;+rv:11.0)+like+Gecko","httpStatus":200,"httpVersion":"HTTP/2.0","receivedBytes":258,"sentBytes":1220,"timeTaken":5,"sslEnabled":"on"}
+		}
+	,
+		{
+			"resourceId": "/SUBSCRIPTIONS/C10F1FB1-D7ED-40CD-91A8-0D3A82A55F8D/RESOURCEGROUPS/SDCCDEV01RGP03/PROVIDERS/MICROSOFT.NETWORK/APPLICATIONGATEWAYS/SDCTS1WAF001",
+			"operationName": "ApplicationGatewayAccess",
+			"time": "2017-07-21T15:12:30Z",
+			"category": "ApplicationGatewayAccessLog",
+			"properties": {"instanceId":"ApplicationGatewayRole_IN_1","clientIP":"52.237.25.113","clientPort":1709,"httpMethod":"GET","requestUri":"/","requestQuery":"X-AzureApplicationGateway-CACHE-HIT=0&SERVER-ROUTED=SDCTS1IVMWEB001.CIHS.AD.GOV.ON.CA&X-AzureApplicationGateway-LOG-ID=865a4dd2-697e-4c53-867c-a1a152c873af&SERVER-STATUS=200","userAgent":"Mozilla/5.0+(Windows+NT+10.0;+WOW64;+Trident/7.0;+rv:11.0)+like+Gecko","httpStatus":200,"httpVersion":"HTTP/2.0","receivedBytes":258,"sentBytes":1216,"timeTaken":18,"sslEnabled":"on"}
+		}
+	,
+		{
+			"resourceId": "/SUBSCRIPTIONS/C10F1FB1-D7ED-40CD-91A8-0D3A82A55F8D/RESOURCEGROUPS/SDCCDEV01RGP03/PROVIDERS/MICROSOFT.NETWORK/APPLICATIONGATEWAYS/SDCTS1WAF001",
+			"operationName": "ApplicationGatewayAccess",
+			"time": "2017-07-21T15:12:30Z",
+			"category": "ApplicationGatewayAccessLog",
+			"properties": {"instanceId":"ApplicationGatewayRole_IN_1","clientIP":"52.237.25.113","clientPort":1709,"httpMethod":"GET","requestUri":"/","requestQuery":"X-AzureApplicationGateway-CACHE-HIT=0&SERVER-ROUTED=SDCTS1IVMWEB002.CIHS.AD.GOV.ON.CA&X-AzureApplicationGateway-LOG-ID=c0ce0a39-76e8-436e-a0c3-58a357d7d6b5&SERVER-STATUS=200","userAgent":"Mozilla/5.0+(Windows+NT+10.0;+WOW64;+Trident/7.0;+rv:11.0)+like+Gecko","httpStatus":200,"httpVersion":"HTTP/2.0","receivedBytes":258,"sentBytes":1220,"timeTaken":15,"sslEnabled":"on"}
+		}
+	,
+		{
+			"resourceId": "/SUBSCRIPTIONS/C10F1FB1-D7ED-40CD-91A8-0D3A82A55F8D/RESOURCEGROUPS/SDCCDEV01RGP03/PROVIDERS/MICROSOFT.NETWORK/APPLICATIONGATEWAYS/SDCTS1WAF001",
+			"operationName": "ApplicationGatewayAccess",
+			"time": "2017-07-21T15:13:25Z",
+			"category": "ApplicationGatewayAccessLog",
+			"properties": {"instanceId":"ApplicationGatewayRole_IN_1","clientIP":"52.237.25.113","clientPort":1721,"httpMethod":"GET","requestUri":"/","requestQuery":"X-AzureApplicationGateway-CACHE-HIT=0&SERVER-ROUTED=SDCTS1IVMWEB001.CIHS.AD.GOV.ON.CA&X-AzureApplicationGateway-LOG-ID=2f812018-6a72-498c-a74b-fc8de230dbe2&SERVER-STATUS=200","userAgent":"-","httpStatus":200,"httpVersion":"HTTP/1.1","receivedBytes":66,"sentBytes":1420,"timeTaken":51,"sslEnabled":"on"}
+		}
+	,
+		{
+			"resourceId": "/SUBSCRIPTIONS/C10F1FB1-D7ED-40CD-91A8-0D3A82A55F8D/RESOURCEGROUPS/SDCCDEV01RGP03/PROVIDERS/MICROSOFT.NETWORK/APPLICATIONGATEWAYS/SDCTS1WAF001",
+			"operationName": "ApplicationGatewayAccess",
+			"time": "2017-07-21T15:13:27Z",
+			"category": "ApplicationGatewayAccessLog",
+			"properties": {"instanceId":"ApplicationGatewayRole_IN_1","clientIP":"52.237.25.113","clientPort":1751,"httpMethod":"GET","requestUri":"/","requestQuery":"X-AzureApplicationGateway-CACHE-HIT=0&SERVER-ROUTED=SDCTS1IVMWEB002.CIHS.AD.GOV.ON.CA&X-AzureApplicationGateway-LOG-ID=5546eebb-6fa0-4dce-98ad-ff0491492f7e&SERVER-STATUS=200","userAgent":"-","httpStatus":200,"httpVersion":"HTTP/1.1","receivedBytes":42,"sentBytes":1420,"timeTaken":15,"sslEnabled":"on"}
+		}
+	,
+		{
+			"resourceId": "/SUBSCRIPTIONS/C10F1FB1-D7ED-40CD-91A8-0D3A82A55F8D/RESOURCEGROUPS/SDCCDEV01RGP03/PROVIDERS/MICROSOFT.NETWORK/APPLICATIONGATEWAYS/SDCTS1WAF001",
+			"operationName": "ApplicationGatewayAccess",
+			"time": "2017-07-21T15:13:30Z",
+			"category": "ApplicationGatewayAccessLog",
+			"properties": {"instanceId":"ApplicationGatewayRole_IN_1","clientIP":"52.237.25.113","clientPort":1794,"httpMethod":"GET","requestUri":"/","requestQuery":"X-AzureApplicationGateway-CACHE-HIT=0&SERVER-ROUTED=SDCTS1IVMWEB001.CIHS.AD.GOV.ON.CA&X-AzureApplicationGateway-LOG-ID=d46f32b6-6166-4ff5-b51b-1fd1b97d4ce8&SERVER-STATUS=200","userAgent":"-","httpStatus":200,"httpVersion":"HTTP/1.1","receivedBytes":42,"sentBytes":1420,"timeTaken":0,"sslEnabled":"on"}
+		}
+	,
+		{
+			"resourceId": "/SUBSCRIPTIONS/C10F1FB1-D7ED-40CD-91A8-0D3A82A55F8D/RESOURCEGROUPS/SDCCDEV01RGP03/PROVIDERS/MICROSOFT.NETWORK/APPLICATIONGATEWAYS/SDCTS1WAF001",
+			"operationName": "ApplicationGatewayAccess",
+			"time": "2017-07-21T15:13:31Z",
+			"category": "ApplicationGatewayAccessLog",
+			"properties": {"instanceId":"ApplicationGatewayRole_IN_1","clientIP":"52.237.25.113","clientPort":1800,"httpMethod":"GET","requestUri":"/","requestQuery":"X-AzureApplicationGateway-CACHE-HIT=0&SERVER-ROUTED=SDCTS1IVMWEB002.CIHS.AD.GOV.ON.CA&X-AzureApplicationGateway-LOG-ID=5f681255-8920-4d1e-a27d-ba38994dcf53&SERVER-STATUS=200","userAgent":"-","httpStatus":200,"httpVersion":"HTTP/1.1","receivedBytes":42,"sentBytes":1420,"timeTaken":20,"sslEnabled":"on"}
+		}
+	,
+		{
+			"resourceId": "/SUBSCRIPTIONS/C10F1FB1-D7ED-40CD-91A8-0D3A82A55F8D/RESOURCEGROUPS/SDCCDEV01RGP03/PROVIDERS/MICROSOFT.NETWORK/APPLICATIONGATEWAYS/SDCTS1WAF001",
+			"operationName": "ApplicationGatewayAccess",
+			"time": "2017-07-21T15:13:31Z",
+			"category": "ApplicationGatewayAccessLog",
+			"properties": {"instanceId":"ApplicationGatewayRole_IN_1","clientIP":"52.237.25.113","clientPort":1806,"httpMethod":"GET","requestUri":"/","requestQuery":"X-AzureApplicationGateway-CACHE-HIT=0&SERVER-ROUTED=SDCTS1IVMWEB001.CIHS.AD.GOV.ON.CA&X-AzureApplicationGateway-LOG-ID=8639d439-5eb1-4590-ac83-fd52340675bc&SERVER-STATUS=200","userAgent":"-","httpStatus":200,"httpVersion":"HTTP/1.1","receivedBytes":42,"sentBytes":1420,"timeTaken":20,"sslEnabled":"on"}
+		}
+	,
+		{
+			"resourceId": "/SUBSCRIPTIONS/C10F1FB1-D7ED-40CD-91A8-0D3A82A55F8D/RESOURCEGROUPS/SDCCDEV01RGP03/PROVIDERS/MICROSOFT.NETWORK/APPLICATIONGATEWAYS/SDCTS1WAF001",
+			"operationName": "ApplicationGatewayAccess",
+			"time": "2017-07-21T15:13:32Z",
+			"category": "ApplicationGatewayAccessLog",
+			"properties": {"instanceId":"ApplicationGatewayRole_IN_1","clientIP":"52.237.25.113","clientPort":1812,"httpMethod":"GET","requestUri":"/","requestQuery":"X-AzureApplicationGateway-CACHE-HIT=0&SERVER-ROUTED=SDCTS1IVMWEB002.CIHS.AD.GOV.ON.CA&X-AzureApplicationGateway-LOG-ID=272a39bf-b6cf-4e28-8788-96da67017abb&SERVER-STATUS=200","userAgent":"-","httpStatus":200,"httpVersion":"HTTP/1.1","receivedBytes":42,"sentBytes":1420,"timeTaken":20,"sslEnabled":"on"}
+		}
+	,
+		{
+			"resourceId": "/SUBSCRIPTIONS/C10F1FB1-D7ED-40CD-91A8-0D3A82A55F8D/RESOURCEGROUPS/SDCCDEV01RGP03/PROVIDERS/MICROSOFT.NETWORK/APPLICATIONGATEWAYS/SDCTS1WAF001",
+			"operationName": "ApplicationGatewayAccess",
+			"time": "2017-07-21T15:13:33Z",
+			"category": "ApplicationGatewayAccessLog",
+			"properties": {"instanceId":"ApplicationGatewayRole_IN_1","clientIP":"52.237.25.113","clientPort":1830,"httpMethod":"GET","requestUri":"/","requestQuery":"X-AzureApplicationGateway-CACHE-HIT=0&SERVER-ROUTED=SDCTS1IVMWEB001.CIHS.AD.GOV.ON.CA&X-AzureApplicationGateway-LOG-ID=cd77bfe2-7579-438d-8b93-fb39d148d61b&SERVER-STATUS=200","userAgent":"-","httpStatus":200,"httpVersion":"HTTP/1.1","receivedBytes":42,"sentBytes":1420,"timeTaken":15,"sslEnabled":"on"}
+		}
+	,
+		{
+			"resourceId": "/SUBSCRIPTIONS/C10F1FB1-D7ED-40CD-91A8-0D3A82A55F8D/RESOURCEGROUPS/SDCCDEV01RGP03/PROVIDERS/MICROSOFT.NETWORK/APPLICATIONGATEWAYS/SDCTS1WAF001",
+			"operationName": "ApplicationGatewayAccess",
+			"time": "2017-07-21T15:13:34Z",
+			"category": "ApplicationGatewayAccessLog",
+			"properties": {"instanceId":"ApplicationGatewayRole_IN_1","clientIP":"52.237.25.113","clientPort":1836,"httpMethod":"GET","requestUri":"/","requestQuery":"X-AzureApplicationGateway-CACHE-HIT=0&SERVER-ROUTED=SDCTS1IVMWEB002.CIHS.AD.GOV.ON.CA&X-AzureApplicationGateway-LOG-ID=69962060-6fa9-4dea-ad07-aa1d0fa138a6&SERVER-STATUS=200","userAgent":"-","httpStatus":200,"httpVersion":"HTTP/1.1","receivedBytes":42,"sentBytes":1420,"timeTaken":0,"sslEnabled":"on"}
+		}
+	,
+		{
+			"resourceId": "/SUBSCRIPTIONS/C10F1FB1-D7ED-40CD-91A8-0D3A82A55F8D/RESOURCEGROUPS/SDCCDEV01RGP03/PROVIDERS/MICROSOFT.NETWORK/APPLICATIONGATEWAYS/SDCTS1WAF001",
+			"operationName": "ApplicationGatewayAccess",
+			"time": "2017-07-21T15:13:34.0000001Z",
+			"category": "ApplicationGatewayAccessLog",
+			"properties": {"instanceId":"ApplicationGatewayRole_IN_1","clientIP":"52.237.25.113","clientPort":1729,"httpMethod":"GET","requestUri":"/","requestQuery":"X-AzureApplicationGateway-CACHE-HIT=0&SERVER-ROUTED=SDCTS1IVMWEB001.CIHS.AD.GOV.ON.CA&X-AzureApplicationGateway-LOG-ID=3a2753bb-5c7b-4492-8e59-718f59b2cd04&SERVER-STATUS=200","userAgent":"-","httpStatus":200,"httpVersion":"HTTP/1.1","receivedBytes":42,"sentBytes":1284,"timeTaken":15,"sslEnabled":"on"}
+		}
+	,
+		{
+			"resourceId": "/SUBSCRIPTIONS/C10F1FB1-D7ED-40CD-91A8-0D3A82A55F8D/RESOURCEGROUPS/SDCCDEV01RGP03/PROVIDERS/MICROSOFT.NETWORK/APPLICATIONGATEWAYS/SDCTS1WAF001",
+			"operationName": "ApplicationGatewayAccess",
+			"time": "2017-07-21T15:13:34.0000002Z",
+			"category": "ApplicationGatewayAccessLog",
+			"properties": {"instanceId":"ApplicationGatewayRole_IN_1","clientIP":"52.237.25.113","clientPort":1735,"httpMethod":"GET","requestUri":"/","requestQuery":"X-AzureApplicationGateway-CACHE-HIT=0&SERVER-ROUTED=SDCTS1IVMWEB002.CIHS.AD.GOV.ON.CA&X-AzureApplicationGateway-LOG-ID=6d44d1c8-1609-4513-88a7-d585daeaf653&SERVER-STATUS=200","userAgent":"-","httpStatus":200,"httpVersion":"HTTP/1.1","receivedBytes":42,"sentBytes":1284,"timeTaken":111,"sslEnabled":"on"}
+		}
+	,
+		{
+			"resourceId": "/SUBSCRIPTIONS/C10F1FB1-D7ED-40CD-91A8-0D3A82A55F8D/RESOURCEGROUPS/SDCCDEV01RGP03/PROVIDERS/MICROSOFT.NETWORK/APPLICATIONGATEWAYS/SDCTS1WAF001",
+			"operationName": "ApplicationGatewayAccess",
+			"time": "2017-07-21T15:13:34.0000003Z",
+			"category": "ApplicationGatewayAccessLog",
+			"properties": {"instanceId":"ApplicationGatewayRole_IN_1","clientIP":"52.237.25.113","clientPort":1741,"httpMethod":"GET","requestUri":"/","requestQuery":"X-AzureApplicationGateway-CACHE-HIT=0&SERVER-ROUTED=SDCTS1IVMWEB001.CIHS.AD.GOV.ON.CA&X-AzureApplicationGateway-LOG-ID=b329175b-1592-413c-b176-f768f28964f2&SERVER-STATUS=200","userAgent":"-","httpStatus":200,"httpVersion":"HTTP/1.1","receivedBytes":42,"sentBytes":1284,"timeTaken":15,"sslEnabled":"on"}
+		}
+	,
+		{
+			"resourceId": "/SUBSCRIPTIONS/C10F1FB1-D7ED-40CD-91A8-0D3A82A55F8D/RESOURCEGROUPS/SDCCDEV01RGP03/PROVIDERS/MICROSOFT.NETWORK/APPLICATIONGATEWAYS/SDCTS1WAF001",
+			"operationName": "ApplicationGatewayAccess",
+			"time": "2017-07-21T15:13:34.0000004Z",
+			"category": "ApplicationGatewayAccessLog",
+			"properties": {"instanceId":"ApplicationGatewayRole_IN_1","clientIP":"52.237.25.113","clientPort":1747,"httpMethod":"GET","requestUri":"/","requestQuery":"X-AzureApplicationGateway-CACHE-HIT=0&SERVER-ROUTED=SDCTS1IVMWEB002.CIHS.AD.GOV.ON.CA&X-AzureApplicationGateway-LOG-ID=53e89d0f-0660-4e7e-9e3f-19e7cd5edd36&SERVER-STATUS=200","userAgent":"-","httpStatus":200,"httpVersion":"HTTP/1.1","receivedBytes":42,"sentBytes":1284,"timeTaken":0,"sslEnabled":"on"}
+		}
+	,
+		{
+			"resourceId": "/SUBSCRIPTIONS/C10F1FB1-D7ED-40CD-91A8-0D3A82A55F8D/RESOURCEGROUPS/SDCCDEV01RGP03/PROVIDERS/MICROSOFT.NETWORK/APPLICATIONGATEWAYS/SDCTS1WAF001",
+			"operationName": "ApplicationGatewayAccess",
+			"time": "2017-07-21T15:13:34.0000005Z",
+			"category": "ApplicationGatewayAccessLog",
+			"properties": {"instanceId":"ApplicationGatewayRole_IN_1","clientIP":"52.237.25.113","clientPort":1753,"httpMethod":"GET","requestUri":"/","requestQuery":"X-AzureApplicationGateway-CACHE-HIT=0&SERVER-ROUTED=SDCTS1IVMWEB001.CIHS.AD.GOV.ON.CA&X-AzureApplicationGateway-LOG-ID=d75106ff-40c2-4302-9779-297956d6db06&SERVER-STATUS=200","userAgent":"-","httpStatus":200,"httpVersion":"HTTP/1.1","receivedBytes":42,"sentBytes":1284,"timeTaken":15,"sslEnabled":"on"}
+		}
+	,
+		{
+			"resourceId": "/SUBSCRIPTIONS/C10F1FB1-D7ED-40CD-91A8-0D3A82A55F8D/RESOURCEGROUPS/SDCCDEV01RGP03/PROVIDERS/MICROSOFT.NETWORK/APPLICATIONGATEWAYS/SDCTS1WAF001",
+			"operationName": "ApplicationGatewayAccess",
+			"time": "2017-07-21T15:13:34.0000006Z",
+			"category": "ApplicationGatewayAccessLog",
+			"properties": {"instanceId":"ApplicationGatewayRole_IN_1","clientIP":"52.237.25.113","clientPort":1759,"httpMethod":"GET","requestUri":"/","requestQuery":"X-AzureApplicationGateway-CACHE-HIT=0&SERVER-ROUTED=SDCTS1IVMWEB002.CIHS.AD.GOV.ON.CA&X-AzureApplicationGateway-LOG-ID=a5b68b17-dbcc-403c-9a36-2c7da74b5075&SERVER-STATUS=200","userAgent":"-","httpStatus":200,"httpVersion":"HTTP/1.1","receivedBytes":42,"sentBytes":1284,"timeTaken":15,"sslEnabled":"on"}
+		}
+	,
+		{
+			"resourceId": "/SUBSCRIPTIONS/C10F1FB1-D7ED-40CD-91A8-0D3A82A55F8D/RESOURCEGROUPS/SDCCDEV01RGP03/PROVIDERS/MICROSOFT.NETWORK/APPLICATIONGATEWAYS/SDCTS1WAF001",
+			"operationName": "ApplicationGatewayAccess",
+			"time": "2017-07-21T15:13:34.0000007Z",
+			"category": "ApplicationGatewayAccessLog",
+			"properties": {"instanceId":"ApplicationGatewayRole_IN_1","clientIP":"52.237.25.113","clientPort":1765,"httpMethod":"GET","requestUri":"/","requestQuery":"X-AzureApplicationGateway-CACHE-HIT=0&SERVER-ROUTED=SDCTS1IVMWEB001.CIHS.AD.GOV.ON.CA&X-AzureApplicationGateway-LOG-ID=fbfe9958-6ac2-4097-abe1-5896403641c0&SERVER-STATUS=200","userAgent":"-","httpStatus":200,"httpVersion":"HTTP/1.1","receivedBytes":42,"sentBytes":1284,"timeTaken":15,"sslEnabled":"on"}
+		}
+	,
+		{
+			"resourceId": "/SUBSCRIPTIONS/C10F1FB1-D7ED-40CD-91A8-0D3A82A55F8D/RESOURCEGROUPS/SDCCDEV01RGP03/PROVIDERS/MICROSOFT.NETWORK/APPLICATIONGATEWAYS/SDCTS1WAF001",
+			"operationName": "ApplicationGatewayAccess",
+			"time": "2017-07-21T15:13:34.0000008Z",
+			"category": "ApplicationGatewayAccessLog",
+			"properties": {"instanceId":"ApplicationGatewayRole_IN_1","clientIP":"52.237.25.113","clientPort":1771,"httpMethod":"GET","requestUri":"/","requestQuery":"X-AzureApplicationGateway-CACHE-HIT=0&SERVER-ROUTED=SDCTS1IVMWEB002.CIHS.AD.GOV.ON.CA&X-AzureApplicationGateway-LOG-ID=d5f98625-7687-40bc-89aa-1020c2534027&SERVER-STATUS=200","userAgent":"-","httpStatus":200,"httpVersion":"HTTP/1.1","receivedBytes":42,"sentBytes":1284,"timeTaken":15,"sslEnabled":"on"}
+		}
+	,
+		{
+			"resourceId": "/SUBSCRIPTIONS/C10F1FB1-D7ED-40CD-91A8-0D3A82A55F8D/RESOURCEGROUPS/SDCCDEV01RGP03/PROVIDERS/MICROSOFT.NETWORK/APPLICATIONGATEWAYS/SDCTS1WAF001",
+			"operationName": "ApplicationGatewayAccess",
+			"time": "2017-07-21T15:13:34.0000009Z",
+			"category": "ApplicationGatewayAccessLog",
+			"properties": {"instanceId":"ApplicationGatewayRole_IN_1","clientIP":"52.237.25.113","clientPort":1777,"httpMethod":"GET","requestUri":"/","requestQuery":"X-AzureApplicationGateway-CACHE-HIT=0&SERVER-ROUTED=SDCTS1IVMWEB001.CIHS.AD.GOV.ON.CA&X-AzureApplicationGateway-LOG-ID=4e0c43bf-dd4f-49d7-b0bc-4333c39b668b&SERVER-STATUS=200","userAgent":"-","httpStatus":200,"httpVersion":"HTTP/1.1","receivedBytes":42,"sentBytes":1284,"timeTaken":0,"sslEnabled":"on"}
+		}
+	,
+		{
+			"resourceId": "/SUBSCRIPTIONS/C10F1FB1-D7ED-40CD-91A8-0D3A82A55F8D/RESOURCEGROUPS/SDCCDEV01RGP03/PROVIDERS/MICROSOFT.NETWORK/APPLICATIONGATEWAYS/SDCTS1WAF001",
+			"operationName": "ApplicationGatewayAccess",
+			"time": "2017-07-21T15:13:34.0000010Z",
+			"category": "ApplicationGatewayAccessLog",
+			"properties": {"instanceId":"ApplicationGatewayRole_IN_1","clientIP":"52.237.25.113","clientPort":1783,"httpMethod":"GET","requestUri":"/","requestQuery":"X-AzureApplicationGateway-CACHE-HIT=0&SERVER-ROUTED=SDCTS1IVMWEB002.CIHS.AD.GOV.ON.CA&X-AzureApplicationGateway-LOG-ID=1894346c-6c1b-49e6-9622-6259e2a85419&SERVER-STATUS=200","userAgent":"-","httpStatus":200,"httpVersion":"HTTP/1.1","receivedBytes":42,"sentBytes":1284,"timeTaken":15,"sslEnabled":"on"}
+		}
+	,
+		{
+			"resourceId": "/SUBSCRIPTIONS/C10F1FB1-D7ED-40CD-91A8-0D3A82A55F8D/RESOURCEGROUPS/SDCCDEV01RGP03/PROVIDERS/MICROSOFT.NETWORK/APPLICATIONGATEWAYS/SDCTS1WAF001",
+			"operationName": "ApplicationGatewayAccess",
+			"time": "2017-07-21T15:13:34.0000011Z",
+			"category": "ApplicationGatewayAccessLog",
+			"properties": {"instanceId":"ApplicationGatewayRole_IN_1","clientIP":"52.237.25.113","clientPort":1789,"httpMethod":"GET","requestUri":"/","requestQuery":"X-AzureApplicationGateway-CACHE-HIT=0&SERVER-ROUTED=SDCTS1IVMWEB001.CIHS.AD.GOV.ON.CA&X-AzureApplicationGateway-LOG-ID=c422897b-3e82-425a-84aa-17bd0d198e38&SERVER-STATUS=200","userAgent":"-","httpStatus":200,"httpVersion":"HTTP/1.1","receivedBytes":42,"sentBytes":1284,"timeTaken":0,"sslEnabled":"on"}
+		}
+	,
+		{
+			"resourceId": "/SUBSCRIPTIONS/C10F1FB1-D7ED-40CD-91A8-0D3A82A55F8D/RESOURCEGROUPS/SDCCDEV01RGP03/PROVIDERS/MICROSOFT.NETWORK/APPLICATIONGATEWAYS/SDCTS1WAF001",
+			"operationName": "ApplicationGatewayAccess",
+			"time": "2017-07-21T15:13:34.0000012Z",
+			"category": "ApplicationGatewayAccessLog",
+			"properties": {"instanceId":"ApplicationGatewayRole_IN_1","clientIP":"52.237.25.113","clientPort":1838,"httpMethod":"GET","requestUri":"/","requestQuery":"X-AzureApplicationGateway-CACHE-HIT=0&SERVER-ROUTED=SDCTS1IVMWEB002.CIHS.AD.GOV.ON.CA&X-AzureApplicationGateway-LOG-ID=d7ce377f-d6f9-4481-8f56-fe344eb4f359&SERVER-STATUS=200","userAgent":"-","httpStatus":200,"httpVersion":"HTTP/1.1","receivedBytes":42,"sentBytes":1284,"timeTaken":0,"sslEnabled":"on"}
+		}
+	,
+		{
+			"resourceId": "/SUBSCRIPTIONS/C10F1FB1-D7ED-40CD-91A8-0D3A82A55F8D/RESOURCEGROUPS/SDCCDEV01RGP03/PROVIDERS/MICROSOFT.NETWORK/APPLICATIONGATEWAYS/SDCTS1WAF001",
+			"operationName": "ApplicationGatewayAccess",
+			"time": "2017-07-21T15:13:34.0000013Z",
+			"category": "ApplicationGatewayAccessLog",
+			"properties": {"instanceId":"ApplicationGatewayRole_IN_1","clientIP":"52.237.25.113","clientPort":1723,"httpMethod":"GET","requestUri":"/","requestQuery":"X-AzureApplicationGateway-CACHE-HIT=0&SERVER-ROUTED=SDCTS1IVMWEB001.CIHS.AD.GOV.ON.CA&X-AzureApplicationGateway-LOG-ID=5b440f02-9874-422f-a22f-ce70da069129&SERVER-STATUS=200","userAgent":"-","httpStatus":200,"httpVersion":"HTTP/1.1","receivedBytes":73,"sentBytes":1498,"timeTaken":93,"sslEnabled":"on"}
+		}
+	,
+		{
+			"resourceId": "/SUBSCRIPTIONS/C10F1FB1-D7ED-40CD-91A8-0D3A82A55F8D/RESOURCEGROUPS/SDCCDEV01RGP03/PROVIDERS/MICROSOFT.NETWORK/APPLICATIONGATEWAYS/SDCTS1WAF001",
+			"operationName": "ApplicationGatewayAccess",
+			"time": "2017-07-21T15:13:34.0000014Z",
+			"category": "ApplicationGatewayAccessLog",
+			"properties": {"instanceId":"ApplicationGatewayRole_IN_1","clientIP":"52.237.25.113","clientPort":1796,"httpMethod":"GET","requestUri":"/","requestQuery":"X-AzureApplicationGateway-CACHE-HIT=0&SERVER-ROUTED=SDCTS1IVMWEB002.CIHS.AD.GOV.ON.CA&X-AzureApplicationGateway-LOG-ID=31b3b25f-fc6a-414b-9dbe-867d1ac4a9eb&SERVER-STATUS=200","userAgent":"-","httpStatus":200,"httpVersion":"HTTP/1.1","receivedBytes":49,"sentBytes":1498,"timeTaken":16,"sslEnabled":"on"}
+		}
+	,
+		{
+			"resourceId": "/SUBSCRIPTIONS/C10F1FB1-D7ED-40CD-91A8-0D3A82A55F8D/RESOURCEGROUPS/SDCCDEV01RGP03/PROVIDERS/MICROSOFT.NETWORK/APPLICATIONGATEWAYS/SDCTS1WAF001",
+			"operationName": "ApplicationGatewayAccess",
+			"time": "2017-07-21T15:13:34.0000015Z",
+			"category": "ApplicationGatewayAccessLog",
+			"properties": {"instanceId":"ApplicationGatewayRole_IN_1","clientIP":"52.237.25.113","clientPort":1802,"httpMethod":"GET","requestUri":"/","requestQuery":"X-AzureApplicationGateway-CACHE-HIT=0&SERVER-ROUTED=SDCTS1IVMWEB001.CIHS.AD.GOV.ON.CA&X-AzureApplicationGateway-LOG-ID=4b61234d-d27b-44db-8d55-95af76e75b10&SERVER-STATUS=200","userAgent":"-","httpStatus":200,"httpVersion":"HTTP/1.1","receivedBytes":49,"sentBytes":1498,"timeTaken":0,"sslEnabled":"on"}
+		}
+	,
+		{
+			"resourceId": "/SUBSCRIPTIONS/C10F1FB1-D7ED-40CD-91A8-0D3A82A55F8D/RESOURCEGROUPS/SDCCDEV01RGP03/PROVIDERS/MICROSOFT.NETWORK/APPLICATIONGATEWAYS/SDCTS1WAF001",
+			"operationName": "ApplicationGatewayAccess",
+			"time": "2017-07-21T15:13:34.0000016Z",
+			"category": "ApplicationGatewayAccessLog",
+			"properties": {"instanceId":"ApplicationGatewayRole_IN_1","clientIP":"52.237.25.113","clientPort":1808,"httpMethod":"GET","requestUri":"/","requestQuery":"X-AzureApplicationGateway-CACHE-HIT=0&SERVER-ROUTED=SDCTS1IVMWEB002.CIHS.AD.GOV.ON.CA&X-AzureApplicationGateway-LOG-ID=490c92a2-57bd-45b6-8441-18f4daf1bc34&SERVER-STATUS=200","userAgent":"-","httpStatus":200,"httpVersion":"HTTP/1.1","receivedBytes":49,"sentBytes":1498,"timeTaken":15,"sslEnabled":"on"}
+		}
+	,
+		{
+			"resourceId": "/SUBSCRIPTIONS/C10F1FB1-D7ED-40CD-91A8-0D3A82A55F8D/RESOURCEGROUPS/SDCCDEV01RGP03/PROVIDERS/MICROSOFT.NETWORK/APPLICATIONGATEWAYS/SDCTS1WAF001",
+			"operationName": "ApplicationGatewayAccess",
+			"time": "2017-07-21T15:13:34.0000017Z",
+			"category": "ApplicationGatewayAccessLog",
+			"properties": {"instanceId":"ApplicationGatewayRole_IN_1","clientIP":"52.237.25.113","clientPort":1814,"httpMethod":"GET","requestUri":"/","requestQuery":"X-AzureApplicationGateway-CACHE-HIT=0&SERVER-ROUTED=SDCTS1IVMWEB001.CIHS.AD.GOV.ON.CA&X-AzureApplicationGateway-LOG-ID=e8abe7c0-ad9a-4450-94c4-86fc181391a3&SERVER-STATUS=200","userAgent":"-","httpStatus":200,"httpVersion":"HTTP/1.1","receivedBytes":49,"sentBytes":1498,"timeTaken":15,"sslEnabled":"on"}
+		}
+	,
+		{
+			"resourceId": "/SUBSCRIPTIONS/C10F1FB1-D7ED-40CD-91A8-0D3A82A55F8D/RESOURCEGROUPS/SDCCDEV01RGP03/PROVIDERS/MICROSOFT.NETWORK/APPLICATIONGATEWAYS/SDCTS1WAF001",
+			"operationName": "ApplicationGatewayAccess",
+			"time": "2017-07-21T15:13:34.0000018Z",
+			"category": "ApplicationGatewayAccessLog",
+			"properties": {"instanceId":"ApplicationGatewayRole_IN_1","clientIP":"52.237.25.113","clientPort":1820,"httpMethod":"GET","requestUri":"/","requestQuery":"X-AzureApplicationGateway-CACHE-HIT=0&SERVER-ROUTED=SDCTS1IVMWEB002.CIHS.AD.GOV.ON.CA&X-AzureApplicationGateway-LOG-ID=687b8c03-ae1e-410b-98c6-8128e498456f&SERVER-STATUS=200","userAgent":"-","httpStatus":200,"httpVersion":"HTTP/1.1","receivedBytes":49,"sentBytes":1498,"timeTaken":16,"sslEnabled":"on"}
+		}
+	,
+		{
+			"resourceId": "/SUBSCRIPTIONS/C10F1FB1-D7ED-40CD-91A8-0D3A82A55F8D/RESOURCEGROUPS/SDCCDEV01RGP03/PROVIDERS/MICROSOFT.NETWORK/APPLICATIONGATEWAYS/SDCTS1WAF001",
+			"operationName": "ApplicationGatewayAccess",
+			"time": "2017-07-21T15:13:34.0000019Z",
+			"category": "ApplicationGatewayAccessLog",
+			"properties": {"instanceId":"ApplicationGatewayRole_IN_1","clientIP":"52.237.25.113","clientPort":1826,"httpMethod":"GET","requestUri":"/","requestQuery":"X-AzureApplicationGateway-CACHE-HIT=0&SERVER-ROUTED=SDCTS1IVMWEB001.CIHS.AD.GOV.ON.CA&X-AzureApplicationGateway-LOG-ID=f24b2798-e2a6-4e39-8c34-740024e76ffc&SERVER-STATUS=200","userAgent":"-","httpStatus":200,"httpVersion":"HTTP/1.1","receivedBytes":49,"sentBytes":1498,"timeTaken":0,"sslEnabled":"on"}
+		}
+	,
+		{
+			"resourceId": "/SUBSCRIPTIONS/C10F1FB1-D7ED-40CD-91A8-0D3A82A55F8D/RESOURCEGROUPS/SDCCDEV01RGP03/PROVIDERS/MICROSOFT.NETWORK/APPLICATIONGATEWAYS/SDCTS1WAF001",
+			"operationName": "ApplicationGatewayAccess",
+			"time": "2017-07-21T15:13:34.0000020Z",
+			"category": "ApplicationGatewayAccessLog",
+			"properties": {"instanceId":"ApplicationGatewayRole_IN_1","clientIP":"52.237.25.113","clientPort":1832,"httpMethod":"GET","requestUri":"/","requestQuery":"X-AzureApplicationGateway-CACHE-HIT=0&SERVER-ROUTED=SDCTS1IVMWEB002.CIHS.AD.GOV.ON.CA&X-AzureApplicationGateway-LOG-ID=9ba794f2-d0a7-453a-8ecf-d44b506b8a1b&SERVER-STATUS=200","userAgent":"-","httpStatus":200,"httpVersion":"HTTP/1.1","receivedBytes":49,"sentBytes":1498,"timeTaken":15,"sslEnabled":"on"}
+		}
+	,
+		{
+			"resourceId": "/SUBSCRIPTIONS/C10F1FB1-D7ED-40CD-91A8-0D3A82A55F8D/RESOURCEGROUPS/SDCCDEV01RGP03/PROVIDERS/MICROSOFT.NETWORK/APPLICATIONGATEWAYS/SDCTS1WAF001",
+			"operationName": "ApplicationGatewayAccess",
+			"time": "2017-07-21T15:13:34.0000021Z",
+			"category": "ApplicationGatewayAccessLog",
+			"properties": {"instanceId":"ApplicationGatewayRole_IN_1","clientIP":"52.237.25.113","clientPort":1725,"httpMethod":"GET","requestUri":"/","requestQuery":"X-AzureApplicationGateway-CACHE-HIT=0&SERVER-ROUTED=SDCTS1IVMWEB001.CIHS.AD.GOV.ON.CA&X-AzureApplicationGateway-LOG-ID=668262a8-4328-4bbd-8d84-569231bfacd8&SERVER-STATUS=200","userAgent":"-","httpStatus":200,"httpVersion":"HTTP/1.1","receivedBytes":42,"sentBytes":1284,"timeTaken":17,"sslEnabled":"on"}
+		}
+	,
+		{
+			"resourceId": "/SUBSCRIPTIONS/C10F1FB1-D7ED-40CD-91A8-0D3A82A55F8D/RESOURCEGROUPS/SDCCDEV01RGP03/PROVIDERS/MICROSOFT.NETWORK/APPLICATIONGATEWAYS/SDCTS1WAF001",
+			"operationName": "ApplicationGatewayAccess",
+			"time": "2017-07-21T15:13:34.0000022Z",
+			"category": "ApplicationGatewayAccessLog",
+			"properties": {"instanceId":"ApplicationGatewayRole_IN_1","clientIP":"52.237.25.113","clientPort":1731,"httpMethod":"GET","requestUri":"/","requestQuery":"X-AzureApplicationGateway-CACHE-HIT=0&SERVER-ROUTED=SDCTS1IVMWEB002.CIHS.AD.GOV.ON.CA&X-AzureApplicationGateway-LOG-ID=eff5a78b-ca21-4bb7-b76c-543dc2fba8b3&SERVER-STATUS=200","userAgent":"-","httpStatus":200,"httpVersion":"HTTP/1.1","receivedBytes":42,"sentBytes":1284,"timeTaken":15,"sslEnabled":"on"}
+		}
+	,
+		{
+			"resourceId": "/SUBSCRIPTIONS/C10F1FB1-D7ED-40CD-91A8-0D3A82A55F8D/RESOURCEGROUPS/SDCCDEV01RGP03/PROVIDERS/MICROSOFT.NETWORK/APPLICATIONGATEWAYS/SDCTS1WAF001",
+			"operationName": "ApplicationGatewayAccess",
+			"time": "2017-07-21T15:13:34.0000023Z",
+			"category": "ApplicationGatewayAccessLog",
+			"properties": {"instanceId":"ApplicationGatewayRole_IN_1","clientIP":"52.237.25.113","clientPort":1737,"httpMethod":"GET","requestUri":"/","requestQuery":"X-AzureApplicationGateway-CACHE-HIT=0&SERVER-ROUTED=SDCTS1IVMWEB001.CIHS.AD.GOV.ON.CA&X-AzureApplicationGateway-LOG-ID=f0ac7c65-ae19-4de3-8e99-2917c93f1b83&SERVER-STATUS=200","userAgent":"-","httpStatus":200,"httpVersion":"HTTP/1.1","receivedBytes":42,"sentBytes":1284,"timeTaken":0,"sslEnabled":"on"}
+		}
+	,
+		{
+			"resourceId": "/SUBSCRIPTIONS/C10F1FB1-D7ED-40CD-91A8-0D3A82A55F8D/RESOURCEGROUPS/SDCCDEV01RGP03/PROVIDERS/MICROSOFT.NETWORK/APPLICATIONGATEWAYS/SDCTS1WAF001",
+			"operationName": "ApplicationGatewayAccess",
+			"time": "2017-07-21T15:13:34.0000024Z",
+			"category": "ApplicationGatewayAccessLog",
+			"properties": {"instanceId":"ApplicationGatewayRole_IN_1","clientIP":"52.237.25.113","clientPort":1743,"httpMethod":"GET","requestUri":"/","requestQuery":"X-AzureApplicationGateway-CACHE-HIT=0&SERVER-ROUTED=SDCTS1IVMWEB002.CIHS.AD.GOV.ON.CA&X-AzureApplicationGateway-LOG-ID=cfb62005-aadd-4a82-b0a4-0eea366d06bb&SERVER-STATUS=200","userAgent":"-","httpStatus":200,"httpVersion":"HTTP/1.1","receivedBytes":42,"sentBytes":1284,"timeTaken":0,"sslEnabled":"on"}
+		}
+	,
+		{
+			"resourceId": "/SUBSCRIPTIONS/C10F1FB1-D7ED-40CD-91A8-0D3A82A55F8D/RESOURCEGROUPS/SDCCDEV01RGP03/PROVIDERS/MICROSOFT.NETWORK/APPLICATIONGATEWAYS/SDCTS1WAF001",
+			"operationName": "ApplicationGatewayAccess",
+			"time": "2017-07-21T15:13:34.0000025Z",
+			"category": "ApplicationGatewayAccessLog",
+			"properties": {"instanceId":"ApplicationGatewayRole_IN_1","clientIP":"52.237.25.113","clientPort":1749,"httpMethod":"GET","requestUri":"/","requestQuery":"X-AzureApplicationGateway-CACHE-HIT=0&SERVER-ROUTED=SDCTS1IVMWEB001.CIHS.AD.GOV.ON.CA&X-AzureApplicationGateway-LOG-ID=aef4043b-b55e-446c-ae62-5ad40fdd9dd7&SERVER-STATUS=200","userAgent":"-","httpStatus":200,"httpVersion":"HTTP/1.1","receivedBytes":42,"sentBytes":1284,"timeTaken":15,"sslEnabled":"on"}
+		}
+	,
+		{
+			"resourceId": "/SUBSCRIPTIONS/C10F1FB1-D7ED-40CD-91A8-0D3A82A55F8D/RESOURCEGROUPS/SDCCDEV01RGP03/PROVIDERS/MICROSOFT.NETWORK/APPLICATIONGATEWAYS/SDCTS1WAF001",
+			"operationName": "ApplicationGatewayAccess",
+			"time": "2017-07-21T15:13:34.0000026Z",
+			"category": "ApplicationGatewayAccessLog",
+			"properties": {"instanceId":"ApplicationGatewayRole_IN_1","clientIP":"52.237.25.113","clientPort":1761,"httpMethod":"GET","requestUri":"/","requestQuery":"X-AzureApplicationGateway-CACHE-HIT=0&SERVER-ROUTED=SDCTS1IVMWEB002.CIHS.AD.GOV.ON.CA&X-AzureApplicationGateway-LOG-ID=adc147a4-19c8-4ee5-add3-dbd47610f135&SERVER-STATUS=200","userAgent":"-","httpStatus":200,"httpVersion":"HTTP/1.1","receivedBytes":42,"sentBytes":1284,"timeTaken":0,"sslEnabled":"on"}
+		}
+	,
+		{
+			"resourceId": "/SUBSCRIPTIONS/C10F1FB1-D7ED-40CD-91A8-0D3A82A55F8D/RESOURCEGROUPS/SDCCDEV01RGP03/PROVIDERS/MICROSOFT.NETWORK/APPLICATIONGATEWAYS/SDCTS1WAF001",
+			"operationName": "ApplicationGatewayAccess",
+			"time": "2017-07-21T15:13:34.0000027Z",
+			"category": "ApplicationGatewayAccessLog",
+			"properties": {"instanceId":"ApplicationGatewayRole_IN_1","clientIP":"52.237.25.113","clientPort":1767,"httpMethod":"GET","requestUri":"/","requestQuery":"X-AzureApplicationGateway-CACHE-HIT=0&SERVER-ROUTED=SDCTS1IVMWEB001.CIHS.AD.GOV.ON.CA&X-AzureApplicationGateway-LOG-ID=99a3741c-ae36-403e-a650-171f1f640b77&SERVER-STATUS=200","userAgent":"-","httpStatus":200,"httpVersion":"HTTP/1.1","receivedBytes":42,"sentBytes":1284,"timeTaken":15,"sslEnabled":"on"}
+		}
+	,
+		{
+			"resourceId": "/SUBSCRIPTIONS/C10F1FB1-D7ED-40CD-91A8-0D3A82A55F8D/RESOURCEGROUPS/SDCCDEV01RGP03/PROVIDERS/MICROSOFT.NETWORK/APPLICATIONGATEWAYS/SDCTS1WAF001",
+			"operationName": "ApplicationGatewayAccess",
+			"time": "2017-07-21T15:13:34.0000028Z",
+			"category": "ApplicationGatewayAccessLog",
+			"properties": {"instanceId":"ApplicationGatewayRole_IN_1","clientIP":"52.237.25.113","clientPort":1773,"httpMethod":"GET","requestUri":"/","requestQuery":"X-AzureApplicationGateway-CACHE-HIT=0&SERVER-ROUTED=SDCTS1IVMWEB002.CIHS.AD.GOV.ON.CA&X-AzureApplicationGateway-LOG-ID=b95fa412-462f-449f-86a7-dd0d3e3b0c79&SERVER-STATUS=200","userAgent":"-","httpStatus":200,"httpVersion":"HTTP/1.1","receivedBytes":42,"sentBytes":1284,"timeTaken":0,"sslEnabled":"on"}
+		}
+	,
+		{
+			"resourceId": "/SUBSCRIPTIONS/C10F1FB1-D7ED-40CD-91A8-0D3A82A55F8D/RESOURCEGROUPS/SDCCDEV01RGP03/PROVIDERS/MICROSOFT.NETWORK/APPLICATIONGATEWAYS/SDCTS1WAF001",
+			"operationName": "ApplicationGatewayAccess",
+			"time": "2017-07-21T15:13:34.0000029Z",
+			"category": "ApplicationGatewayAccessLog",
+			"properties": {"instanceId":"ApplicationGatewayRole_IN_1","clientIP":"52.237.25.113","clientPort":1779,"httpMethod":"GET","requestUri":"/","requestQuery":"X-AzureApplicationGateway-CACHE-HIT=0&SERVER-ROUTED=SDCTS1IVMWEB001.CIHS.AD.GOV.ON.CA&X-AzureApplicationGateway-LOG-ID=c8e13406-4405-401e-966e-819ee23e9140&SERVER-STATUS=200","userAgent":"-","httpStatus":200,"httpVersion":"HTTP/1.1","receivedBytes":42,"sentBytes":1284,"timeTaken":15,"sslEnabled":"on"}
+		}
+	,
+		{
+			"resourceId": "/SUBSCRIPTIONS/C10F1FB1-D7ED-40CD-91A8-0D3A82A55F8D/RESOURCEGROUPS/SDCCDEV01RGP03/PROVIDERS/MICROSOFT.NETWORK/APPLICATIONGATEWAYS/SDCTS1WAF001",
+			"operationName": "ApplicationGatewayAccess",
+			"time": "2017-07-21T15:13:34.0000030Z",
+			"category": "ApplicationGatewayAccessLog",
+			"properties": {"instanceId":"ApplicationGatewayRole_IN_1","clientIP":"52.237.25.113","clientPort":1791,"httpMethod":"GET","requestUri":"/","requestQuery":"X-AzureApplicationGateway-CACHE-HIT=0&SERVER-ROUTED=SDCTS1IVMWEB002.CIHS.AD.GOV.ON.CA&X-AzureApplicationGateway-LOG-ID=4f890c74-09c8-4deb-ba8a-9d36d3b3b971&SERVER-STATUS=200","userAgent":"-","httpStatus":200,"httpVersion":"HTTP/1.1","receivedBytes":42,"sentBytes":1284,"timeTaken":20,"sslEnabled":"on"}
+		}
+	,
+		{
+			"resourceId": "/SUBSCRIPTIONS/C10F1FB1-D7ED-40CD-91A8-0D3A82A55F8D/RESOURCEGROUPS/SDCCDEV01RGP03/PROVIDERS/MICROSOFT.NETWORK/APPLICATIONGATEWAYS/SDCTS1WAF001",
+			"operationName": "ApplicationGatewayAccess",
+			"time": "2017-07-21T15:13:34.0000031Z",
+			"category": "ApplicationGatewayAccessLog",
+			"properties": {"instanceId":"ApplicationGatewayRole_IN_1","clientIP":"52.237.25.113","clientPort":1798,"httpMethod":"GET","requestUri":"/","requestQuery":"X-AzureApplicationGateway-CACHE-HIT=0&SERVER-ROUTED=SDCTS1IVMWEB001.CIHS.AD.GOV.ON.CA&X-AzureApplicationGateway-LOG-ID=b4c612ba-4029-4fa3-82e0-96b7724bb07d&SERVER-STATUS=200","userAgent":"-","httpStatus":200,"httpVersion":"HTTP/1.1","receivedBytes":42,"sentBytes":1284,"timeTaken":5,"sslEnabled":"on"}
+		}
+	,
+		{
+			"resourceId": "/SUBSCRIPTIONS/C10F1FB1-D7ED-40CD-91A8-0D3A82A55F8D/RESOURCEGROUPS/SDCCDEV01RGP03/PROVIDERS/MICROSOFT.NETWORK/APPLICATIONGATEWAYS/SDCTS1WAF001",
+			"operationName": "ApplicationGatewayAccess",
+			"time": "2017-07-21T15:13:34.0000032Z",
+			"category": "ApplicationGatewayAccessLog",
+			"properties": {"instanceId":"ApplicationGatewayRole_IN_1","clientIP":"52.237.25.113","clientPort":1804,"httpMethod":"GET","requestUri":"/","requestQuery":"X-AzureApplicationGateway-CACHE-HIT=0&SERVER-ROUTED=SDCTS1IVMWEB002.CIHS.AD.GOV.ON.CA&X-AzureApplicationGateway-LOG-ID=e191ab92-06d9-4e55-8084-4e4c26af42cb&SERVER-STATUS=200","userAgent":"-","httpStatus":200,"httpVersion":"HTTP/1.1","receivedBytes":42,"sentBytes":1284,"timeTaken":0,"sslEnabled":"on"}
+		}
+	,
+		{
+			"resourceId": "/SUBSCRIPTIONS/C10F1FB1-D7ED-40CD-91A8-0D3A82A55F8D/RESOURCEGROUPS/SDCCDEV01RGP03/PROVIDERS/MICROSOFT.NETWORK/APPLICATIONGATEWAYS/SDCTS1WAF001",
+			"operationName": "ApplicationGatewayAccess",
+			"time": "2017-07-21T15:13:34.0000033Z",
+			"category": "ApplicationGatewayAccessLog",
+			"properties": {"instanceId":"ApplicationGatewayRole_IN_1","clientIP":"52.237.25.113","clientPort":1816,"httpMethod":"GET","requestUri":"/","requestQuery":"X-AzureApplicationGateway-CACHE-HIT=0&SERVER-ROUTED=SDCTS1IVMWEB001.CIHS.AD.GOV.ON.CA&X-AzureApplicationGateway-LOG-ID=68109e92-ffa1-4a15-9cbc-f0ba47c7c700&SERVER-STATUS=200","userAgent":"-","httpStatus":200,"httpVersion":"HTTP/1.1","receivedBytes":42,"sentBytes":1284,"timeTaken":15,"sslEnabled":"on"}
+		}
+	,
+		{
+			"resourceId": "/SUBSCRIPTIONS/C10F1FB1-D7ED-40CD-91A8-0D3A82A55F8D/RESOURCEGROUPS/SDCCDEV01RGP03/PROVIDERS/MICROSOFT.NETWORK/APPLICATIONGATEWAYS/SDCTS1WAF001",
+			"operationName": "ApplicationGatewayAccess",
+			"time": "2017-07-21T15:13:34.0000034Z",
+			"category": "ApplicationGatewayAccessLog",
+			"properties": {"instanceId":"ApplicationGatewayRole_IN_1","clientIP":"52.237.25.113","clientPort":1828,"httpMethod":"GET","requestUri":"/","requestQuery":"X-AzureApplicationGateway-CACHE-HIT=0&SERVER-ROUTED=SDCTS1IVMWEB002.CIHS.AD.GOV.ON.CA&X-AzureApplicationGateway-LOG-ID=e9ebc944-40a3-4688-9fe5-ca4c1bb020b4&SERVER-STATUS=200","userAgent":"-","httpStatus":200,"httpVersion":"HTTP/1.1","receivedBytes":42,"sentBytes":1284,"timeTaken":15,"sslEnabled":"on"}
+		}
+	,
+		{
+			"resourceId": "/SUBSCRIPTIONS/C10F1FB1-D7ED-40CD-91A8-0D3A82A55F8D/RESOURCEGROUPS/SDCCDEV01RGP03/PROVIDERS/MICROSOFT.NETWORK/APPLICATIONGATEWAYS/SDCTS1WAF001",
+			"operationName": "ApplicationGatewayAccess",
+			"time": "2017-07-21T15:15:58Z",
+			"category": "ApplicationGatewayAccessLog",
+			"properties": {"instanceId":"ApplicationGatewayRole_IN_0","clientIP":"52.237.25.113","clientPort":1849,"httpMethod":"GET","requestUri":"/","requestQuery":"X-AzureApplicationGateway-CACHE-HIT=0&SERVER-ROUTED=SDCTS1IVMWEB001.CIHS.AD.GOV.ON.CA&X-AzureApplicationGateway-LOG-ID=ad2bfa82-c0f0-4184-a942-07488361916b&SERVER-STATUS=200","userAgent":"-","httpStatus":200,"httpVersion":"HTTP/1.1","receivedBytes":73,"sentBytes":1498,"timeTaken":16,"sslEnabled":"on"}
+		}
+	,
+		{
+			"resourceId": "/SUBSCRIPTIONS/C10F1FB1-D7ED-40CD-91A8-0D3A82A55F8D/RESOURCEGROUPS/SDCCDEV01RGP03/PROVIDERS/MICROSOFT.NETWORK/APPLICATIONGATEWAYS/SDCTS1WAF001",
+			"operationName": "ApplicationGatewayAccess",
+			"time": "2017-07-21T15:15:58Z",
+			"category": "ApplicationGatewayAccessLog",
+			"properties": {"instanceId":"ApplicationGatewayRole_IN_0","clientIP":"52.237.25.113","clientPort":1853,"httpMethod":"GET","requestUri":"/","requestQuery":"X-AzureApplicationGateway-CACHE-HIT=0&SERVER-ROUTED=SDCTS1IVMWEB001.CIHS.AD.GOV.ON.CA&X-AzureApplicationGateway-LOG-ID=6f03806a-b2e1-4ba9-a98e-1de54fc68fa0&SERVER-STATUS=200","userAgent":"-","httpStatus":200,"httpVersion":"HTTP/1.1","receivedBytes":42,"sentBytes":1284,"timeTaken":15,"sslEnabled":"on"}
+		}
+	,
+		{
+			"resourceId": "/SUBSCRIPTIONS/C10F1FB1-D7ED-40CD-91A8-0D3A82A55F8D/RESOURCEGROUPS/SDCCDEV01RGP03/PROVIDERS/MICROSOFT.NETWORK/APPLICATIONGATEWAYS/SDCTS1WAF001",
+			"operationName": "ApplicationGatewayAccess",
+			"time": "2017-07-21T15:15:58Z",
+			"category": "ApplicationGatewayAccessLog",
+			"properties": {"instanceId":"ApplicationGatewayRole_IN_0","clientIP":"52.237.25.113","clientPort":1847,"httpMethod":"GET","requestUri":"/","requestQuery":"X-AzureApplicationGateway-CACHE-HIT=0&SERVER-ROUTED=SDCTS1IVMWEB002.CIHS.AD.GOV.ON.CA&X-AzureApplicationGateway-LOG-ID=47553ac4-c1fe-4681-8173-7f9a9908dedc&SERVER-STATUS=200","userAgent":"-","httpStatus":200,"httpVersion":"HTTP/1.1","receivedBytes":66,"sentBytes":1420,"timeTaken":14,"sslEnabled":"on"}
+		}
+	,
+		{
+			"resourceId": "/SUBSCRIPTIONS/C10F1FB1-D7ED-40CD-91A8-0D3A82A55F8D/RESOURCEGROUPS/SDCCDEV01RGP03/PROVIDERS/MICROSOFT.NETWORK/APPLICATIONGATEWAYS/SDCTS1WAF001",
+			"operationName": "ApplicationGatewayAccess",
+			"time": "2017-07-21T15:15:58.0000001Z",
+			"category": "ApplicationGatewayAccessLog",
+			"properties": {"instanceId":"ApplicationGatewayRole_IN_0","clientIP":"52.237.25.113","clientPort":1843,"httpMethod":"GET","requestUri":"/","requestQuery":"X-AzureApplicationGateway-CACHE-HIT=0&SERVER-ROUTED=SDCTS1IVMWEB001.CIHS.AD.GOV.ON.CA&X-AzureApplicationGateway-LOG-ID=74f0c329-f073-4ccc-a9d2-58e457eaf414&SERVER-STATUS=200","userAgent":"-","httpStatus":200,"httpVersion":"HTTP/1.1","receivedBytes":66,"sentBytes":1284,"timeTaken":18,"sslEnabled":"on"}
+		}
+	,
+		{
+			"resourceId": "/SUBSCRIPTIONS/C10F1FB1-D7ED-40CD-91A8-0D3A82A55F8D/RESOURCEGROUPS/SDCCDEV01RGP03/PROVIDERS/MICROSOFT.NETWORK/APPLICATIONGATEWAYS/SDCTS1WAF001",
+			"operationName": "ApplicationGatewayAccess",
+			"time": "2017-07-21T15:15:59Z",
+			"category": "ApplicationGatewayAccessLog",
+			"properties": {"instanceId":"ApplicationGatewayRole_IN_0","clientIP":"52.237.25.113","clientPort":1861,"httpMethod":"GET","requestUri":"/","requestQuery":"X-AzureApplicationGateway-CACHE-HIT=0&SERVER-ROUTED=SDCTS1IVMWEB002.CIHS.AD.GOV.ON.CA&X-AzureApplicationGateway-LOG-ID=822ed924-f0f3-4be6-8b8c-acc07646ba31&SERVER-STATUS=200","userAgent":"-","httpStatus":200,"httpVersion":"HTTP/1.1","receivedBytes":42,"sentBytes":1284,"timeTaken":12,"sslEnabled":"on"}
+		}
+	,
+		{
+			"resourceId": "/SUBSCRIPTIONS/C10F1FB1-D7ED-40CD-91A8-0D3A82A55F8D/RESOURCEGROUPS/SDCCDEV01RGP03/PROVIDERS/MICROSOFT.NETWORK/APPLICATIONGATEWAYS/SDCTS1WAF001",
+			"operationName": "ApplicationGatewayAccess",
+			"time": "2017-07-21T15:15:59.0000001Z",
+			"category": "ApplicationGatewayAccessLog",
+			"properties": {"instanceId":"ApplicationGatewayRole_IN_0","clientIP":"52.237.25.113","clientPort":1855,"httpMethod":"GET","requestUri":"/","requestQuery":"X-AzureApplicationGateway-CACHE-HIT=0&SERVER-ROUTED=SDCTS1IVMWEB002.CIHS.AD.GOV.ON.CA&X-AzureApplicationGateway-LOG-ID=3ff51ef1-5f71-4213-89c1-395f06756c1f&SERVER-STATUS=200","userAgent":"-","httpStatus":200,"httpVersion":"HTTP/1.1","receivedBytes":49,"sentBytes":1498,"timeTaken":18,"sslEnabled":"on"}
+		}
+	,
+		{
+			"resourceId": "/SUBSCRIPTIONS/C10F1FB1-D7ED-40CD-91A8-0D3A82A55F8D/RESOURCEGROUPS/SDCCDEV01RGP03/PROVIDERS/MICROSOFT.NETWORK/APPLICATIONGATEWAYS/SDCTS1WAF001",
+			"operationName": "ApplicationGatewayAccess",
+			"time": "2017-07-21T15:16:02Z",
+			"category": "ApplicationGatewayAccessLog",
+			"properties": {"instanceId":"ApplicationGatewayRole_IN_0","clientIP":"52.237.25.113","clientPort":1893,"httpMethod":"GET","requestUri":"/","requestQuery":"X-AzureApplicationGateway-CACHE-HIT=0&SERVER-ROUTED=SDCTS1IVMWEB001.CIHS.AD.GOV.ON.CA&X-AzureApplicationGateway-LOG-ID=f7dd4119-8d3f-49f3-a740-8324538a65b8&SERVER-STATUS=200","userAgent":"-","httpStatus":200,"httpVersion":"HTTP/1.1","receivedBytes":49,"sentBytes":1498,"timeTaken":17,"sslEnabled":"on"}
+		}
+	,
+		{
+			"resourceId": "/SUBSCRIPTIONS/C10F1FB1-D7ED-40CD-91A8-0D3A82A55F8D/RESOURCEGROUPS/SDCCDEV01RGP03/PROVIDERS/MICROSOFT.NETWORK/APPLICATIONGATEWAYS/SDCTS1WAF001",
+			"operationName": "ApplicationGatewayAccess",
+			"time": "2017-07-21T15:16:04Z",
+			"category": "ApplicationGatewayAccessLog",
+			"properties": {"instanceId":"ApplicationGatewayRole_IN_0","clientIP":"52.237.25.113","clientPort":1911,"httpMethod":"GET","requestUri":"/","requestQuery":"X-AzureApplicationGateway-CACHE-HIT=0&SERVER-ROUTED=SDCTS1IVMWEB002.CIHS.AD.GOV.ON.CA&X-AzureApplicationGateway-LOG-ID=0ee9f64a-45d5-4bb5-bab1-6153a5bb5760&SERVER-STATUS=200","userAgent":"-","httpStatus":200,"httpVersion":"HTTP/1.1","receivedBytes":49,"sentBytes":1498,"timeTaken":16,"sslEnabled":"on"}
+		}
+	,
+		{
+			"resourceId": "/SUBSCRIPTIONS/C10F1FB1-D7ED-40CD-91A8-0D3A82A55F8D/RESOURCEGROUPS/SDCCDEV01RGP03/PROVIDERS/MICROSOFT.NETWORK/APPLICATIONGATEWAYS/SDCTS1WAF001",
+			"operationName": "ApplicationGatewayAccess",
+			"time": "2017-07-21T15:16:04.0000001Z",
+			"category": "ApplicationGatewayAccessLog",
+			"properties": {"instanceId":"ApplicationGatewayRole_IN_0","clientIP":"52.237.25.113","clientPort":1859,"httpMethod":"GET","requestUri":"/","requestQuery":"X-AzureApplicationGateway-CACHE-HIT=0&SERVER-ROUTED=SDCTS1IVMWEB002.CIHS.AD.GOV.ON.CA&X-AzureApplicationGateway-LOG-ID=e1e5cbe9-2f42-4472-9ecf-d4730bb26d71&SERVER-STATUS=200","userAgent":"-","httpStatus":200,"httpVersion":"HTTP/1.1","receivedBytes":42,"sentBytes":1284,"timeTaken":19,"sslEnabled":"on"}
+		}
+	,
+		{
+			"resourceId": "/SUBSCRIPTIONS/C10F1FB1-D7ED-40CD-91A8-0D3A82A55F8D/RESOURCEGROUPS/SDCCDEV01RGP03/PROVIDERS/MICROSOFT.NETWORK/APPLICATIONGATEWAYS/SDCTS1WAF001",
+			"operationName": "ApplicationGatewayAccess",
+			"time": "2017-07-21T15:16:04.0000002Z",
+			"category": "ApplicationGatewayAccessLog",
+			"properties": {"instanceId":"ApplicationGatewayRole_IN_0","clientIP":"52.237.25.113","clientPort":1865,"httpMethod":"GET","requestUri":"/","requestQuery":"X-AzureApplicationGateway-CACHE-HIT=0&SERVER-ROUTED=SDCTS1IVMWEB001.CIHS.AD.GOV.ON.CA&X-AzureApplicationGateway-LOG-ID=2850e825-8262-4f71-9bd7-22e82702e43c&SERVER-STATUS=200","userAgent":"-","httpStatus":200,"httpVersion":"HTTP/1.1","receivedBytes":42,"sentBytes":1284,"timeTaken":9,"sslEnabled":"on"}
+		}
+	,
+		{
+			"resourceId": "/SUBSCRIPTIONS/C10F1FB1-D7ED-40CD-91A8-0D3A82A55F8D/RESOURCEGROUPS/SDCCDEV01RGP03/PROVIDERS/MICROSOFT.NETWORK/APPLICATIONGATEWAYS/SDCTS1WAF001",
+			"operationName": "ApplicationGatewayAccess",
+			"time": "2017-07-21T15:16:04.0000003Z",
+			"category": "ApplicationGatewayAccessLog",
+			"properties": {"instanceId":"ApplicationGatewayRole_IN_0","clientIP":"52.237.25.113","clientPort":1881,"httpMethod":"GET","requestUri":"/","requestQuery":"X-AzureApplicationGateway-CACHE-HIT=0&SERVER-ROUTED=SDCTS1IVMWEB002.CIHS.AD.GOV.ON.CA&X-AzureApplicationGateway-LOG-ID=23501e3b-b14f-45ae-a97f-73fc982ad13c&SERVER-STATUS=200","userAgent":"-","httpStatus":200,"httpVersion":"HTTP/1.1","receivedBytes":42,"sentBytes":1284,"timeTaken":11,"sslEnabled":"on"}
+		}
+	,
+		{
+			"resourceId": "/SUBSCRIPTIONS/C10F1FB1-D7ED-40CD-91A8-0D3A82A55F8D/RESOURCEGROUPS/SDCCDEV01RGP03/PROVIDERS/MICROSOFT.NETWORK/APPLICATIONGATEWAYS/SDCTS1WAF001",
+			"operationName": "ApplicationGatewayAccess",
+			"time": "2017-07-21T15:16:04.0000004Z",
+			"category": "ApplicationGatewayAccessLog",
+			"properties": {"instanceId":"ApplicationGatewayRole_IN_0","clientIP":"52.237.25.113","clientPort":1889,"httpMethod":"GET","requestUri":"/","requestQuery":"X-AzureApplicationGateway-CACHE-HIT=0&SERVER-ROUTED=SDCTS1IVMWEB001.CIHS.AD.GOV.ON.CA&X-AzureApplicationGateway-LOG-ID=56200529-a02a-4ba7-80c7-390c7f71bfe2&SERVER-STATUS=200","userAgent":"-","httpStatus":200,"httpVersion":"HTTP/1.1","receivedBytes":42,"sentBytes":1284,"timeTaken":0,"sslEnabled":"on"}
+		}
+	,
+		{
+			"resourceId": "/SUBSCRIPTIONS/C10F1FB1-D7ED-40CD-91A8-0D3A82A55F8D/RESOURCEGROUPS/SDCCDEV01RGP03/PROVIDERS/MICROSOFT.NETWORK/APPLICATIONGATEWAYS/SDCTS1WAF001",
+			"operationName": "ApplicationGatewayAccess",
+			"time": "2017-07-21T15:16:04.0000005Z",
+			"category": "ApplicationGatewayAccessLog",
+			"properties": {"instanceId":"ApplicationGatewayRole_IN_0","clientIP":"52.237.25.113","clientPort":1905,"httpMethod":"GET","requestUri":"/","requestQuery":"X-AzureApplicationGateway-CACHE-HIT=0&SERVER-ROUTED=SDCTS1IVMWEB002.CIHS.AD.GOV.ON.CA&X-AzureApplicationGateway-LOG-ID=ee699f58-9834-4446-b4d3-92f5a0741c90&SERVER-STATUS=200","userAgent":"-","httpStatus":200,"httpVersion":"HTTP/1.1","receivedBytes":42,"sentBytes":1284,"timeTaken":18,"sslEnabled":"on"}
+		}
+	,
+		{
+			"resourceId": "/SUBSCRIPTIONS/C10F1FB1-D7ED-40CD-91A8-0D3A82A55F8D/RESOURCEGROUPS/SDCCDEV01RGP03/PROVIDERS/MICROSOFT.NETWORK/APPLICATIONGATEWAYS/SDCTS1WAF001",
+			"operationName": "ApplicationGatewayAccess",
+			"time": "2017-07-21T15:16:05Z",
+			"category": "ApplicationGatewayAccessLog",
+			"properties": {"instanceId":"ApplicationGatewayRole_IN_0","clientIP":"52.237.25.113","clientPort":1923,"httpMethod":"GET","requestUri":"/","requestQuery":"X-AzureApplicationGateway-CACHE-HIT=0&SERVER-ROUTED=SDCTS1IVMWEB001.CIHS.AD.GOV.ON.CA&X-AzureApplicationGateway-LOG-ID=b7b4d678-baa0-4f2e-9ceb-afaf4bc288dc&SERVER-STATUS=200","userAgent":"-","httpStatus":200,"httpVersion":"HTTP/1.1","receivedBytes":42,"sentBytes":1284,"timeTaken":35,"sslEnabled":"on"}
+		}
+	,
+		{
+			"resourceId": "/SUBSCRIPTIONS/C10F1FB1-D7ED-40CD-91A8-0D3A82A55F8D/RESOURCEGROUPS/SDCCDEV01RGP03/PROVIDERS/MICROSOFT.NETWORK/APPLICATIONGATEWAYS/SDCTS1WAF001",
+			"operationName": "ApplicationGatewayAccess",
+			"time": "2017-07-21T15:16:06Z",
+			"category": "ApplicationGatewayAccessLog",
+			"properties": {"instanceId":"ApplicationGatewayRole_IN_0","clientIP":"52.237.25.113","clientPort":1929,"httpMethod":"GET","requestUri":"/","requestQuery":"X-AzureApplicationGateway-CACHE-HIT=0&SERVER-ROUTED=SDCTS1IVMWEB002.CIHS.AD.GOV.ON.CA&X-AzureApplicationGateway-LOG-ID=0b736f98-f604-4f08-967b-21bc190b3766&SERVER-STATUS=200","userAgent":"-","httpStatus":200,"httpVersion":"HTTP/1.1","receivedBytes":42,"sentBytes":1284,"timeTaken":0,"sslEnabled":"on"}
+		}
+	,
+		{
+			"resourceId": "/SUBSCRIPTIONS/C10F1FB1-D7ED-40CD-91A8-0D3A82A55F8D/RESOURCEGROUPS/SDCCDEV01RGP03/PROVIDERS/MICROSOFT.NETWORK/APPLICATIONGATEWAYS/SDCTS1WAF001",
+			"operationName": "ApplicationGatewayAccess",
+			"time": "2017-07-21T15:16:06Z",
+			"category": "ApplicationGatewayAccessLog",
+			"properties": {"instanceId":"ApplicationGatewayRole_IN_0","clientIP":"52.237.25.113","clientPort":1935,"httpMethod":"GET","requestUri":"/","requestQuery":"X-AzureApplicationGateway-CACHE-HIT=0&SERVER-ROUTED=SDCTS1IVMWEB001.CIHS.AD.GOV.ON.CA&X-AzureApplicationGateway-LOG-ID=131cb74e-4b10-4b18-a9b4-69abdb4e4f31&SERVER-STATUS=200","userAgent":"-","httpStatus":200,"httpVersion":"HTTP/1.1","receivedBytes":42,"sentBytes":1284,"timeTaken":15,"sslEnabled":"on"}
+		}
+	,
+		{
+			"resourceId": "/SUBSCRIPTIONS/C10F1FB1-D7ED-40CD-91A8-0D3A82A55F8D/RESOURCEGROUPS/SDCCDEV01RGP03/PROVIDERS/MICROSOFT.NETWORK/APPLICATIONGATEWAYS/SDCTS1WAF001",
+			"operationName": "ApplicationGatewayAccess",
+			"time": "2017-07-21T15:16:07Z",
+			"category": "ApplicationGatewayAccessLog",
+			"properties": {"instanceId":"ApplicationGatewayRole_IN_0","clientIP":"52.237.25.113","clientPort":1941,"httpMethod":"GET","requestUri":"/","requestQuery":"X-AzureApplicationGateway-CACHE-HIT=0&SERVER-ROUTED=SDCTS1IVMWEB002.CIHS.AD.GOV.ON.CA&X-AzureApplicationGateway-LOG-ID=c9f1e0b2-562d-499a-b1c0-344d056ea8cc&SERVER-STATUS=200","userAgent":"-","httpStatus":200,"httpVersion":"HTTP/1.1","receivedBytes":42,"sentBytes":1284,"timeTaken":0,"sslEnabled":"on"}
+		}
+	,
+		{
+			"resourceId": "/SUBSCRIPTIONS/C10F1FB1-D7ED-40CD-91A8-0D3A82A55F8D/RESOURCEGROUPS/SDCCDEV01RGP03/PROVIDERS/MICROSOFT.NETWORK/APPLICATIONGATEWAYS/SDCTS1WAF001",
+			"operationName": "ApplicationGatewayAccess",
+			"time": "2017-07-21T15:16:07Z",
+			"category": "ApplicationGatewayAccessLog",
+			"properties": {"instanceId":"ApplicationGatewayRole_IN_0","clientIP":"52.237.25.113","clientPort":1947,"httpMethod":"GET","requestUri":"/","requestQuery":"X-AzureApplicationGateway-CACHE-HIT=0&SERVER-ROUTED=SDCTS1IVMWEB001.CIHS.AD.GOV.ON.CA&X-AzureApplicationGateway-LOG-ID=4798cbc0-968d-4d97-8b59-b52c4c4de90b&SERVER-STATUS=200","userAgent":"-","httpStatus":200,"httpVersion":"HTTP/1.1","receivedBytes":42,"sentBytes":1284,"timeTaken":0,"sslEnabled":"on"}
+		}
+	,
+		{
+			"resourceId": "/SUBSCRIPTIONS/C10F1FB1-D7ED-40CD-91A8-0D3A82A55F8D/RESOURCEGROUPS/SDCCDEV01RGP03/PROVIDERS/MICROSOFT.NETWORK/APPLICATIONGATEWAYS/SDCTS1WAF001",
+			"operationName": "ApplicationGatewayAccess",
+			"time": "2017-07-21T15:16:07.0000001Z",
+			"category": "ApplicationGatewayAccessLog",
+			"properties": {"instanceId":"ApplicationGatewayRole_IN_0","clientIP":"52.237.25.113","clientPort":1871,"httpMethod":"GET","requestUri":"/","requestQuery":"X-AzureApplicationGateway-CACHE-HIT=0&SERVER-ROUTED=SDCTS1IVMWEB001.CIHS.AD.GOV.ON.CA&X-AzureApplicationGateway-LOG-ID=20189f6e-06a5-4bbf-aab5-55963d082482&SERVER-STATUS=200","userAgent":"-","httpStatus":200,"httpVersion":"HTTP/1.1","receivedBytes":42,"sentBytes":1420,"timeTaken":0,"sslEnabled":"on"}
+		}
+	,
+		{
+			"resourceId": "/SUBSCRIPTIONS/C10F1FB1-D7ED-40CD-91A8-0D3A82A55F8D/RESOURCEGROUPS/SDCCDEV01RGP03/PROVIDERS/MICROSOFT.NETWORK/APPLICATIONGATEWAYS/SDCTS1WAF001",
+			"operationName": "ApplicationGatewayAccess",
+			"time": "2017-07-21T15:16:07.0000002Z",
+			"category": "ApplicationGatewayAccessLog",
+			"properties": {"instanceId":"ApplicationGatewayRole_IN_0","clientIP":"52.237.25.113","clientPort":1877,"httpMethod":"GET","requestUri":"/","requestQuery":"X-AzureApplicationGateway-CACHE-HIT=0&SERVER-ROUTED=SDCTS1IVMWEB002.CIHS.AD.GOV.ON.CA&X-AzureApplicationGateway-LOG-ID=875963ec-5b17-4d6f-882e-124ad07cbc98&SERVER-STATUS=200","userAgent":"-","httpStatus":200,"httpVersion":"HTTP/1.1","receivedBytes":42,"sentBytes":1420,"timeTaken":17,"sslEnabled":"on"}
+		}
+	,
+		{
+			"resourceId": "/SUBSCRIPTIONS/C10F1FB1-D7ED-40CD-91A8-0D3A82A55F8D/RESOURCEGROUPS/SDCCDEV01RGP03/PROVIDERS/MICROSOFT.NETWORK/APPLICATIONGATEWAYS/SDCTS1WAF001",
+			"operationName": "ApplicationGatewayAccess",
+			"time": "2017-07-21T15:16:07.0000003Z",
+			"category": "ApplicationGatewayAccessLog",
+			"properties": {"instanceId":"ApplicationGatewayRole_IN_0","clientIP":"52.237.25.113","clientPort":1885,"httpMethod":"GET","requestUri":"/","requestQuery":"X-AzureApplicationGateway-CACHE-HIT=0&SERVER-ROUTED=SDCTS1IVMWEB001.CIHS.AD.GOV.ON.CA&X-AzureApplicationGateway-LOG-ID=4cc59e18-a04b-4328-aa66-4a2ccd98680b&SERVER-STATUS=200","userAgent":"-","httpStatus":200,"httpVersion":"HTTP/1.1","receivedBytes":42,"sentBytes":1420,"timeTaken":17,"sslEnabled":"on"}
+		}
+	,
+		{
+			"resourceId": "/SUBSCRIPTIONS/C10F1FB1-D7ED-40CD-91A8-0D3A82A55F8D/RESOURCEGROUPS/SDCCDEV01RGP03/PROVIDERS/MICROSOFT.NETWORK/APPLICATIONGATEWAYS/SDCTS1WAF001",
+			"operationName": "ApplicationGatewayAccess",
+			"time": "2017-07-21T15:16:07.0000004Z",
+			"category": "ApplicationGatewayAccessLog",
+			"properties": {"instanceId":"ApplicationGatewayRole_IN_0","clientIP":"52.237.25.113","clientPort":1897,"httpMethod":"GET","requestUri":"/","requestQuery":"X-AzureApplicationGateway-CACHE-HIT=0&SERVER-ROUTED=SDCTS1IVMWEB002.CIHS.AD.GOV.ON.CA&X-AzureApplicationGateway-LOG-ID=6347cf51-b70d-41aa-83b6-74a9f4403d21&SERVER-STATUS=200","userAgent":"-","httpStatus":200,"httpVersion":"HTTP/1.1","receivedBytes":42,"sentBytes":1420,"timeTaken":19,"sslEnabled":"on"}
+		}
+	,
+		{
+			"resourceId": "/SUBSCRIPTIONS/C10F1FB1-D7ED-40CD-91A8-0D3A82A55F8D/RESOURCEGROUPS/SDCCDEV01RGP03/PROVIDERS/MICROSOFT.NETWORK/APPLICATIONGATEWAYS/SDCTS1WAF001",
+			"operationName": "ApplicationGatewayAccess",
+			"time": "2017-07-21T15:16:07.0000005Z",
+			"category": "ApplicationGatewayAccessLog",
+			"properties": {"instanceId":"ApplicationGatewayRole_IN_0","clientIP":"52.237.25.113","clientPort":1903,"httpMethod":"GET","requestUri":"/","requestQuery":"X-AzureApplicationGateway-CACHE-HIT=0&SERVER-ROUTED=SDCTS1IVMWEB001.CIHS.AD.GOV.ON.CA&X-AzureApplicationGateway-LOG-ID=a9f76432-7bfd-42bc-8ad2-6b11708390c8&SERVER-STATUS=200","userAgent":"-","httpStatus":200,"httpVersion":"HTTP/1.1","receivedBytes":42,"sentBytes":1420,"timeTaken":15,"sslEnabled":"on"}
+		}
+	,
+		{
+			"resourceId": "/SUBSCRIPTIONS/C10F1FB1-D7ED-40CD-91A8-0D3A82A55F8D/RESOURCEGROUPS/SDCCDEV01RGP03/PROVIDERS/MICROSOFT.NETWORK/APPLICATIONGATEWAYS/SDCTS1WAF001",
+			"operationName": "ApplicationGatewayAccess",
+			"time": "2017-07-21T15:16:07.0000006Z",
+			"category": "ApplicationGatewayAccessLog",
+			"properties": {"instanceId":"ApplicationGatewayRole_IN_0","clientIP":"52.237.25.113","clientPort":1921,"httpMethod":"GET","requestUri":"/","requestQuery":"X-AzureApplicationGateway-CACHE-HIT=0&SERVER-ROUTED=SDCTS1IVMWEB002.CIHS.AD.GOV.ON.CA&X-AzureApplicationGateway-LOG-ID=762788f4-17e5-47f9-a17d-3d3df8751cf3&SERVER-STATUS=200","userAgent":"-","httpStatus":200,"httpVersion":"HTTP/1.1","receivedBytes":42,"sentBytes":1420,"timeTaken":35,"sslEnabled":"on"}
+		}
+	,
+		{
+			"resourceId": "/SUBSCRIPTIONS/C10F1FB1-D7ED-40CD-91A8-0D3A82A55F8D/RESOURCEGROUPS/SDCCDEV01RGP03/PROVIDERS/MICROSOFT.NETWORK/APPLICATIONGATEWAYS/SDCTS1WAF001",
+			"operationName": "ApplicationGatewayAccess",
+			"time": "2017-07-21T15:16:07.0000007Z",
+			"category": "ApplicationGatewayAccessLog",
+			"properties": {"instanceId":"ApplicationGatewayRole_IN_0","clientIP":"52.237.25.113","clientPort":1867,"httpMethod":"GET","requestUri":"/","requestQuery":"X-AzureApplicationGateway-CACHE-HIT=0&SERVER-ROUTED=SDCTS1IVMWEB001.CIHS.AD.GOV.ON.CA&X-AzureApplicationGateway-LOG-ID=7b80182c-847d-4f8a-83ff-554fdea1fff6&SERVER-STATUS=200","userAgent":"-","httpStatus":200,"httpVersion":"HTTP/1.1","receivedBytes":42,"sentBytes":1284,"timeTaken":0,"sslEnabled":"on"}
+		}
+	,
+		{
+			"resourceId": "/SUBSCRIPTIONS/C10F1FB1-D7ED-40CD-91A8-0D3A82A55F8D/RESOURCEGROUPS/SDCCDEV01RGP03/PROVIDERS/MICROSOFT.NETWORK/APPLICATIONGATEWAYS/SDCTS1WAF001",
+			"operationName": "ApplicationGatewayAccess",
+			"time": "2017-07-21T15:16:07.0000008Z",
+			"category": "ApplicationGatewayAccessLog",
+			"properties": {"instanceId":"ApplicationGatewayRole_IN_0","clientIP":"52.237.25.113","clientPort":1873,"httpMethod":"GET","requestUri":"/","requestQuery":"X-AzureApplicationGateway-CACHE-HIT=0&SERVER-ROUTED=SDCTS1IVMWEB002.CIHS.AD.GOV.ON.CA&X-AzureApplicationGateway-LOG-ID=5d610aaa-2e98-4025-8f69-2c4b1ba42665&SERVER-STATUS=200","userAgent":"-","httpStatus":200,"httpVersion":"HTTP/1.1","receivedBytes":42,"sentBytes":1284,"timeTaken":15,"sslEnabled":"on"}
+		}
+	,
+		{
+			"resourceId": "/SUBSCRIPTIONS/C10F1FB1-D7ED-40CD-91A8-0D3A82A55F8D/RESOURCEGROUPS/SDCCDEV01RGP03/PROVIDERS/MICROSOFT.NETWORK/APPLICATIONGATEWAYS/SDCTS1WAF001",
+			"operationName": "ApplicationGatewayAccess",
+			"time": "2017-07-21T15:16:07.0000009Z",
+			"category": "ApplicationGatewayAccessLog",
+			"properties": {"instanceId":"ApplicationGatewayRole_IN_0","clientIP":"52.237.25.113","clientPort":1879,"httpMethod":"GET","requestUri":"/","requestQuery":"X-AzureApplicationGateway-CACHE-HIT=0&SERVER-ROUTED=SDCTS1IVMWEB001.CIHS.AD.GOV.ON.CA&X-AzureApplicationGateway-LOG-ID=c40db4bc-6fe8-400d-9c2d-7a1d06d056a8&SERVER-STATUS=200","userAgent":"-","httpStatus":200,"httpVersion":"HTTP/1.1","receivedBytes":42,"sentBytes":1284,"timeTaken":19,"sslEnabled":"on"}
+		}
+	,
+		{
+			"resourceId": "/SUBSCRIPTIONS/C10F1FB1-D7ED-40CD-91A8-0D3A82A55F8D/RESOURCEGROUPS/SDCCDEV01RGP03/PROVIDERS/MICROSOFT.NETWORK/APPLICATIONGATEWAYS/SDCTS1WAF001",
+			"operationName": "ApplicationGatewayAccess",
+			"time": "2017-07-21T15:16:07.0000010Z",
+			"category": "ApplicationGatewayAccessLog",
+			"properties": {"instanceId":"ApplicationGatewayRole_IN_0","clientIP":"52.237.25.113","clientPort":1895,"httpMethod":"GET","requestUri":"/","requestQuery":"X-AzureApplicationGateway-CACHE-HIT=0&SERVER-ROUTED=SDCTS1IVMWEB002.CIHS.AD.GOV.ON.CA&X-AzureApplicationGateway-LOG-ID=71f5b483-0406-4f43-8720-98bd39851c38&SERVER-STATUS=200","userAgent":"-","httpStatus":200,"httpVersion":"HTTP/1.1","receivedBytes":42,"sentBytes":1284,"timeTaken":19,"sslEnabled":"on"}
+		}
+	,
+		{
+			"resourceId": "/SUBSCRIPTIONS/C10F1FB1-D7ED-40CD-91A8-0D3A82A55F8D/RESOURCEGROUPS/SDCCDEV01RGP03/PROVIDERS/MICROSOFT.NETWORK/APPLICATIONGATEWAYS/SDCTS1WAF001",
+			"operationName": "ApplicationGatewayAccess",
+			"time": "2017-07-21T15:16:07.0000011Z",
+			"category": "ApplicationGatewayAccessLog",
+			"properties": {"instanceId":"ApplicationGatewayRole_IN_0","clientIP":"52.237.25.113","clientPort":1907,"httpMethod":"GET","requestUri":"/","requestQuery":"X-AzureApplicationGateway-CACHE-HIT=0&SERVER-ROUTED=SDCTS1IVMWEB001.CIHS.AD.GOV.ON.CA&X-AzureApplicationGateway-LOG-ID=9a523c3a-b9e8-425c-a48a-89edc6377199&SERVER-STATUS=200","userAgent":"-","httpStatus":200,"httpVersion":"HTTP/1.1","receivedBytes":42,"sentBytes":1284,"timeTaken":0,"sslEnabled":"on"}
+		}
+	,
+		{
+			"resourceId": "/SUBSCRIPTIONS/C10F1FB1-D7ED-40CD-91A8-0D3A82A55F8D/RESOURCEGROUPS/SDCCDEV01RGP03/PROVIDERS/MICROSOFT.NETWORK/APPLICATIONGATEWAYS/SDCTS1WAF001",
+			"operationName": "ApplicationGatewayAccess",
+			"time": "2017-07-21T15:16:07.0000012Z",
+			"category": "ApplicationGatewayAccessLog",
+			"properties": {"instanceId":"ApplicationGatewayRole_IN_0","clientIP":"52.237.25.113","clientPort":1925,"httpMethod":"GET","requestUri":"/","requestQuery":"X-AzureApplicationGateway-CACHE-HIT=0&SERVER-ROUTED=SDCTS1IVMWEB002.CIHS.AD.GOV.ON.CA&X-AzureApplicationGateway-LOG-ID=4f117e49-076e-49e9-9789-83043a583c20&SERVER-STATUS=200","userAgent":"-","httpStatus":200,"httpVersion":"HTTP/1.1","receivedBytes":42,"sentBytes":1284,"timeTaken":0,"sslEnabled":"on"}
+		}
+	,
+		{
+			"resourceId": "/SUBSCRIPTIONS/C10F1FB1-D7ED-40CD-91A8-0D3A82A55F8D/RESOURCEGROUPS/SDCCDEV01RGP03/PROVIDERS/MICROSOFT.NETWORK/APPLICATIONGATEWAYS/SDCTS1WAF001",
+			"operationName": "ApplicationGatewayAccess",
+			"time": "2017-07-21T15:16:07.0000013Z",
+			"category": "ApplicationGatewayAccessLog",
+			"properties": {"instanceId":"ApplicationGatewayRole_IN_0","clientIP":"52.237.25.113","clientPort":1937,"httpMethod":"GET","requestUri":"/","requestQuery":"X-AzureApplicationGateway-CACHE-HIT=0&SERVER-ROUTED=SDCTS1IVMWEB001.CIHS.AD.GOV.ON.CA&X-AzureApplicationGateway-LOG-ID=2c21d415-f619-4055-9a08-54a2c3d06891&SERVER-STATUS=200","userAgent":"-","httpStatus":200,"httpVersion":"HTTP/1.1","receivedBytes":42,"sentBytes":1284,"timeTaken":17,"sslEnabled":"on"}
+		}
+	,
+		{
+			"resourceId": "/SUBSCRIPTIONS/C10F1FB1-D7ED-40CD-91A8-0D3A82A55F8D/RESOURCEGROUPS/SDCCDEV01RGP03/PROVIDERS/MICROSOFT.NETWORK/APPLICATIONGATEWAYS/SDCTS1WAF001",
+			"operationName": "ApplicationGatewayAccess",
+			"time": "2017-07-21T15:16:07.0000014Z",
+			"category": "ApplicationGatewayAccessLog",
+			"properties": {"instanceId":"ApplicationGatewayRole_IN_0","clientIP":"52.237.25.113","clientPort":1943,"httpMethod":"GET","requestUri":"/","requestQuery":"X-AzureApplicationGateway-CACHE-HIT=0&SERVER-ROUTED=SDCTS1IVMWEB002.CIHS.AD.GOV.ON.CA&X-AzureApplicationGateway-LOG-ID=3aa6ea06-b330-4902-9b37-1fae85c0e8ea&SERVER-STATUS=200","userAgent":"-","httpStatus":200,"httpVersion":"HTTP/1.1","receivedBytes":42,"sentBytes":1284,"timeTaken":0,"sslEnabled":"on"}
+		}
+	,
+		{
+			"resourceId": "/SUBSCRIPTIONS/C10F1FB1-D7ED-40CD-91A8-0D3A82A55F8D/RESOURCEGROUPS/SDCCDEV01RGP03/PROVIDERS/MICROSOFT.NETWORK/APPLICATIONGATEWAYS/SDCTS1WAF001",
+			"operationName": "ApplicationGatewayAccess",
+			"time": "2017-07-21T15:16:08Z",
+			"category": "ApplicationGatewayAccessLog",
+			"properties": {"instanceId":"ApplicationGatewayRole_IN_0","clientIP":"52.237.25.113","clientPort":1949,"httpMethod":"GET","requestUri":"/","requestQuery":"X-AzureApplicationGateway-CACHE-HIT=0&SERVER-ROUTED=SDCTS1IVMWEB001.CIHS.AD.GOV.ON.CA&X-AzureApplicationGateway-LOG-ID=d50cfdb0-9fb6-4e3a-a3de-37baca5d4ee5&SERVER-STATUS=200","userAgent":"-","httpStatus":200,"httpVersion":"HTTP/1.1","receivedBytes":42,"sentBytes":1284,"timeTaken":15,"sslEnabled":"on"}
+		}
+	,
+		{
+			"resourceId": "/SUBSCRIPTIONS/C10F1FB1-D7ED-40CD-91A8-0D3A82A55F8D/RESOURCEGROUPS/SDCCDEV01RGP03/PROVIDERS/MICROSOFT.NETWORK/APPLICATIONGATEWAYS/SDCTS1WAF001",
+			"operationName": "ApplicationGatewayAccess",
+			"time": "2017-07-21T15:16:08Z",
+			"category": "ApplicationGatewayAccessLog",
+			"properties": {"instanceId":"ApplicationGatewayRole_IN_0","clientIP":"52.237.25.113","clientPort":1955,"httpMethod":"GET","requestUri":"/","requestQuery":"X-AzureApplicationGateway-CACHE-HIT=0&SERVER-ROUTED=SDCTS1IVMWEB002.CIHS.AD.GOV.ON.CA&X-AzureApplicationGateway-LOG-ID=ba147078-5605-428f-93bb-17ed9cf6020f&SERVER-STATUS=200","userAgent":"-","httpStatus":200,"httpVersion":"HTTP/1.1","receivedBytes":42,"sentBytes":1284,"timeTaken":15,"sslEnabled":"on"}
+		}
+	,
+		{
+			"resourceId": "/SUBSCRIPTIONS/C10F1FB1-D7ED-40CD-91A8-0D3A82A55F8D/RESOURCEGROUPS/SDCCDEV01RGP03/PROVIDERS/MICROSOFT.NETWORK/APPLICATIONGATEWAYS/SDCTS1WAF001",
+			"operationName": "ApplicationGatewayAccess",
+			"time": "2017-07-21T15:16:09Z",
+			"category": "ApplicationGatewayAccessLog",
+			"properties": {"instanceId":"ApplicationGatewayRole_IN_0","clientIP":"52.237.25.113","clientPort":1961,"httpMethod":"GET","requestUri":"/","requestQuery":"X-AzureApplicationGateway-CACHE-HIT=0&SERVER-ROUTED=SDCTS1IVMWEB001.CIHS.AD.GOV.ON.CA&X-AzureApplicationGateway-LOG-ID=284ba6cf-d9dd-44bb-a04b-e7a8a17ce67d&SERVER-STATUS=200","userAgent":"-","httpStatus":200,"httpVersion":"HTTP/1.1","receivedBytes":42,"sentBytes":1284,"timeTaken":0,"sslEnabled":"on"}
+		}
+	,
+		{
+			"resourceId": "/SUBSCRIPTIONS/C10F1FB1-D7ED-40CD-91A8-0D3A82A55F8D/RESOURCEGROUPS/SDCCDEV01RGP03/PROVIDERS/MICROSOFT.NETWORK/APPLICATIONGATEWAYS/SDCTS1WAF001",
+			"operationName": "ApplicationGatewayAccess",
+			"time": "2017-07-21T15:16:09.0000001Z",
+			"category": "ApplicationGatewayAccessLog",
+			"properties": {"instanceId":"ApplicationGatewayRole_IN_0","clientIP":"52.237.25.113","clientPort":1931,"httpMethod":"GET","requestUri":"/","requestQuery":"X-AzureApplicationGateway-CACHE-HIT=0&SERVER-ROUTED=SDCTS1IVMWEB001.CIHS.AD.GOV.ON.CA&X-AzureApplicationGateway-LOG-ID=0d839597-2c56-4a7a-97cf-9330f93586de&SERVER-STATUS=200","userAgent":"-","httpStatus":200,"httpVersion":"HTTP/1.1","receivedBytes":42,"sentBytes":1420,"timeTaken":0,"sslEnabled":"on"}
+		}
+	,
+		{
+			"resourceId": "/SUBSCRIPTIONS/C10F1FB1-D7ED-40CD-91A8-0D3A82A55F8D/RESOURCEGROUPS/SDCCDEV01RGP03/PROVIDERS/MICROSOFT.NETWORK/APPLICATIONGATEWAYS/SDCTS1WAF001",
+			"operationName": "ApplicationGatewayAccess",
+			"time": "2017-07-21T15:16:09.0000002Z",
+			"category": "ApplicationGatewayAccessLog",
+			"properties": {"instanceId":"ApplicationGatewayRole_IN_0","clientIP":"52.237.25.113","clientPort":1953,"httpMethod":"GET","requestUri":"/","requestQuery":"X-AzureApplicationGateway-CACHE-HIT=0&SERVER-ROUTED=SDCTS1IVMWEB002.CIHS.AD.GOV.ON.CA&X-AzureApplicationGateway-LOG-ID=0b720fdc-f918-4c71-973f-316465bb984d&SERVER-STATUS=200","userAgent":"-","httpStatus":200,"httpVersion":"HTTP/1.1","receivedBytes":42,"sentBytes":1284,"timeTaken":31,"sslEnabled":"on"}
+		}
+	,
+		{
+			"resourceId": "/SUBSCRIPTIONS/C10F1FB1-D7ED-40CD-91A8-0D3A82A55F8D/RESOURCEGROUPS/SDCCDEV01RGP03/PROVIDERS/MICROSOFT.NETWORK/APPLICATIONGATEWAYS/SDCTS1WAF001",
+			"operationName": "ApplicationGatewayAccess",
+			"time": "2017-07-21T15:16:09.0000003Z",
+			"category": "ApplicationGatewayAccessLog",
+			"properties": {"instanceId":"ApplicationGatewayRole_IN_0","clientIP":"52.237.25.113","clientPort":1959,"httpMethod":"GET","requestUri":"/","requestQuery":"X-AzureApplicationGateway-CACHE-HIT=0&SERVER-ROUTED=SDCTS1IVMWEB001.CIHS.AD.GOV.ON.CA&X-AzureApplicationGateway-LOG-ID=a04d557d-9e85-42b7-bcc6-3ad7960ee440&SERVER-STATUS=200","userAgent":"-","httpStatus":200,"httpVersion":"HTTP/1.1","receivedBytes":42,"sentBytes":1284,"timeTaken":15,"sslEnabled":"on"}
+		}
+	,
+		{
+			"resourceId": "/SUBSCRIPTIONS/C10F1FB1-D7ED-40CD-91A8-0D3A82A55F8D/RESOURCEGROUPS/SDCCDEV01RGP03/PROVIDERS/MICROSOFT.NETWORK/APPLICATIONGATEWAYS/SDCTS1WAF001",
+			"operationName": "ApplicationGatewayAccess",
+			"time": "2017-07-21T15:16:09.0000004Z",
+			"category": "ApplicationGatewayAccessLog",
+			"properties": {"instanceId":"ApplicationGatewayRole_IN_0","clientIP":"52.237.25.113","clientPort":1917,"httpMethod":"GET","requestUri":"/","requestQuery":"X-AzureApplicationGateway-CACHE-HIT=0&SERVER-ROUTED=SDCTS1IVMWEB001.CIHS.AD.GOV.ON.CA&X-AzureApplicationGateway-LOG-ID=b5861237-9c83-485b-991a-e350c8fff6ac&SERVER-STATUS=200","userAgent":"-","httpStatus":200,"httpVersion":"HTTP/1.1","receivedBytes":49,"sentBytes":1498,"timeTaken":15,"sslEnabled":"on"}
+		}
+
+	]
+}

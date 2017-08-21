@@ -21,6 +21,7 @@ var (
 	CEFVersion       = 0
 	NsgDeviceVendor  = "Microsoft"
 	NsgDeviceProduct = "Azure NSG"
+	AppGatewayDeviceProduct = "Azure Application Gateway"
 	NsgDeviceVersion = "1"
 )
 
@@ -79,11 +80,21 @@ func init() {
 	cefTemplate = *tpl
 }
 
-func NewNsgCEFEvent() CEFEvent {
+func NewAzureCEFEvent() CEFEvent {
 	return CEFEvent{
 		CEFVersion:    &CEFVersion,
 		DeviceVendor:  &NsgDeviceVendor,
 		DeviceProduct: &NsgDeviceProduct,
+		DeviceVersion: &NsgDeviceVersion,
+		Extension:     make(map[string]string),
+	}
+}
+
+func NewAzureCEFEventForProduct(deviceProduct string) CEFEvent {
+	return CEFEvent{
+		CEFVersion:    &CEFVersion,
+		DeviceVendor:  &NsgDeviceVendor,
+		DeviceProduct: &deviceProduct,
 		DeviceVersion: &NsgDeviceVersion,
 		Extension:     make(map[string]string),
 	}
@@ -182,7 +193,7 @@ func (client *CEFSyslogClient) SendEvent(event CEFEvent) error {
 	return nil
 }
 
-func (client CEFSyslogClient) ProcessNsgLogFile(logFile *AzureNsgLogFile, resultsChan chan AzureNsgLogFile) error {
+func (client CEFSyslogClient) ProcessAzureLogFile(logFile AzureLogFile, resultsChan chan AzureLogFile) error {
 	blobRange := logFile.getUnprocessedBlobRange()
 	err := logFile.LoadBlobRange(blobRange)
 	if err != nil {
@@ -191,25 +202,31 @@ func (client CEFSyslogClient) ProcessNsgLogFile(logFile *AzureNsgLogFile, result
 	}
 
 	events := []*CEFEvent{}
-	for _, record := range logFile.AzureNsgEventLog.Records {
-		cefEvents, _ := record.GetCEFList(GetCEFEventListOptions{StartTime: logFile.LastProcessedRecord})
+	for _, record := range logFile.GetAzureEventLog().GetRecords() {
+		cefEvents, _ := record.GetCEFList(GetCEFEventListOptions{StartTime: logFile.GetLastProcessedRecord()})
 		events = append(events, cefEvents...)
 	}
 
 	logCount := len(events)
-	endTimeStamp := events[logCount-1].Time.Unix()
-	logFile.LastProcessedTimeStamp = endTimeStamp
+	lastRecord := logFile.GetAzureEventLog().GetRecords()[len(logFile.GetAzureEventLog().GetRecords())-1]
+	endTimeStamp := lastRecord.GetTime().Unix()
+	// Note: some deny-all records come with empty flows - so no events will be extracted
+	// TBD to complete but for now make sure we do not try to fail on "index is out of bounds"(-1)
+	if logCount > 0 {
+		endTimeStamp = events[logCount-1].Time.Unix()
+	}
+	logFile.SetLastProcessedTimeStamp(endTimeStamp)
 	for _, nsgEvent := range events {
 		client.SendEvent(*nsgEvent)
 	}
 
-	logFile.LastProcessed = time.Now()
-	logFile.LastRecordCount = len(logFile.AzureNsgEventLog.Records)
-	logFile.LastProcessedRecord = logFile.AzureNsgEventLog.Records[logFile.LastRecordCount-1].Time
-	logFile.LastProcessedRange = blobRange
+	logFile.SetLastProcessed (time.Now())
+	logFile.SetLastRecordCount (len(logFile.GetAzureEventLog().GetRecords()))
+	logFile.SetLastProcessedRecord (logFile.GetAzureEventLog().GetRecords()[logFile.GetLastRecordCount()-1].GetTime())
+	logFile.SetLastProcessedRange (blobRange)
 
 	processedFlowCount.Inc(int64(logCount))
 
-	resultsChan <- *logFile
+	resultsChan <- logFile
 	return nil
 }

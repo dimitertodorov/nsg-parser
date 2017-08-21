@@ -165,11 +165,11 @@ func loadTestFile(name string, t *testing.T) AzureNsgEventLog {
 	return logs
 }
 
-func loadTestLogFile(name string, t *testing.T) AzureNsgLogFile {
+func loadTestLogFile(name string, t *testing.T) AzureLogFile {
 	eventLog := loadTestFile(name, t)
 	logFile, err := NewAzureNsgLogFileFromEventLog(&eventLog)
 	if err != nil {
 		t.Fatalf("got error loading testfile into AzureNsgLogFile %s %s", name, err)
 	}
-	return logFile
+	return &logFile
 }
