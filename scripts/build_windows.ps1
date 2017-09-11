@@ -20,5 +20,5 @@ if($version -Match '[0-9]+.[0-9]+.[0-9]+.*'){
     Write-Host "Built Version $version. Packaging and pushing to Github"
     $archiveName = "nsg-parser-$version.windows-amd64.zip"
     Compress-Archive -Path $packageFiles -DestinationPath $archiveName -Update
-    github-release upload --user dimitertodorov --repo nsg-parser --tag "v$version" --name $archiveName --file $archiveName
+    github-release upload --user dimitertodorov --repo nsg-parser --tag "v$version" --name $archiveName --file $archiveName --replace
 }
